@@ -23,11 +23,11 @@
              <li id="newin">
             <a href="#">NEW IN</a>
 			<ul>  
-				<li><a href="#">View All</a></li>
+				<li><a href="womens.php?department=All%20Cloths&depart=all&type=any">View All</a></li>
 				<hr>
-				<li><a href="#">Women</a></li>
+				<li><a href="womens.php?department=All%20Woman%27s%20Cloths&depart=womenswear&type=any">Women</a></li>
 				<hr>
-				<li><a href="#">Men</a></li>
+				<li><a href="womens.php?department=All%20Mans%27s%20Cloths&depart=menswear&type=any">Men</a></li>
 				
 				</ul> 
             </li>
@@ -121,6 +121,7 @@
 <div id="middle">
 
 {% for image in womensCloths %}
+
 <div class="image1">
 	<img alt="{{ image.alt | raw }}" id="img{{ image.id }}" src="{{ image.src }}"  />
 	<div class="description">
@@ -128,8 +129,8 @@
 		<a href="#" ><span class="price">£{{ image.price }}</span></a>
 	</div>
 </div>
-{% endfor %}
 
+{% endfor %}
 </div>
 
 <div id="footer">

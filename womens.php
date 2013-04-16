@@ -26,7 +26,16 @@ mysql_select_db($database) or die(mysql_error());
 /* Query the messages to the index page */
 $depart = $_GET['depart'];
 $type = $_GET['type'];
-$cloths = mysql_query("SELECT style_ID, description, department, type, thumbnail_link FROM style WHERE department like '$depart' and type like '$type'") or die(mysql_error());
+
+if($depart == "all")
+	$cloths = mysql_query("SELECT style_ID, description, department, type, thumbnail_link FROM style") or die(mysql_error());
+else
+{
+	if($type != "any")
+		$cloths = mysql_query("SELECT style_ID, description, department, type, thumbnail_link FROM style WHERE department like '$depart' and type like '$type'") or die(mysql_error());
+	else
+		$cloths = mysql_query("SELECT style_ID, description, department, type, thumbnail_link FROM style WHERE department like '$depart'") or die(mysql_error());
+}
 $parameters = array();
 $wcloths = array();
 while ($row = mysql_fetch_array($cloths))
