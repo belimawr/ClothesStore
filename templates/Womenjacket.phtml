@@ -1,0 +1,158 @@
+<html>
+<body>
+<a id="tooCool" href="http://www.w3junkies.com/toocool/">Too Cool for Internet Explorer</a>
+<link rel = "stylesheet"  type="text/css" href="index.css">
+
+<div id = "header">
+ <div id ="headerlogo">
+ 	<a href="index.php">
+ 		<img style="margin-left:100px; margin-top:0px;" id ="logo" src= "logo1.png" alt="logo">
+ 	</a>
+ 	</div>
+      <a href="#" >
+	   <div class="button">
+              <span class="ButtonText ">Checkout</span>
+		</div>
+      </a>
+ </div>
+
+<div id="content">
+ 
+<div id="nav">
+	 <ul>		
+             <li id="newin">
+            <a href="#">NEW IN</a>
+			<ul>  
+				<li><a href="#">View All</a></li>
+				<hr>
+				<li><a href="#">Women</a></li>
+				<hr>
+				<li><a href="#">Men</a></li>
+				
+				</ul> 
+            </li>
+			
+			 <li >
+            <a href="#">WOMEN</a>
+                <ul> 
+				<li><a href="womens.php?department=Coats%20%26%20Jackets&depart=womenswear&type=coats"">Coats & Jackets</a></li>
+				<hr>
+				<li><a href="womens.php?department=Jeans&depart=womenswear&type=jeans">Jeans</a></li>
+				<hr>
+				<li><a href="womens.php?department=Knitwear&depart=womenswear&type=knitwear">Knitwear</a></li>
+				</ul>
+            </li>
+
+
+            <li>
+            <a href="#">MEN</a>
+                <ul> 
+				<li><a href="womens.php?department=Coats%20%26%20Jackets&depart=menswear&type=coats"">Coats & Jackets</a></li>
+				<hr>
+				<li><a href="womens.php?department=Jeans&depart=menswear&type=jeans">Jeans</a></li>
+				<hr>
+				<li><a href="womens.php?department=Knitwear&depart=menswear&type=knitwear">Knitwear</a></li>
+				</ul>
+            </li>
+            
+            <li>
+            <a href="#">GIRLS</a>
+                <ul>  
+				<li><a href="#">Coats & Jackets</a></li>
+				<hr>
+				<li><a href="#">Jeans</a></li>
+				<hr>
+				<li><a href="#">Knitwear</a></li>
+				
+				</ul> 
+            </li>
+            <li>
+            <a href="#">BOYS</a>
+                <ul>  
+				<li><a href="#">Coats & Jackets</a></li>
+				<hr>
+				<li><a href="#">Jeans</a></li>
+				<hr>
+				<li><a href="#">Knitwear</a></li>
+				
+				</ul> 
+            </li>
+                        <li>
+            <a href="#">BABIES</a>
+  
+            </li>
+            
+            <li>
+            <a href="#">SALES</a>
+				<ul>  
+				<li><a href="#">Women</a></li>
+				<hr>
+				<li><a href="#">Men</a></li>
+				
+				</ul> 
+            </li>
+            <li>
+            <a href="#">STORE LOCATOR</a>
+            </li>
+			
+            
+			
+            <li>
+            <a href="#">ABOUT US</a>
+            </li>
+	</ul>
+
+</div>
+<div class="h1">
+	<h1 >
+	{{ department | raw }}
+	</h1>
+</div>
+
+<div class = "sortDropdown">
+<select>
+  <option value="Favourites">Favourites</option>
+  <option value="Most Popular">Most Popular</option>
+  <option value="Price Low-High">Price Low-High</option>
+  <option value="Price High-Low">Price High-Low</option>
+</select>
+</div>
+
+<div id="middle">
+
+{% for image in womensCloths %}
+<div class="image1">
+	<img alt="{{ image.alt | raw }}" id="img{{ image.id }}" src="{{ image.src }}"  />
+	<div class="description">
+		<a href="#" >{{ image.desc | raw }}</a>
+		<a href="#" ><span class="price">£{{ image.price }}</span></a>
+	</div>
+</div>
+{% endfor %}
+
+</div>
+
+<div id="footer">
+	</br>
+<p style="text-align:center;"> &copy; 2013 Hamptons Store Ltd. All Rights Reserved.</p>
+
+<ul id="footerList">
+	<h3>Help</h3>
+<li> <a href="#"> Frequently Asked Questions</a></li>
+<li> <a href="#">Size Guides</a> </li>
+<li><a href="#">Delivery Information</a></li>
+<li> <a href="#">Customer Services</a></li>
+<li> <a href="#">Site Map</a></li>
+</ul>
+
+<ul>
+	<br><br>
+<li><img style="width:25px; margin-left:50px;" id ="flogo" src= "f_logo.png" alt="logo"><a style="font-size:12px; margin-left:8px" href="#"> www.facebook.com/HamptonsStoreUK</a></li>
+<br>
+<li><img style="width:35px; margin-left:45px;" id ="tlogo" src= "twitter2.png" alt="logo"><a style="font-size:12px; margin-left:8px" href="#"> www.twitter.com/HamptonsStoreUK</a></li>
+</ul>
+</div>
+
+
+</body>
+</html>
