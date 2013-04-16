@@ -4,17 +4,12 @@
 <!--
 
 var images = Array();
-//$i = 0;
-//$images[i++] = new Image;
-//$images[i++] = new Image;
-//$images[i++] = new Image;
-//$images[i++] = new Image;
 
-/* Fills the SRC properties of the new images with graphic files. Because all the code in the HEAD part of a web page loads before the body, all the image files listed here will begin loading before anything appears on the screen.*/
 var i = 0;
 
 {% for image in slideShowImages %}
-	images[i++] = "{{ image }}";
+	images[i] = new Image();
+	images[i++].src = "{{ image }}";
 {% endfor %}
 
 function countImgs(max)
@@ -31,7 +26,7 @@ function countImgs(max)
 
 function changeImage()
 {
-	document['imgRoll'].src = images[countImgs({{ imgCount }})];
+	document['imgRoll'].src = images[countImgs({{ imgCount }})].src;
 }
 
 var mytimer = setInterval(function(){changeImage()}, 3000);
