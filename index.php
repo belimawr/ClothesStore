@@ -19,24 +19,23 @@ $pass = "2013StrathWEB";
 /*
  * Connect to database.
  */
-
-mysql_connect($host, $user, $pass);
-mysql_select_db($database) or die(mysql_error());
+$db = new mysqli($host, $user, $pass, $database);
 
 /* Query the messages to the index page */
-$messages = mysql_query("SELECT * FROM index_data");
+$sql = "SELECT * FROM index_data";
+$messages = $db->query($sql);
 $parameters = array();
-while ($row = mysql_fetch_array($messages))
+while ($row = $messages->fetch_assoc())
 {
 	$parameters[$row['msg_name']] = $row['msg'];
 	$parameters[$row['img_name']] = $row['img'];
 }
 
 /* Query the images to the index slideShow */
-$messages = mysql_query("SELECT img, img_name FROM index_data WHERE img_name like 'slideShow'");
+$messages = $db->query("SELECT img, img_name FROM index_data WHERE img_name like 'slideShow'");
 $images = array();
 $i = 0;
-while ($row = mysql_fetch_array($messages))
+while ($row = $messages->fetch_assoc())
 {
 	$images[$i++] = $row['img'];
 }
