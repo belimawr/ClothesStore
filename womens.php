@@ -19,26 +19,27 @@ $pass = "2013StrathWEB";
 /*
  * Connect to database.
  */
-
-mysql_connect($host, $user, $pass);
-mysql_select_db($database) or die(mysql_error());
+$db = new mysqli($host, $user, $pass, $database);
 
 /* Query the messages to the index page */
 $depart = $_GET['depart'];
 $type = $_GET['type'];
 
 if($depart == "all")
-	$cloths = mysql_query("SELECT style_ID, description, department, type, thumbnail_link FROM style") or die(mysql_error());
+	$query = "SELECT style_ID, description, department, type, thumbnail_link FROM style";
 else
 {
 	if($type != "any")
-		$cloths = mysql_query("SELECT style_ID, description, department, type, thumbnail_link FROM style WHERE department like '$depart' and type like '$type'") or die(mysql_error());
+		$query = "SELECT style_ID, description, department, type, thumbnail_link FROM style WHERE department like '$depart' and type like '$type'";
 	else
-		$cloths = mysql_query("SELECT style_ID, description, department, type, thumbnail_link FROM style WHERE department like '$depart'") or die(mysql_error());
+		$query = "SELECT style_ID, description, department, type, thumbnail_link FROM style WHERE department like '$depart'";
 }
+
+$result = $db->query($query);
+
 $parameters = array();
 $wcloths = array();
-while ($row = mysql_fetch_array($cloths))
+while ($row = $result->fetch_assoc())
 {
 	$tmp = array();
 	$tmp['id'] = $row['style_ID'];
@@ -51,6 +52,7 @@ $parameters['womensCloths'] = $wcloths;
 // $parameters['department'] = "Coats & Jackets";
 $parameters['department'] = $_GET['department'];
 
+$db->close();
 
 $template->display($parameters);
 ?>
