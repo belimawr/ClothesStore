@@ -1,0 +1,107 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<script type='text/javascript' language='Javascript'>
+<!--
+var requestObject = false;
+function funcReceiveData()
+{
+	if(requestObject.readyState == 4) {
+		if(requestObject.status == 200) {
+			var status = requestObject.responseText;
+			if(status == "ok")
+			{
+				document.getElementById('userValid').innerHTML = ' Valid email';
+			}
+			else
+			{
+				document.getElementById('userValid').innerHTML = ' Email already registred, choose another one.';
+			}
+		}
+	}
+}
+
+	if (window.XMLHttpRequest)
+	{
+		requestObject = new XMLHttpRequest();
+	}
+	else if(window.ActiveXObject)
+	{
+		requestObject = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	function checkUser()
+	{
+		if(requestObject){
+			requestObject.open("POST", "checkusername.php", true);
+			requestObject.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			var user = document.getElementById('email').value;
+			var tobesent = "email=" + user;
+			requestObject.send(tobesent);
+			requestObject.onreadystatechange = funcReceiveData;
+		}
+	}
+//-->
+</script>
+
+</HEAD>
+<BODY>
+	<form method="POST" action="addUser.php">
+		<table>
+			<tr valign="top">
+				<td><strong>Email:</strong></td>
+				<td><input type="text" name="email" id="email" onblur="checkUser();" size="25"><i id='userValid'></td>
+			</tr>
+			
+			<tr valign="top">
+				<td><strong>Password:</strong></td>
+				<td><input type="password" name="password" size="25"></td>
+			</tr>
+
+			<tr valign="top">
+				<td><strong>Frist name:</strong></td>
+				<td><input type="text" name="Fname" size="25"></td>
+			</tr>
+
+			<tr valign="top">
+				<td><strong>Last name:</strong></td>
+				<td><input type="text" name="Lname" size="25"></td>
+			</tr>
+
+			<tr valign="top">
+				<td><strong>Address line 1:</strong></td>
+				<td><input type="text" name="address1" size="50"></td>
+			</tr>
+
+			<tr valign="top">
+				<td><strong>Address line 2:</strong></td>
+				<td><input type="text" name="address2" size="50"></td>
+			</tr>
+
+			<tr valign="top">
+				<td><strong>City:</strong></td>
+				<td><input type="text" name="city" size="25"></td>
+			</tr>
+			
+			<tr valign="top">
+				<td><strong>Postcode:</strong></td>
+				<td><input type="text" name="postcode" size="25"></td>
+			</tr>
+
+			<tr valign="top">
+				<td><strong>Phone:</strong></td>
+				<td><input type="text" name="phone" size="25"></td>
+			</tr>
+
+			<tr valign="top">
+				<td><strong>Mobile:</strong></td>
+				<td><input type="text" name="mobile" size="25"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Submit" /></td>
+				<td><input type="reset" value="Clear" /></td>
+			</tr>
+		</table>
+	</form>
+</BODY>
+</HTML>
