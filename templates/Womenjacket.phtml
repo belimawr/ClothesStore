@@ -1,6 +1,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 </head>
 <body>
 <a id="tooCool" href="http://www.w3junkies.com/toocool/">Too Cool for Internet Explorer</a>
@@ -125,6 +126,7 @@
 		<tr valign="top">
 			<td>
 			<div>
+			<form id="frmsizes" method="POST" name="frmsizes" action="testchk.php">
 						<table>
 							<tr>
 								<td><p class="tag">COLOUR</p></td>
@@ -132,45 +134,37 @@
 							<tr>
 								<td>
 									<p>
-										<input type="checkbox" id="ckblue"
-											class="regular-checkbox" /><label for="ckblue"></label>
+										<input type="checkbox" id="ckblue" class="regular-checkbox" name="colour_list[]" value="blue" /><label for="ckblue"></label>
 										Blue
 									</p>
 									<p>
-										<input type="checkbox" id="ckblack"
-											class="regular-checkbox" /><label for="ckblack"></label>
+										<input type="checkbox" id="ckblack" class="regular-checkbox" name="colour_list[]" value="black" /><label for="ckblack"></label>
 										Black
 									</p>
 									<p>
-										<input type="checkbox" id="ckred"
-											class="regular-checkbox" /><label for="ckred"></label>
+										<input type="checkbox" id="ckred" class="regular-checkbox" name="colour_list[]" value="red" /><label for="ckred"></label>
 										Red
 									</p>
 									<p>
-										<input type="checkbox" id="ckwhite"
-											class="regular-checkbox" /><label for="ckwhite"></label>
+										<input type="checkbox" id="ckwhite" class="regular-checkbox" name="colour_list[]" value="white" /><label for="ckwhite"></label>
 										White
 									</p>
 								</td>
 								<td>
 									<p>
-										<input type="checkbox" id="ckyellow"
-											class="regular-checkbox" /><label for="ckyellow"></label>
+										<input type="checkbox" id="ckyellow" class="regular-checkbox" name="colour_list[]" value="yellow" /><label for="ckyellow"></label>
 										Yellow
 									</p>
 									<p>
-										<input type="checkbox" id="ckpink"
-											class="regular-checkbox" /><label for="ckpink"></label>
+										<input type="checkbox" id="ckpink" class="regular-checkbox" name="colour_list[]" value="pink" /><label for="ckpink"></label>
 										Pink
 									</p>
 									<p>
-										<input type="checkbox" id="ckgray"
-											class="regular-checkbox" /><label for="ckgray"></label>
+										<input type="checkbox" id="ckgray" class="regular-checkbox" name="colour_list[]" value="gray" /><label for="ckgray"></label>
 										Gray
 									</p>
 									<p>
-										<input type="checkbox" id="ckgreen"
-											class="regular-checkbox" /><label for="ckgreen"></label>
+										<input type="checkbox" id="ckgreen" class="regular-checkbox" name="colour_list[]" value="green" /><label for="ckgreen"></label>
 										Green
 									</p>
 								</td>
@@ -182,45 +176,33 @@
 							<tr>
 								<td>
 									<p>
-										<input type="checkbox" id="ckxs"
-											class="regular-checkbox" /><label for="ckxs"></label>
-										X-Small
+										<input type="checkbox" id="ckxs" class="regular-checkbox" value="xsamll" name="size_list[]" /><label for="ckxs"></label> X-Small
 									</p>
 									<p>
-										<input type="checkbox" id="cks"
-											class="regular-checkbox" /><label for="cks"></label>
-										Small
+										<input type="checkbox" id="cks" class="regular-checkbox" value="small" name="size_list[]"/><label for="cks"></label> Small
 									</p>
 									<p>
-										<input type="checkbox" id="ckm"
-											class="regular-checkbox" /><label for="ckm"></label>
-										Medium
+										<input type="checkbox" id="ckm" class="regular-checkbox" value="medium" name="size_list[]"/><label for="ckm"></label> Medium
 									</p>
 									<p>
-										<input type="checkbox" id="ckl"
-											class="regular-checkbox" /><label for="ckl"></label>
-										Large
+										<input type="checkbox" id="ckl" class="regular-checkbox" value="large" name="size_list[]"/><label for="ckl"></label> Large
 									</p>
 								</td>
 								<td>
 									<p>
-										<input type="checkbox" id="ckxl"
-											class="regular-checkbox" /><label for="ckxl"></label>
-										X-Large
+										<input type="checkbox" id="ckxl" class="regular-checkbox" value="xlarge" name="size_list[]"/><label for="ckxl"></label> X-Large
 									</p>
 									<p>
-										<input type="checkbox" id="ckxxl"
-											class="regular-checkbox" /><label for="ckxxl"></label>
-										XX-Large
+										<input type="checkbox" id="ckxxl" class="regular-checkbox" value="xxlarge" name="size_list[]"/><label for="ckxxl"></label> XX-Large
 									</p>
 									<p>
-										<input type="checkbox" id="ckxxxl"
-											class="regular-checkbox" /><label for="ckxxxl"></label>
-										XXX-Large
+										<input type="checkbox" id="ckxxxl" class="regular-checkbox" value="xxxlarge" name="size_list[]"/><label for="ckxxxl"></label> XXX-Large
 									</p>
 								</td>
 							</tr>
+							<tr><td><input type="submit" value="Update"></td></tr>
 						</table>
+						</form>
 					</div>
 			</td>
 				
