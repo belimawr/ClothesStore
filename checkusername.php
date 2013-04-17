@@ -8,12 +8,13 @@ $table = "customer";
 
 $email = $_POST['email'];
 
-mysql_connect($host, $user, $pass);
-mysql_select_db($database) or die(mysql_error());
+$db = new mysqli($host, $user, $pass, $database);
 
-$query = mysql_query("SELECT email FROM $table WHERE email like '$email'") or die(mysql_error());
+$query = "SELECT email FROM $table WHERE email like '$email'";
 
-if(mysql_num_rows($query) == 0)
+$result = $db->query($query);
+
+if($result->num_rows == 0)
 	echo("ok");
 else
 	echo("error");
