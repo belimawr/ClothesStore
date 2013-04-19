@@ -26,6 +26,12 @@ if($db->connect_errno > 0)
 	die('Unable to connect to the database $database at $host, error: [' . $db->connect_error . ']');
 }
 
+if($password == "" || $Fname == "" || $Lanme == "" || $address1 == "" || $address2 == "" || $city == "" || $postcode == "" || $phone == "" || $mobile == "" || $email == "")
+{
+	echo("All field are required!<BR><a href='index.php'>Click here</a> to go back.");
+	exit();
+}
+
 $myquery = <<<SQL
 		 INSERT INTO
 		 $table (customer_ID, password, name_f, name_l, address_1, address_2, city, postcode, phone, mobile, email)
