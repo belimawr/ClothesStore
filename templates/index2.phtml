@@ -44,7 +44,7 @@ var mytimer = setInterval(function(){changeImage()}, 3000);
  <div id ="headerlogo"> <img style="margin-left:100px; margin-top:0px;" id ="logo" src= "logo1.png" alt="logo"> </div>
  <div id="login"> 
  <div id="stylized" class="myform">
-<form id="form" name="form" method="post" action="index.html">
+<form id="form" name="form" method="POST" action="login.php">
 
 <label>Username
 <span class="small">Type your username</span>
@@ -57,7 +57,9 @@ var mytimer = setInterval(function(){changeImage()}, 3000);
 <input type="password" name="password" id="password" />
 
 <button type="submit">Login</button> </br></br>
-<center><a id="signup" style="font-size:14px;" href="#">Don't have an account? Sign up here!</a></center>
+<center>
+<i>{{ loginMessage }} </i><BR>
+<a id="signup" style="font-size:14px;" href="addUser.html">Don't have an account? Sign up here!</a></center>
 <div class="spacer"></div>
 
 </form>
@@ -72,11 +74,11 @@ var mytimer = setInterval(function(){changeImage()}, 3000);
              <li id="newin">
             <a href="#">NEW IN</a>
 			<ul>  
-				<li><a href="womens.php?department=All%20Cloths&depart=all&type=any">View All</a></li>
+				<li><a href="search_Menu.php?department=All%20Cloths&depart=all&type=any">View All</a></li>
 				<hr>
-				<li><a href="womens.php?department=All%20Woman%27s%20Cloths&depart=womenswear&type=any">Women</a></li>
+				<li><a href="search_Menu.php?department=All%20Woman%27s%20Cloths&depart=womenswear&type=any">Women</a></li>
 				<hr>
-				<li><a href="womens.php?department=All%20Mans%27s%20Cloths&depart=menswear&type=any">Men</a></li>
+				<li><a href="search_Menu.php?department=All%20Mans%27s%20Cloths&depart=menswear&type=any">Men</a></li>
 				
 				</ul> 
             </li>
@@ -84,11 +86,11 @@ var mytimer = setInterval(function(){changeImage()}, 3000);
 			 <li >
             <a href="#">WOMEN</a>
                 <ul> 
-				<li><a href="womens.php?department=Coats%20%26%20Jackets&depart=womenswear&type=coats"">Coats & Jackets</a></li>
+				<li><a href="search_Menu.php?department=Coats%20%26%20Jackets&depart=womenswear&type=coats"">Coats & Jackets</a></li>
 				<hr>
-				<li><a href="womens.php?department=Jeans&depart=womenswear&type=jeans">Jeans</a></li>
+				<li><a href="search_Menu.php?department=Jeans&depart=womenswear&type=jeans">Jeans</a></li>
 				<hr>
-				<li><a href="womens.php?department=Knitwear&depart=womenswear&type=knitwear">Knitwear</a></li>
+				<li><a href="search_Menu.php?department=Knitwear&depart=womenswear&type=knitwear">Knitwear</a></li>
 				</ul>
             </li>
 
@@ -96,11 +98,11 @@ var mytimer = setInterval(function(){changeImage()}, 3000);
             <li>
             <a href="#">MEN</a>
                 <ul> 
-				<li><a href="womens.php?department=Coats%20%26%20Jackets&depart=menswear&type=coats"">Coats & Jackets</a></li>
+				<li><a href="search_Menu.php?department=Coats%20%26%20Jackets&depart=menswear&type=coats"">Coats & Jackets</a></li>
 				<hr>
-				<li><a href="womens.php?department=Jeans&depart=menswear&type=jeans">Jeans</a></li>
+				<li><a href="search_Menu.php?department=Jeans&depart=menswear&type=jeans">Jeans</a></li>
 				<hr>
-				<li><a href="womens.php?department=Knitwear&depart=menswear&type=knitwear">Knitwear</a></li>
+				<li><a href="search_Menu.php?department=Knitwear&depart=menswear&type=knitwear">Knitwear</a></li>
 				</ul>
             </li>
             
