@@ -8,5 +8,23 @@ $twig = new Twig_Environment($loader);
 
 $template = $twig->loadTemplate('buying.phtml');
 $parameters = array();
+
+/* Checks if exists a session */
+session_start();
+if(isset($_SESSION['uid']))
+{
+	$parameters['logged'] = 1;
+	$parameters['username'] = $_SESSION['username'];
+}
+else
+{
+	$parameters['logged'] = 0;
+	session_unset();
+	session_destroy();
+	session_write_close();
+	setcookie(session_name(),'',0,'/');
+	$_SESSION = array();
+}
+
 $template->display($parameters);
 ?>
