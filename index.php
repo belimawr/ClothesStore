@@ -49,6 +49,17 @@ else
 {
 	$parameters['loginMessage'] = "";
 }
+session_start();
+if(isset($_SESSION['uid']))
+{
+	$parameters['logged'] = 1;
+	$parameters['username'] = $_SESSION['username'];
+}
+else
+{
+	$parameters['logged'] = 0;
+}
+
 
 //Using others variables to store data in a array
 //It will be useful to read from the database and add
