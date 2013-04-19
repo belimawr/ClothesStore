@@ -529,6 +529,7 @@ text-align: center;
 border:1px; solid rgb(0,0,0);
 margin-left: 10px;
 padding-top:20px;
+max-width: 200px;
 }
 
 .button{
