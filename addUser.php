@@ -38,15 +38,8 @@ if(!$result = $db->query($myquery))
 	die('There was an error running the query [' . $db->error . ']');
 }
 
-echo("Your username is: " . $email . " and your password is: " . $password);
+echo("User $email successfuly registred! <a href='index.php'>Click here</a> to go back and log in.");
 
-// echo("<BR><BR>");
-
-// echo(hashPassword($password, $email));
-
-// echo("<BR<BR>");
-
-// echo(validadeHashedPassword($password, $email, hashPassword($password, $email)));
 $db->close();
 
 function hashPassword($pass, $user)
@@ -69,24 +62,4 @@ function hashPassword($pass, $user)
 	return $hash;
 }
 
-function validadeHashedPassword($pass, $user, $hashed)
-{
-	/* Get the salt */
-	$salt = substr($hashed, 0, 64);
-	
-	/* prefix the hash with the salt */
-	$hash = $salt . $pass;
-	
-	/* Hash the password a bunch of times */
-	for($i = 0; $i < 10000; $i++)
-	{
-	$hash = hash('sha256', $hash);
-	}
-	
-	/* put the salt at the beggining again */
-	$hash = $salt . $hash;
-	
-	/* Return if it's equal or not to the stored password */
-	return $hash == $hashed;
-}
 ?>
