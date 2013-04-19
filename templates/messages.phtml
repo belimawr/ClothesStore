@@ -1,81 +1,53 @@
 <html>
 <head>
-<script type='text/javascript' language='Javascript'>
-<!--
-
-var images = Array();
-
-var i = 0;
-
-{% for image in slideShowImages %}
-	images[i] = new Image();
-	images[i++].src = "{{ image }}";
-{% endfor %}
-
-function countImgs(max)
-{
-    // Check to see if the counter has been initialized
-    if ( typeof countImgs.i == 'undefined' )
-    {
-        // It has not... perform the initilization
-        countImgs.i = 0;
-    }
-    countImgs.i = (countImgs.i + 1)%max;
-    return countImgs.i;
-}
-
-function changeImage()
-{
-	document['imgRoll'].src = images[countImgs({{ imgCount }})].src;
-}
-
-var mytimer = setInterval(function(){changeImage()}, 3000);
-
-//-->
-</script>
+<meta charset="UTF-8">
 </head>
 <body>
-
 <a id="tooCool" href="http://www.w3junkies.com/toocool/">Too Cool for Internet Explorer</a>
-
 <link rel = "stylesheet"  type="text/css" href="index.css">
 
 <div id = "header">
- <div id ="headerlogo"> <img style="margin-left:100px; margin-top:0px;" id ="logo" src= "logo1.png" alt="logo"> </div>
- <div id="login"> 
- <div id="stylized" class="myform">
- {% if logged == 1 %}
- Welcome {{ username | capitalize }} <BR>
- <a href='logout.php'>Log Out</a>
- {% else %}
-<form id="form" name="form" method="POST" action="login.php">
+ <div id ="headerlogo">
+ 	<a href="index.php">
+ 		<img style="margin-left:100px; margin-top:0px;" id ="logo" src= "logo1.png" alt="logo">
+ 	</a>
+ 	</div>
+ 	<div id="login">
+			<div id="stylized" class="myform">
+				{% if logged == 1 %} Welcome {{ username | capitalize }} <BR> <a
+					href='logout.php'>Log Out</a> {% else %}
+				<form id="form" name="form" method="POST" action="login.php">
 
-<label>Username
-<span class="small">Type your username</span>
-</label>
-<input type="text" name="usr" id="usr" />
+					<label>Username <span class="small">Type your username</span>
+					</label> <input type="text" name="usr" id="usr" /> <label>Password
+						<span class="small">Min. size 6 chars</span>
+					</label> <input type="password" name="password" id="password" />
 
-<label>Password
-<span class="small">Min. size 6 chars</span>
-</label>
-<input type="password" name="password" id="password" />
+					<button type="submit">Login</button>
+					</br> </br>
+					<center>
+						<a id="signup"
+							style="font-size: 14px;" href="addUser.html">Don't have an
+							account? Sign up here!</a>
+					</center>
+					<div class="spacer"></div>
 
-<button type="submit">Login</button> </br></br>
-<center>
-<a id="signup" style="font-size:14px;" href="addUser.html">Don't have an account? Sign up here!</a></center>
-<div class="spacer"></div>
-
-</form>
-{% endif %}
-</div>
- </div>
+				</form>
+				{% endif %}
+			</div>
+		</div>
+      <a href="#" >
+	   <div class="button">
+              <span class="ButtonText ">Checkout</span>
+		</div>
+      </a>
  </div>
 
 <div id="content">
  
 <div id="nav">
 	 <ul>		
-             <li id="newin">
+             <li>
             <a href="#">NEW IN</a>
 			<ul>  
 				<li><a href="search_Menu.php?department=All%20Cloths&depart=all&type=any">View All</a></li>
@@ -102,7 +74,7 @@ var mytimer = setInterval(function(){changeImage()}, 3000);
             <li>
             <a href="#">MEN</a>
                 <ul> 
-				<li><a href="search_Menu.php?department=Coats%20%26%20Jackets&depart=menswear&type=coats"">Coats & Jackets</a></li>
+				<li><a href="search_Menu.phpp?department=Coats%20%26%20Jackets&depart=menswear&type=coats"">Coats & Jackets</a></li>
 				<hr>
 				<li><a href="search_Menu.php?department=Jeans&depart=menswear&type=jeans">Jeans</a></li>
 				<hr>
@@ -158,17 +130,14 @@ var mytimer = setInterval(function(){changeImage()}, 3000);
 	</ul>
 
 </div>
-<div id="middle">
 
-	<div class="image1">
-  <img alt="" id="rollImage" src="slideshowpictures/mcoat1.jpg" name="imgRoll"/>
-  <div class="textimg1">
-    <a href="#" style="margin-left: 4px;">SPRING COLLECTION 2013</a>
-    <a href="#" style="float:right; font-size: 35px;margin-right: 3px;">Jackets from &pound;20</a>
-  </div>
-</div>
-
-</div>
+	<h1 style="font-weight: bold; margin-right:300; text-align:center" >
+	{{ message | raw }}
+	<BR>
+	<a href="{{ link }}"> {{ linkMessage }} </a>
+	</h1>
+	
+	
 <div id="footer">
 	</br>
 <p style="text-align:center;"> &copy; 2013 Hamptons Store Ltd. All Rights Reserved.</p>
