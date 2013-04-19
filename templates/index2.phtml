@@ -44,6 +44,10 @@ var mytimer = setInterval(function(){changeImage()}, 3000);
  <div id ="headerlogo"> <img style="margin-left:100px; margin-top:0px;" id ="logo" src= "logo1.png" alt="logo"> </div>
  <div id="login"> 
  <div id="stylized" class="myform">
+ {% if logged == 1 %}
+ Welcome {{ username | capitalize }} <BR>
+ <a href='logout.php'>Log Out</a>
+ {% else %}
 <form id="form" name="form" method="POST" action="login.php">
 
 <label>Username
@@ -63,6 +67,7 @@ var mytimer = setInterval(function(){changeImage()}, 3000);
 <div class="spacer"></div>
 
 </form>
+{% endif %}
 </div>
  </div>
  </div>
