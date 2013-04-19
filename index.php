@@ -41,6 +41,14 @@ while ($row = $messages->fetch_assoc())
 }
 $parameters['slideShowImages'] = $images;
 $parameters['imgCount'] = $i;
+if(isset($_GET['loginMessage']))
+{
+	$parameters['loginMessage'] = $_GET['loginMessage'];
+}
+else
+{
+	$parameters['loginMessage'] = "";
+}
 
 //Using others variables to store data in a array
 //It will be useful to read from the database and add
