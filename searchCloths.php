@@ -93,7 +93,7 @@ if(isset($query))
 	{
 		$tmp = array();
 		$tmp['id'] = $row['style_ID'];
-		$tmp['desc'] = $row['description'];
+		$tmp['desc'] = $row['name'];
 		$tmp['src'] = $row['image_link'];
 		$tmp['price'] = $row['price'];
 		$tmp['name'] = $row['name'];

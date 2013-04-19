@@ -26,13 +26,13 @@ $depart = $_GET['depart'];
 $type = $_GET['type'];
 
 if($depart == "all")
-	$query = "SELECT style_ID, description, department, type, thumbnail_link FROM style";
+	$query = "SELECT * FROM style";
 else
 {
 	if($type != "any")
-		$query = "SELECT style_ID, description, department, type, thumbnail_link FROM style WHERE department like '$depart' and type like '$type'";
+		$query = "SELECT * FROM style WHERE department like '$depart' and type like '$type'";
 	else
-		$query = "SELECT style_ID, description, department, type, thumbnail_link FROM style WHERE department like '$depart'";
+		$query = "SELECT * FROM style WHERE department like '$depart'";
 }
 
 $result = $db->query($query);
@@ -43,7 +43,7 @@ while ($row = $result->fetch_assoc())
 {
 	$tmp = array();
 	$tmp['id'] = $row['style_ID'];
-	$tmp['desc'] = $row['description'];
+	$tmp['desc'] = $row['name'];
 	$tmp['src'] = $row['thumbnail_link'];
 	$tmp['price'] = 100;
 	$wcloths[] = $tmp;
