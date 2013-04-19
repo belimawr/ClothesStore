@@ -4,45 +4,41 @@
 
 <!--
 var requestObject = false;
-function funcReceiveData()
-{
-	if(requestObject.readyState == 4) {
-		if(requestObject.status == 200) {
-			var status = requestObject.responseText;
-			if(status == "ok")
-			{
-				document.getElementById('userValid').innerHTML = ' Valid email';
-			}
-			else
-			{
-				document.getElementById('userValid').innerHTML = ' Email already registred, choose another one.';
-			}
-		}
-	}
-}
 
-	if (window.XMLHttpRequest)
-	{
-		requestObject = new XMLHttpRequest();
-	}
-	else if(window.ActiveXObject)
-	{
-		requestObject = new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	
-	function checkUser()
-	{
-		if(requestObject){
-			requestObject.open("POST", "checkusername.php", true);
-			requestObject.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-			var user = document.getElementById('email').value;
-			var tobesent = "email=" + user;
-			requestObject.send(tobesent);
-			requestObject.onreadystatechange = funcReceiveData;
+		function funcReceiveData() {
+			if (requestObject.readyState == 4) {
+				if (requestObject.status == 200) {
+					var status = requestObject.responseText;
+					if (status == "ok") {
+						document.getElementById('userValid').innerHTML = 'Valid e-mail';
+					} else if (status == "emailError") {
+						document.getElementById('userValid').innerHTML = 'Invalid e-mail, please choose another one';
+					} else {
+						document.getElementById('userValid').innerHTML = ' Email already registred, please choose another one.';
+					}
+				}
+			}
 		}
-	}
-//-->
-</script>
+
+		if (window.XMLHttpRequest) {
+			requestObject = new XMLHttpRequest();
+		} else if (window.ActiveXObject) {
+			requestObject = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+
+		function checkUser() {
+			if (requestObject) {
+				requestObject.open("POST", "checkusername.php", true);
+				requestObject.setRequestHeader("Content-type",
+						"application/x-www-form-urlencoded");
+				var user = document.getElementById('email').value;
+				var tobesent = "email=" + user;
+				requestObject.send(tobesent);
+				requestObject.onreadystatechange = funcReceiveData;
+			}
+		}
+	//-->
+	</script>
 </head>
 <body>
 <link rel = "stylesheet"  type="text/css" href="addUser.css">
