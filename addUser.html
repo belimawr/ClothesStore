@@ -41,7 +41,10 @@ var requestObject = false;
 	</script>
 </head>
 <body>
+
+
 <link rel = "stylesheet"  type="text/css" href="addUser.css">
+<link rel = "stylesheet"  type="text/css" href="index.css">
 <div id = "header">
  <div id ="headerlogo">
  	<a href="index.php">
@@ -142,14 +145,14 @@ var requestObject = false;
 	</ul>
 
 </div>
-<div id="middle">
+
 	<div id="signUpForm">
 		<fieldset>
 
 		<h1 style="text-align:center; ">Sign-up Form</h1>
 		<br><br>
 	<form method="POST" action="addUser.php">
-		<table style="float:left; white-space: nowrap;">
+		<table style="white-space: nowrap;">
 			<tr valign="top">
 				<td><strong>Email</strong><br>
 				<input type="text" name="email" id="email" onblur="checkUser();" size="25"><br><i id='userValid'></i></td>
@@ -194,7 +197,6 @@ var requestObject = false;
 	</fieldset>
 	</div>
 
-</div>
 <div id="footer">
 	<br>
 <p style="text-align:center;"> &copy; 2013 Hamptons Store Ltd. All Rights Reserved.</p>
