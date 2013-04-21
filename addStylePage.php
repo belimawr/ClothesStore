@@ -6,7 +6,7 @@ Twig_Autoloader::register();
 $loader = new Twig_Loader_Filesystem('./templates');
 $twig = new Twig_Environment($loader);
 
-$template = $twig->loadTemplate('admin.phtml');
+$template = $twig->loadTemplate('addStyle.phtml');
 $parameters = array();
 
 /* Checks if exists a session */

@@ -1,0 +1,157 @@
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<a id="tooCool" href="http://www.w3junkies.com/toocool/">Too Cool for Internet Explorer</a>
+<link rel = "stylesheet"  type="text/css" href="index.css">
+
+<div id = "header">
+ <div id ="headerlogo">
+ 	<a href="index.php">
+ 		<img style="margin-left:100px; margin-top:0px;" id ="logo" src= "logo1.png" alt="logo">
+ 	</a>
+ 	</div>
+ 	<div id="login">
+			<div id="stylized" class="myform">
+				{% if logged == 1 %} Welcome {{ username | capitalize }} <BR> <a
+					href='logout.php'>Log Out</a> {% else %}
+				<form id="form" name="form" method="POST" action="login.php">
+
+					<label>Username <span class="small">Type your username</span>
+					</label> <input type="text" name="usr" id="usr" /> <label>Password
+						<span class="small">Min. size 6 chars</span>
+					</label> <input type="password" name="password" id="password" />
+
+					<button type="submit">Login</button>
+					</br> </br>
+					<center>
+						<a id="signup"
+							style="font-size: 14px;" href="addUser.html">Don't have an
+							account? Sign up here!</a>
+					</center>
+					<div class="spacer"></div>
+
+				</form>
+				{% endif %}
+			</div>
+		</div>
+ </div>
+
+<div id="content">
+ 
+<div id="nav">
+	 <ul>		
+             <li>
+            <a href="#">NEW IN</a>
+			<ul>  
+				<li><a href="search_Menu.php?department=All%20Cloths&depart=all&type=any">View All</a></li>
+				<hr>
+				<li><a href="search_Menu.php?department=All%20Woman%27s%20Cloths&depart=womenswear&type=any">Women</a></li>
+				<hr>
+				<li><a href="search_Menu.php?department=All%20Mans%27s%20Cloths&depart=menswear&type=any">Men</a></li>
+				
+				</ul> 
+            </li>
+			
+			 <li >
+            <a href="#">WOMEN</a>
+                <ul> 
+				<li><a href="search_Menu.php?department=Coats%20%26%20Jackets&depart=womenswear&type=coats"">Coats & Jackets</a></li>
+				<hr>
+				<li><a href="search_Menu.php?department=Jeans&depart=womenswear&type=jeans">Jeans</a></li>
+				<hr>
+				<li><a href="search_Menu.php?department=Knitwear&depart=womenswear&type=knitwear">Knitwear</a></li>
+				</ul>
+            </li>
+
+
+            <li>
+            <a href="#">MEN</a>
+                <ul> 
+				<li><a href="search_Menu.phpp?department=Coats%20%26%20Jackets&depart=menswear&type=coats"">Coats & Jackets</a></li>
+				<hr>
+				<li><a href="search_Menu.php?department=Jeans&depart=menswear&type=jeans">Jeans</a></li>
+				<hr>
+				<li><a href="search_Menu.php?department=Knitwear&depart=menswear&type=knitwear">Knitwear</a></li>
+				</ul>
+            </li>
+            
+            <li>
+            <a href="#">GIRLS</a>
+                <ul>  
+				<li><a href="#">Coats & Jackets</a></li>
+				<hr>
+				<li><a href="#">Jeans</a></li>
+				<hr>
+				<li><a href="#">Knitwear</a></li>
+				
+				</ul> 
+            </li>
+            <li>
+            <a href="#">BOYS</a>
+                <ul>  
+				<li><a href="#">Coats & Jackets</a></li>
+				<hr>
+				<li><a href="#">Jeans</a></li>
+				<hr>
+				<li><a href="#">Knitwear</a></li>
+				
+				</ul> 
+            </li>
+                        <li>
+            <a href="#">BABIES</a>
+  
+            </li>
+            
+            <li>
+            <a href="#">SALES</a>
+				<ul>  
+				<li><a href="#">Women</a></li>
+				<hr>
+				<li><a href="#">Men</a></li>
+				
+				</ul> 
+            </li>
+            <li>
+            <a href="#">STORE LOCATOR</a>
+            </li>
+			
+            
+			
+            <li>
+            <a href="#">ABOUT US</a>
+            </li>
+	</ul>
+
+</div>
+
+		
+<h1><A href="addStylePage.php">Add Style</A></h1><BR>
+<h1><A href="addItemPage.php">Add Item</A></h1>
+
+
+<div id="footer">
+	</br>
+<p style="text-align:center;"> &copy; 2013 Hamptons Store Ltd. All Rights Reserved.</p>
+
+<ul id="footerList">
+	<h3>Help</h3>
+<li> <a href="#"> Frequently Asked Questions</a></li>
+<li> <a href="#">Size Guides</a> </li>
+<li><a href="#">Delivery Information</a></li>
+<li> <a href="#">Customer Services</a></li>
+<li> <a href="#">Site Map</a></li>
+</ul>
+
+<ul>
+	<br><br>
+<li><img style="width:25px; margin-left:50px;" id ="flogo" src= "f_logo.png" alt="logo"><a style="font-size:12px; margin-left:8px" href="#"> www.facebook.com/HamptonsStoreUK</a></li>
+<br>
+<li><img style="width:35px; margin-left:45px;" id ="tlogo" src= "twitter2.png" alt="logo"><a style="font-size:12px; margin-left:8px" href="#"> www.twitter.com/HamptonsStoreUK</a></li>
+</ul>
+</div>
+
+
+</body>
+</html>
