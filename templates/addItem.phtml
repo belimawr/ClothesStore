@@ -61,8 +61,8 @@ function changeImage()
 		</div>
  </div>
 
-<div id="content">
- 
+	<div id="content">
+
 		<div id="nav">
 			<ul>
 				<li><a href="admin.php">ADMIN MENU</a></li>
@@ -72,70 +72,95 @@ function changeImage()
 
 		</div>
 
-	<div id="AddItemForm">
-		<fieldset>
+		<div id="AddItemForm">
+			<fieldset>
 
-		<h1 style="text-align:center; ">Add Item Form</h1>
-		<br><br>
+				<h1 style="text-align: center;">Add Item Form</h1>
+				<br> <br>
 				<form method="POST" action="addItem.php">
-				<!--  item_ID | style_ID | colour | item_size | price  | stock | image_link -->
-					<strong>Style ID</strong>
-					
-					{% for id in styleID %}
-						{% if loop.first %}
-							<img id="imgStyle" src="{{ id.thumbnail_link }}" width="144" high="216" style="float:right;"/>
-							<select name="style_ID" id="style_ID" onchange="changeImage();">
-						{% endif %}
-						<option value="{{ id.id }}">{{ id.name }}</option>
-						{% if loop.last %}
-							</select><BR>
-						{% endif %}
-					{% endfor %}
-					<strong>Colour</strong>
-					<select name="colour">
-						<option value="blue">Blue</option>
-						<option value="black">Black</option>
-						<option value="red">Red</option>
-						<option value="white">White</option>
-						<option value="yellow">Yellow</option>
-						<option value="pink">Pink</option>
-						<option value="gray">Gray</option>
-						<option value="green">Green</option>
-					</select><BR>
-					<strong>Size</strong>
-					<select name="item_size">
-						<option value="xsamall">X-Small</option>
-						<option value="small">Small</option>
-						<option value="medium">Medium</option>
-						<option value="large">Large</option>
-						<option value="xlarge">X-Large</option>
-						<option value="xxlarge">XX-Large</option>
-						<option value="xxxlarge">XXX-Large</option>
-					</select><BR>
-					<strong>Price</strong><input type="text" name="price" size="25"><BR>
-					<strong>Stock</strong><input type="text" name="stock" size="25"><BR>
-					<strong>Image Link</strong><input type="text" name="image_link" size="25"><BR>
-					<input type="submit"
-						value="Submit"
-						style="margin-top: 20px; background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EEEE) );" /><BR>
+					<table style="white-space: nowrap;">
+						<tr valign="top">
+							<td><strong>Style ID</strong></td>
+							{% for id in styleID %}
+								{% if loop.first %}
+									<img id="imgStyle" src="{{ id.thumbnail_link }}" width="144" high="216" style="float: right;" /><td>
+									<select name="style_ID" id="style_ID" onchange="changeImage();">
+								{% endif %}
+								<option value="{{ id.id }}">{{ id.name }}</option>
+								{% if loop.last %}
+									</select></td>
+								{% endif %}
+							{% endfor %}
+						</tr>
 
-					<input type="reset" value="Clear"
-						style="margin-top: 20px; background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EEEE) );" />
+						<tr valign="top">
+							<td><strong>Colour</strong></td>
+							<td><select name="colour">
+									<option value="blue">Blue</option>
+									<option value="black">Black</option>
+									<option value="red">Red</option>
+									<option value="white">White</option>
+									<option value="yellow">Yellow</option>
+									<option value="pink">Pink</option>
+									<option value="gray">Gray</option>
+									<option value="green">Green</option>
+							</select></td>
+						</tr>
 
+						<tr valign="top">
+							<td><strong>Size</strong></td>
+							<td><select name="item_size">
+									<option value="xsamall">X-Small</option>
+									<option value="small">Small</option>
+									<option value="medium">Medium</option>
+									<option value="large">Large</option>
+									<option value="xlarge">X-Large</option>
+									<option value="xxlarge">XX-Large</option>
+									<option value="xxxlarge">XXX-Large</option>
+							</select></td>
+						</tr>
+
+						<tr valign="top">
+							<td><strong>Price</strong></td>
+							<td><input type="text" name="price" size="25"></td>
+						</tr>
+
+						<tr valign="top">
+							<td><strong>Stock</strong></td>
+							<td><input type="text" name="stock" size="25"></td>
+						</tr>
+
+						<tr valign="top">
+							<td><strong>Image Link</strong></td>
+							<td><input type="text" name="image_link" size="25"></td>
+						</tr>
+
+						<tr valign="top">
+							<td><input type="submit" value="Submit"
+								style="margin-top: 20px; background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EEEE) );" />
+							</td>
+
+							<td><input type="reset" value="Clear"
+								style="margin-top: 20px; background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EEEE) );" />
+							</td>
+						</tr>
+
+					</table>
 				</form>
-			{% if success is defined %}
-			{% if success == 1 %}
-				Item added!
-			{% else %}
-				Error, try again!
-			{% endif %}
-		{% endif %}
+				{% if success is defined %}
+					{% if success == 1 %}
+						Item added!
+					{% else %}
+						Error, try again!
+					{% endif %}
+				{% endif %}
 			</fieldset>
+		</div>
 	</div>
 
 
 
-<div id="footer">
+	<div id="footer">
 	</br>
 <p style="text-align:center;"> &copy; 2013 Hamptons Store Ltd. All Rights Reserved.</p>
 

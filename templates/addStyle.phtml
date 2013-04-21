@@ -4,7 +4,7 @@
 </head>
 <body>
 <a id="tooCool" href="http://www.w3junkies.com/toocool/">Too Cool for Internet Explorer</a>
-<link rel = "stylesheet"  type="text/css" href="index.css">
+<link rel = "stylesheet"  type="text/css" href="addUser.css">
 
 <div id = "header">
  <div id ="headerlogo">
@@ -48,36 +48,67 @@
 			</ul>
 
 		</div>
+		<div id="AddItemForm">
+			<fieldset>
+				<h1 style="text-align: center;">Add Syle Form</h1>
+				<br> <br>
+				<form id="addStylefrm" method="POST" action="addStyle.php">
+					<table style="white-space: nowrap;">
+						<tr valign="top">
+							<td><strong>Name:</strong></td>
+							<td><input type="text" name="name"></td>
+						</tr>
 
-		<form id="addStylefrm" method="POST" action="addStyle.php"
-			<!-- 			| style_ID | description              | name      | department | type     | material | thumbnail_link             | -->
-			Name: <input type="text" name="name"><BR>
-			Department:
-			<select name="department">
-				<option value="womenswear">Womenswear</option>
-				<option value="menswear">Menswear</option>
-			</select><BR>
-			Type:
-				<select name="type">
-				<option value="coats">Coats & Jackets</option>
-				<option value="Jeans">Jeans</option>
-				<option value="knitwear">Knitwear</option>
-			</select><BR>
-			Material: <input type="text" name="material"><BR>
-			Thumbnail Link: <input type="text" name="thumbnail"><BR>
-			Description:
-			<textarea rows="10" cols="20" name="description"></textarea><BR>
-			<input type="submit" value="Submit" />
-			<td><input type="reset" value="Clear" />
+						<tr valign="top">
+							<td><strong>Department:</strong></td>
+							<td><select name="department">
+									<option value="womenswear">Womenswear</option>
+									<option value="menswear">Menswear</option>
+							</select></td>
+						</tr>
+
+						<tr valign="top">
+							<td><strong>Type:</strong></td>
+							<td><select name="type">
+									<option value="coats">Coats & Jackets</option>
+									<option value="Jeans">Jeans</option>
+									<option value="knitwear">Knitwear</option>
+							</select></td>
+						</tr>
+
+						<tr valign="top">
+							<td><strong>Material:</strong></td>
+							<td><input type="text" name="material"></td>
+						</tr>
+
+						<tr valign="top">
+							<td><strong>Thumbnail Link:</strong></td>
+							<td><input type="text" name="thumbnail"></td>
+						</tr>
+
+						<tr valign="top">
+							<td><strong>Description:</strong></td>
+							<td><textarea rows="10" cols="20" name="description"></textarea>
+							</td>
+						</tr>
+
+						<tr valign="top">
+							<td><input type="submit" value="Submit" /></td>
+							<td><input type="reset" value="Clear" /></td>
+						</tr>
+					</table>
+
+				</form>
+				{% if success is defined %}
+					{% if success == 1 %}
+						{{ name | raw }} added!
+					{% else %}
+						Error, try again!
+					{% endif %}
+				{% endif %}
 		
-		</form>
-		{% if success is defined %}
-			{% if success == 1 %}
-				{{ name | raw }} added!
-			{% else %}
-				Error, try again!
-			{% endif %}
-		{% endif %}
+		</div>
+		</fieldset>
 	</div>
 
 	<div id="footer">
