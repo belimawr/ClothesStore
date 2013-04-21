@@ -1,6 +1,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<script type='text/javascript' language='Javascript'>
+<!--
+
+var images = Array();
+
+var i = 0;
+
+{% for id in styleID %}
+	images[{{ id.id }}] = new Image();
+	images[{{ id.id }}].src = "{{ id.thumbnail_link }}";
+{% endfor %}
+
+
+function changeImage()
+{
+	var e = document.getElementById("style_ID");
+	var strUser = e.options[e.selectedIndex].value;
+	document['imgStyle'].src = images[strUser].src;
+}
+
+//-->
+</script>
 </head>
 <body>
 <a id="tooCool" href="http://www.w3junkies.com/toocool/">Too Cool for Internet Explorer</a>
@@ -24,7 +47,7 @@
 					</label> <input type="password" name="password" id="password" />
 
 					<button type="submit">Login</button>
-					</br> </br>
+					<br> <br>
 					<center>
 						<a id="signup"
 							style="font-size: 14px;" href="addUser.html">Don't have an
@@ -57,7 +80,7 @@
 			 <li >
             <a href="#">WOMEN</a>
                 <ul> 
-				<li><a href="search_Menu.php?department=Coats%20%26%20Jackets&depart=womenswear&type=coats"">Coats & Jackets</a></li>
+				<li><a href="search_Menu.php?department=Coats%20%26%20Jackets&depart=womenswear&type=coats">Coats & Jackets</a></li>
 				<hr>
 				<li><a href="search_Menu.php?department=Jeans&depart=womenswear&type=jeans">Jeans</a></li>
 				<hr>
@@ -69,7 +92,7 @@
             <li>
             <a href="#">MEN</a>
                 <ul> 
-				<li><a href="search_Menu.phpp?department=Coats%20%26%20Jackets&depart=menswear&type=coats"">Coats & Jackets</a></li>
+				<li><a href="search_Menu.phpp?department=Coats%20%26%20Jackets&depart=menswear&type=coats">Coats & Jackets</a></li>
 				<hr>
 				<li><a href="search_Menu.php?department=Jeans&depart=menswear&type=jeans">Jeans</a></li>
 				<hr>
@@ -126,55 +149,65 @@
 
 </div>
 
-	<div id="signUpForm">
+	<div id="AddItemForm">
 		<fieldset>
 
 		<h1 style="text-align:center; ">Add Item Form</h1>
 		<br><br>
-	<form method="POST" action="addUser.php">
-		<table style="white-space: nowrap;">
-			<tr valign="top">
-				<td><strong>Email</strong><br>
-				<input type="text" name="email" id="email" onblur="checkUser();" size="25"><br><i id='userValid'></i></td>
-								<td><strong>Address line 2</strong><br>
-				<input type="text" name="address2" size="35"></td>
-			</tr>
-			
-			<tr valign="top">
-				<td><strong>Password</strong><br>
-				<input type="password" name="password" size="25"></td>
-								<td><strong>City</strong><br>
-				<input type="text" name="city" size="25"></td>
-			</tr>
+				<form method="POST" action="addItem.php">
+				<!--  item_ID | style_ID | colour | item_size | price  | stock | image_link -->
+					<strong>Style ID</strong>
+					
+					{% for id in styleID %}
+						{% if loop.first %}
+							<img id="imgStyle" src="{{ id.thumbnail_link }}" width="144" high="216" style="float:right;"/>
+							<select name="style_ID" id="style_ID" onchange="changeImage();">
+						{% endif %}
+						<option value="{{ id.id }}">{{ id.name }}</option>
+						{% if loop.last %}
+							</select><BR>
+						{% endif %}
+					{% endfor %}
+					<strong>Colour</strong>
+					<select name="colour">
+						<option value="blue">Blue</option>
+						<option value="black">Black</option>
+						<option value="red">Red</option>
+						<option value="white">White</option>
+						<option value="yellow">Yellow</option>
+						<option value="pink">Pink</option>
+						<option value="gray">Gray</option>
+						<option value="green">Green</option>
+					</select><BR>
+					<strong>Size</strong>
+					<select name="item_size">
+						<option value="xsamall">X-Small</option>
+						<option value="small">Small</option>
+						<option value="medium">Medium</option>
+						<option value="large">Large</option>
+						<option value="xlarge">X-Large</option>
+						<option value="xxlarge">XX-Large</option>
+						<option value="xxxlarge">XXX-Large</option>
+					</select><BR>
+					<strong>Price</strong><input type="text" name="price" size="25"><BR>
+					<strong>Stock</strong><input type="text" name="stock" size="25"><BR>
+					<strong>Image Link</strong><input type="text" name="image_link" size="25"><BR>
+					<input type="submit"
+						value="Submit"
+						style="margin-top: 20px; background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EEEE) );" /><BR>
 
-			<tr valign="top">
-				<td><strong>First name</strong><br>
-				<input type="text" name="Fname" size="25"></td>
-								<td><strong>Postcode</strong><br>
-				<input type="text" name="postcode" size="25"></td>
-			</tr>
+					<input type="reset" value="Clear"
+						style="margin-top: 20px; background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EEEE) );" />
 
-			<tr valign="top">
-				<td><strong>Last name</strong><br>
-				<input type="text" name="Lname" size="25"></td>
-				<td><strong>Phone</strong><br>
-				<input type="text" name="phone" size="25"></td>
-			</tr>
-
-			<tr valign="top">
-				<td><strong>Address line 1</strong><br>
-				<input type="text" name="address1" size="35"></td>
-								<td><strong>Mobile</strong><br>
-				<input type="text" name="mobile" size="25"></td>
-			</tr>
-			
-			<tr>
-				<td><input type="submit" value="Submit" style="margin-top:20px; background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EEEE));" /></td>
-				<td><input type="reset" value="Clear" style="margin-top:20px; background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EEEE));"/></td>
-			</tr>
-		</table>
-	</form>
-	</fieldset>
+				</form>
+			{% if success is defined %}
+			{% if success == 1 %}
+				Item added!
+			{% else %}
+				Error, try again!
+			{% endif %}
+		{% endif %}
+			</fieldset>
 	</div>
 
 

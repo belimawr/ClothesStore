@@ -26,5 +26,36 @@ else
 	$_SESSION = array();
 }
 
+
+/*
+ * Database data
+*/
+$host = "s.tiago.eti.br";
+$database = "StrathWEB_Store";
+$user = "StrathWEB";
+$pass = "2013StrathWEB";
+
+/*
+ * Connect to database.
+*/
+$db = new mysqli($host, $user, $pass, $database);
+
+$query = "SELECT * FROM style ORDER BY name";
+$result = $db->query($query);
+
+$styleID = array();
+while ($row = $result->fetch_assoc())
+{
+	$tmp = array();
+	$tmp['id'] = $row['style_ID'];
+	$tmp['name'] = $row['name'];
+	$tmp['thumbnail_link'] = $row['thumbnail_link'];
+	$styleID[] = $tmp;
+}
+
+$parameters['styleID'] = $styleID;
+
+$db->close();
+
 $template->display($parameters);
 ?>
