@@ -44,36 +44,41 @@ var requestObject = false;
 
 
 <link rel = "stylesheet"  type="text/css" href="addUser.css">
-<div id = "header">
- <div id ="headerlogo">
- 	<a href="index.php">
- 		<img style="margin-left:100px; margin-top:0px;" id ="logo" src= "logo1.png" alt="logo">
- 	</a>
- 	</div>
- <div id="login"> 
- <div id="stylized" class="myform">
-<form id="form" name="form" method="post" action="login.php">
+	<div id="header">
+		<div id="headerlogo">
+			<img style="margin-left: 100px; margin-top: 0px;" id="logo"
+				src="logo1.png" alt="logo">
+		</div>
+		<div id="login">
+			<div id="stylized" class="myform">
+				{% if logged == 1 %}
+					Welcome
+					{{ username | capitalize }} <BR> <a
+					href='logout.php'>Log Out</a> {% else %}
+				<form id="form" name="form" method="POST" action="login.php">
 
-<label>Username
-<span class="small">Type your username</span>
-</label>
-<input type="text" name="usr" id="usr" />
+					<label>Username <span class="small">Type your
+							username</span>
+					</label> <input type="text" name="usr" id="usr" /> <label>Password
+						<span class="small">Min. size 6 chars</span>
+					</label> <input type="password" name="password" id="password" />
 
-<label>Password
-<span class="small">Min. size 6 chars</span>
-</label>
-<input type="password" name="password" id="password" />
+					<button type="submit">Login</button>
+					</br>
+					</br>
+					<center>
+						<a id="signup" style="font-size: 14px;" href="addUser.html">Don't
+							have an account? Sign up here!</a>
+					</center>
+					<div class="spacer"></div>
 
-<button type="submit">Login</button> <br><br>
-<center><a id="signup" style="font-size:14px;" href="#">Don't have an account? Sign up here!</a></center>
-<div class="spacer"></div>
+				</form>
+				{% endif %}
+			</div>
+		</div>
+	</div>
 
-</form>
-</div>
- </div>
- </div>
-
-<div id="content">
+	<div id="content">
  
 <div id="nav">
 	 <ul>		

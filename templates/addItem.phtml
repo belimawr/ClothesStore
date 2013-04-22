@@ -19,7 +19,9 @@ function changeImage()
 {
 	var e = document.getElementById("style_ID");
 	var strUser = e.options[e.selectedIndex].value;
-	document['imgStyle'].src = images[strUser].src;
+
+	var myimage = document.getElementById("imgStyle");
+	myimage.src = images[strUser].src;
 }
 
 //-->
