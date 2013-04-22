@@ -1,0 +1,167 @@
+
+
+<html>
+<body>
+  
+<link rel = "stylesheet"  type="text/css" href="reviewOrder.css">
+
+<div id = "header">
+ <div id ="headerlogo"> <img style="margin-left:100px; margin-top:0px;" id ="logo" src= "logo1.png" alt="logo"> </div>
+ <div id="login"> 
+ <div id="stylized" class="myform">
+<form id="form" name="form" method="post" action="index.html">
+
+<label>Username
+<span class="small">Type your username</span>
+</label>
+<input type="text" name="usr" id="usr" />
+
+<label>Password
+<span class="small">Min. size 6 chars</span>
+</label>
+<input type="password" name="password" id="password" />
+
+<button type="submit">Login</button> </br></br>
+<center><a id="signup" style="font-size:14px;" href="#">Don't have an account? Sign up here!</a></center>
+<div class="spacer"></div>
+
+</form>
+</div>
+ </div>
+ </div>
+
+<div id="content">
+ <div id="nav">
+   <ul>  	
+             <li id="newin">
+            <a href="#">NEW IN</a>
+			<ul>  
+				<li><a href="search_Menu.php?department=All%20Cloths&depart=all&type=any">View All</a></li>
+				<hr>
+				<li><a href="search_Menu.php?department=All%20Woman%27s%20Cloths&depart=womenswear&type=any">Women</a></li>
+				<hr>
+				<li><a href="search_Menu.php?department=All%20Mans%27s%20Cloths&depart=menswear&type=any">Men</a></li>
+				
+				</ul> 
+            </li>
+			
+			 <li >
+            <a href="#">WOMEN</a>
+                <ul> 
+				<li><a href="search_Menu.php?department=Coats%20%26%20Jackets&depart=womenswear&type=coats"">Coats & Jackets</a></li>
+				<hr>
+				<li><a href="search_Menu.php?department=Jeans&depart=womenswear&type=jeans">Jeans</a></li>
+				<hr>
+				<li><a href="search_Menu.php?department=Knitwear&depart=womenswear&type=knitwear">Knitwear</a></li>
+				</ul>
+            </li>
+
+
+            <li>
+            <a href="#">MEN</a>
+                <ul> 
+				<li><a href="search_Menu.php?department=Coats%20%26%20Jackets&depart=menswear&type=coats"">Coats & Jackets</a></li>
+				<hr>
+				<li><a href="search_Menu.php?department=Jeans&depart=menswear&type=jeans">Jeans</a></li>
+				<hr>
+				<li><a href="search_Menu.php?department=Knitwear&depart=menswear&type=knitwear">Knitwear</a></li>
+				</ul>
+            </li>
+            
+            <li>
+            <a href="#">GIRLS</a>
+                <ul>  
+				<li><a href="#">Coats & Jackets</a></li>
+				<hr>
+				<li><a href="#">Jeans</a></li>
+				<hr>
+				<li><a href="#">Knitwear</a></li>
+				
+				</ul> 
+            </li>
+            <li>
+            <a href="#">BOYS</a>
+                <ul>  
+				<li><a href="#">Coats & Jackets</a></li>
+				<hr>
+				<li><a href="#">Jeans</a></li>
+				<hr>
+				<li><a href="#">Knitwear</a></li>
+				
+				</ul> 
+            </li>
+                        <li>
+            <a href="#">BABIES</a>
+  
+            </li>
+            
+            <li>
+            <a href="#">SALES</a>
+				<ul>  
+				<li><a href="#">Women</a></li>
+				<hr>
+				<li><a href="#">Men</a></li>
+				
+				</ul> 
+            </li>
+            <li>
+            <a href="#">STORE LOCATOR</a>
+            </li>
+			
+            
+			
+            <li>
+            <a href="#">ABOUT US</a>
+            </li>
+	</ul>
+
+</div>
+<div id="middle">	
+	
+		<fieldset>
+
+		<p style="font-size: 23px; float: left; font-weight: bold; margin-left: 20%;">Review your order</p><button id="cancelBtn" type="button">CANCEL ORDER</button><!-- JAVASCRIPT WITH CONFIRMATION BEFORE CANCELLING THE ORDER-->
+		<br><br><br>
+		<p style="margin-left:15%;">After confirmation, your order will be placed.</p>
+		<br><br><br><br>
+			<table>
+				<tr>
+					<th style="width:30%;">Items</th><!-- each one of the items should have an edit and a remove button-->
+					<th style="width:30%;">Delivery Address</th><!-- there should be a button with the option to change the address-->
+					<th style="width:30%;">Payment Details</th><!-- there should be a button with the option to change the payment details-->
+					<th style="width:10%;">Total</th>
+				</tr>
+
+			</table>
+			<br><br>
+			<button id="confirmBtn" type="button">CONFIRM ORDER</button>
+				</fieldset>
+
+	
+</div>
+
+</div>
+<div id="footer">
+	</br>
+<p style="text-align:center;"> &copy; 2013 Hamptons Store Ltd. All Rights Reserved.</p>
+
+<ul id="footerList">
+	<h3>Help</h3>
+<li> <a href="#"> Frequently Asked Questions</a></li>
+<li> <a href="#">Size Guides</a> </li>
+<li><a href="#">Delivery Information</a></li>
+<li> <a href="#">Customer Services</a></li>
+<li> <a href="#">Site Map</a></li>
+</ul>
+
+<ul>
+	<br><br>
+<li><img style="width:25px; margin-left:50px;" id ="flogo" src= "f_logo.png" alt="logo"><a style="font-size:12px; margin-left:8px" href="#"> www.facebook.com/HamptonsStoreUK</a></li>
+<br>
+<li><img style="width:35px; margin-left:45px;" id ="tlogo" src= "twitter2.png" alt="logo"><a style="font-size:12px; margin-left:8px" href="#"> www.twitter.com/HamptonsStoreUK</a></li>
+</ul>
+</div>
+
+
+</body>
+</html>
