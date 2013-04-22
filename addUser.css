@@ -138,15 +138,19 @@ CONTENT ONLY
 .content a:active, .content a:focus { color: #000; }
 .content code, .content pre { color: #c33; } /* very optional, but still useful. W3C uses about the same colors for codes */
 
+body {
+width:100%;	
+	
+}
 
 #header{
-width: 100.99%;
 height: 190px;
 background-color: #1c1c1c;
 font-family: Helvetica,Arial,Verdana,sans-serif;
 margin-top: -9px;
 margin-left: -9px;
 color:#fff;
+min-width: 1100px;
 }
 
 #headerlogo{
