@@ -1,0 +1,693 @@
+/*
+    Tripoli is a generic CSS standard for HTML rendering. 
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    For a copy of the GNU General Public License see <http://www.gnu.org/licenses/>.
+*/
+
+/*
+-----------------------------
+GENERIC
+-----------------------------
+*/
+
+/* MAIN TYPOGRAPHY */
+
+html { font-size: 62.5%; font-family: helvetica, "microsoft sans serif", arial, sans-serif; }
+strong, th, thead td, h1, h2, h3, h4, h5, h6, dt { font-weight: bold; }
+cite, em, dfn { font-style: italic; }
+code, kbd, samp, pre, tt, var, input[type='text'], input[type='password'], textarea { font-size: 92%; font-family: monaco, "Lucida Console", courier, mono-space; }
+pre { white-space: pre; }
+pre * { font-size: 100%; white-space: pre; }
+del { text-decoration: line-through; color: #666; }
+ins, dfn { border-bottom: 1px solid #ccc; }
+small, sup, sub { font-size: 85%; }
+big { font-size: 125%; line-height: 80%; }
+abbr, acronym { text-transform: uppercse; font-size: 85%; letter-spacing: .1em; }
+a abbr, a acronym { border: none; }
+abbr[title], acronym[title], dfn[title] { cursor: help; border-bottom: 1px solid #ccc; }
+sup { vertical-align: super; }
+sub { vertical-align: sub; }
+a:link, a:visited, a:hover, a:active, a:focus { text-decoration: underline; }
+
+/* QUOTES */
+
+blockquote { border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; color: #666; }
+blockquote > *:before { content: "\201C"; }
+blockquote > *:after { content: "\201D"; }
+
+/* language specific quotes! */
+
+q { quotes: "\201C" "\201D" "\2018" "\2019"; }
+:lang(af), :lang(nl), :lang(pl) { quotes: '\201E' '\201D' '\201A' '\2019'; }
+:lang(bg), :lang(cs), :lang(de), :lang(is), :lang(lt), :lang(sk), :lang(sr), :lang(ro) { quotes: '\201E' '\201C' '\201A' '\2018'; }
+:lang(da), :lang(hr) { quotes: '\00BB' '\00AB' '\203A' '\2039'; }
+:lang(el), :lang(es), :lang(sq), :lang(tr) { quotes: '\00AB' '\00BB' '\2039' '\203A'; }
+:lang(en-GB) { quotes: '\2018' '\2019' '\201C' '\201D'; }
+:lang(fi), :lang(sv) { quotes: '\201D' '\201D' '\2019' '\2019'; }
+:lang(fr) { quotes: '\ab\2005' '\2005\bb' '\2039\2005' '\2005\203a'; }
+
+/* NOTE: safari refuses to support the quotes syntax. I only added the english language quotes for safari to save space. */
+*[lang|='en'] q:before   { content: '\201C'; }
+*[lang|='en'] q:after    { content: '\201D'; }
+*[lang|='en'] q q:before { content: '\2018'; }
+*[lang|='en'] q q:after  { content: '\2019'; }
+
+/* FORMS */
+
+fieldset { border: 1px solid #ccc; }
+legend { background: #fff; }
+textarea, input[type='text'], select { border: 1px solid #ccc; background: #fff; }
+textarea:hover, input[type='text']:hover, input[type='password']:hover, select:hover { border-color: #aaa; }
+textarea:focus, input[type='text']:focus, input[type='password']:focus, select:focus { border-color: #888; outline: 2px solid #ddd; }
+input[type='button'], input[type='submit'], input[type='checkbox'], input[type='image'], input[type='radio'], input[type='reset'], select, button { cursor: pointer; }
+input[type='hidden'] { display:none; }
+
+/*
+-----------------------------
+CONTENT ONLY
+-----------------------------
+*/
+
+/* BASE SIZES */
+
+.content { font-size: 1.2em; line-height: 1.6em; }
+.content h1 { font-size: 1.6em; }
+.content h2 { font-size: 1.5em; }
+.content h3 { font-size: 1.4em; }
+.content h4 { font-size: 1.3em; }
+.content h5 { font-size: 1.2em; }
+.content h6 { font-size: 1em; }
+
+/* HR */
+
+.content hr { display: block; background: #aaa; color: #aaa; width: 100%; height: 1px; border: none; }
+
+/* LISTS */
+
+.content ul{list-style: disc outside;}
+.content ol{list-style: decimal outside;}
+
+/* TABLES */
+
+.content table { border-top: 1px solid #ccc;  border-left: 1px solid #ccc; }
+.content th, .content td { border-bottom: 1px solid #ddd; border-right: 1px solid #ccc; }
+
+/* MARGINS & PADDINGS */
+
+.content hr, .content p, .content ul, .content ol, .content dl, .content pre, .content blockquote, .content address, .content table, .content form { margin-bottom: 1.6em; }
+.content p+p { margin-top: -.8em; }
+/* NOTE: Calulate header margins: TOP: line-height/size, BOTTOM: TOP/2 */
+.content h1 { margin: 1em 0 .5em; }
+.content h2 { margin: 1.07em 0 .535em; }
+.content h3 { margin: 1.14em 0 .57em; }
+.content h4 { margin: 1.23em 0 .615em; }
+.content h5 { margin: 1.33em 0 .67em; }
+.content h6 { margin: 1.6em 0 .8em; }
+.content th, .content td { padding: .8em; }
+.content caption { padding-bottom: .8em; } /* padding instead of margin for IE */
+.content blockquote { padding: 0 1em; margin: 1.6em 0; }
+.content fieldset { padding: 0 1em 1em 1em; margin: 1.6em 0; } /* padding-top is margin-top for fieldsets in Opera */
+.content legend { padding-left: .8em; padding-right: .8em; }
+.content legend+* { margin-top: 1em; } /* compensates for the opera margin bug */
+.content textarea, .content input { padding: .3em .4em .15em .4em; }
+.content select { padding: .1em .2em 0 .2em; }
+.content option { padding: 0 .4em .1em; }
+.content a { position: relative; padding: 0.3em 0 .1em 0; } /* for larger click-area */
+.content dt { margin-top: .8em; margin-bottom: .4em; }
+.content ul, .content ol { margin-left: 2.2em; }
+.content ul ul, content ol ul, .content ul ol, content ol ol { margin-bottom: 0; }
+.content form div { margin-bottom: .8em; }
+.content button { padding: 0.3em 0.5em; }
+.content blockquote > * { margin: .8em 0; }
+
+/* COLORS */
+
+.content a:link { color: #36c; }
+.content a:visited { color: #99c; }
+.content a:hover { color: #c33; }
+.content a:active, .content a:focus { color: #000; }
+.content code, .content pre { color: #c33; } /* very optional, but still useful. W3C uses about the same colors for codes */
+
+body {
+width:100%;  
+}
+
+#header{
+/*width: 100.99%;*/
+height: 190px;
+background-color: #1c1c1c;
+font-family: Helvetica,Arial,Verdana,sans-serif;
+margin-top: -9px;
+margin-left: -9px;
+color:#fff;
+min-width: 1100px;
+}
+
+#headerlogo{
+float:left;
+margin-top:20px;
+}
+
+#login {
+float:right;
+width: 300px;
+height: 150px;
+margin-right: 160px;
+margin-top:15px;
+}
+
+#login a:link {
+text-decoration:none;
+color:#6CA6CD;
+}
+
+#login a:visited {
+color:#000;
+}
+
+#login a:hover {
+color:#000;
+}
+
+p, h1, form, button{border:0; margin:0; padding:0;}
+.spacer{clear:both; height:1px;}
+/* ----------- My Form ----------- */
+.myform{
+margin:0 auto;
+width:400px;
+padding:14px;
+}
+
+/* ----------- stylized ----------- */
+#stylized{
+border-radius: 15px 15px 15px 15px;
+-moz-border-radius: 15px 15px 15px 15px;
+-webkit-border-radius: 15px 15px 15px 15px;
+
+box-shadow: 5px 5px 25px #000;
+-moz-box-shadow: 5px 5px 25px #000;
+-webkit-box-shadow: 5px 5px 25px #000;
+/*border:solid 2px #b7ddf2;*/
+background:#363636;
+}
+#stylized h1 {
+font-size:14px;
+font-weight:bold;
+margin-bottom:8px;
+}
+#stylized p{
+font-size:11px;
+color:#666666;
+margin-bottom:20px;
+border-bottom:solid 1px #b7ddf2;
+padding-bottom:10px;
+}
+#stylized label{
+display:block;
+font-weight:bold;
+text-align:right;
+width:140px;
+float:left;
+}
+#stylized .small{
+color:#000;
+display:block;
+font-size:11px;
+font-weight:normal;
+text-align:right;
+width:140px;
+}
+#stylized input{
+float:left;
+font-size:12px;
+padding:2px 2px;
+border:solid 1px #aacfe4;
+width:200px;
+margin:2px 0 10px 10px;
+}
+#stylized button{
+clear:both;
+margin-left:150px;
+width:125px;
+height:27px;
+background:#666666 url(img/button.png) no-repeat;
+text-align:center;
+line-height:31px;
+color:#FFFFFF;
+font-size:11px;
+font-weight:bold;
+}
+
+#loginTable {
+color:#1c1c1c;
+}
+
+body {
+background-color:fff;}
+
+#content {
+height:900px;
+margin-left: -8px;
+margin-right: -8px;
+margin-bottom: -8px;
+z-index:0;
+}
+
+#middle {
+height: 868px;
+width: 70%;
+margin: auto;
+position: relative;
+z-index: 0;
+}
+
+#nav {
+    z-index: 10;
+    display: block;
+	height:36px;
+		background:transparent url('OFF.gif') repeat-x top left;
+		font-family:Helvetica,Arial,Verdana,sans-serif;
+		margin-top:-16px;
+		margin-left: -8px;
+}	
+
+
+#nav ul {
+margin-left: auto;
+margin-right: auto;
+margin-top: 0;
+display: table;
+}
+
+#nav li { float: left; list-style:none; }
+#nav li:hover { position: relative }
+
+#nav li a {
+	color:#000;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 12px;
+    display: block;
+    background:transparent url('DIVIDER.gif') no-repeat top right;
+
+}
+
+#nav li a:hover { 	background:transparent url('HOVER.gif') no-repeat top right;	
+}
+
+#nav li ul {
+    background: #fff;
+    /*margin-top: -2px;*/
+    display: none;
+}
+#nav li:hover ul {
+    display:block;
+    position:absolute;
+
+}
+
+#nav li ul {
+    background: rgba(255,255,255,0.5);
+    padding: 10px 5px;
+	z-index:10;
+
+    box-shadow: 5px 5px 25px #000;
+    -moz-box-shadow: 5px 5px 25px #000;
+    -webkit-box-shadow: 5px 5px 25px #000;
+
+    /*border-radius: 0px 15px 15px 15px;
+    -moz-border-radius: 0px 15px 15px 15px;
+    -webkit-border-radius: 0px 5px 5px 5px;*/
+}
+#nav li ul li a, #nav li ul li a:hover {
+    background: transparent;
+    color: #000;
+    width: 150px;
+    font-size: 0.95em;
+    font-weight: normal;
+}
+#nav li ul li a:hover { text-decoration: underline;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+}
+
+
+#wj1 {
+  border: 1px solid #4C3C1B;
+    padding: 5px;
+    background-color: #EFEECB;
+    z-index:0;
+	margin-left:10px;
+	margin-top:10px;
+}
+
+
+
+
+.textimg1 {
+position: absolute;
+top: 400px;
+left: 270px;
+width: 315px;
+font-size: 22px;
+    background: rgba(255,255,255,0.7);
+		font-family:Helvetica,Arial,Verdana,sans-serif;
+
+    box-shadow: 5px 5px 5px #000;
+    -moz-box-shadow: 5px 5px 5px #000;
+    -webkit-box-shadow: 5px 5px 5px #000;
+}
+
+.image1 a:link, .image2 a:link, .image3 a:link, .image4 a:link {
+text-decoration:none;
+color:#1c1c1c;
+}
+
+.image1 a:visited, .image2 a:visited, .image3 a:visited, .image4 a:visited {
+text-decoration:none;
+color:#4f4f4f;
+}
+
+.image1 a:hover, .image2 a:hover, .image3 a:hover, .image4 a:hover {
+color:#1c1c1c;
+text-decoration:underline;
+}
+
+.image2 {
+    position:relative;
+    float:left;
+	
+	
+}
+
+.textimg2 {
+position: absolute;
+top: 150px;
+left: 125px;
+width: 315px;
+font-size: 22px;
+    background: rgba(255,255,255,0.7);
+		font-family:Helvetica,Arial,Verdana,sans-serif;
+
+    box-shadow: 5px 5px 5px #000;
+    -moz-box-shadow: 5px 5px 5px #000;
+    -webkit-box-shadow: 5px 5px 5px #000;
+}
+
+#mk1 {
+width: 430px;
+padding: 5px;
+  border: 1px solid #4C3C1B;
+    background-color: #EFEECB;
+
+}
+
+.image3 {
+    position:relative;
+    float:left;
+}
+
+.textimg3 {
+position: absolute;
+top: 460px;
+left: 125px;
+width: 315px;
+font-size: 22px;
+    background: rgba(255,255,255,0.7);
+		font-family:Helvetica,Arial,Verdana,sans-serif;
+
+    box-shadow: 5px 5px 5px #000;
+    -moz-box-shadow: 5px 5px 5px #000;
+    -webkit-box-shadow: 5px 5px 5px #000;
+}
+
+#mj3 {
+width: 430px;
+height:619px;
+padding: 5px;
+  border: 1px solid #4C3C1B;
+    background-color: #EFEECB;
+
+}
+
+.image4 {
+    position:relative;
+    float:left;
+
+}
+
+.textimg4 {
+position: absolute;
+top: 180px;
+left: 115px;
+width: 315px;
+font-size: 22px;
+    background: rgba(255,255,255,0.7);
+		font-family:Helvetica,Arial,Verdana,sans-serif;
+
+    box-shadow: 5px 5px 5px #000;
+    -moz-box-shadow: 5px 5px 5px #000;
+    -webkit-box-shadow: 5px 5px 5px #000;
+}
+
+#wj3 {
+width: 424px;
+height: 273px;
+padding: 5px;
+  border: 1px solid #4C3C1B;
+    background-color: #EFEECB;
+
+}
+
+#footer{
+background-color:#CFCFCF;
+height: 190px;
+font-size:15px;
+color:#4f4f4f;
+margin-left: -8px;
+margin-bottom: -8px;
+height:212px;
+/*
+margin-top:18px;
+margin-right: -8px;*/
+}
+
+#footer a:link {
+color:#4f4f4f;
+text-decoration:none;
+}
+
+#footer a:visited {
+color:#4f4f4f;
+text-decoration:none;
+}
+
+#footer a:hover {
+color:#fff;
+text-decoration:none;
+}
+
+#footer li {
+padding:2px;
+list-style:none;
+}
+
+#footerList {
+list-style:none;
+color:#4f4f4f;
+font-size:12px;
+margin-left:400px;
+float:left;
+}
+.price{
+font-weight: bold;
+font-size: 12px;
+list-style:none;
+}
+.description{
+margin-top:5px;
+font-size: 12px;
+list-style:none;
+}
+.sortDropdown{
+float: right;
+margin-right:400px;
+}
+.allIamges{
+text-align: center;
+border:1px; solid rgb(0,0,0);
+margin-left: 10px;
+padding-top:20px;
+max-width: 200px;
+}
+
+.button{
+    background: #20B2AA	 url(overlay.png) repeat-x;
+    display: inline-block;
+    padding: 5px 10px 6px;  
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+	font-weight: bold;	
+	line-height: 1;
+	margin-top:20px;
+	margin-right: 20px;
+	margin-left:530px;
+	
+}
+
+.Button .ButtonText{
+ display:block;
+ color:#FFF; 
+ font-family:Arial, Helvetica, sans-serif;  
+ text-shadow: #444 1px 1px 1px;
+ text-decoration: none;
+ text-align:center;
+ }
+
+.h1{
+font-weight: bold;
+margin-left:300px;
+margin-top:20px;
+}
+
+#rollimage {
+border:1px solid #4C3C1B;
+padding:13px;
+background-color:#EFEECB;
+z-index:0;
+margin-left:10px;
+height:840;
+margin:0 auto;
+display:block;
+}
+
+a#tooCool {
+position: fixed;
+right: 0;
+bottom: 0;
+display: block;
+height: 80px;
+width: 80px;
+background: url(too_cool_sash.png) bottom right no-repeat;
+text-indent: -999em;
+text-decoration: none;
+}
+
+label {
+    display: inline;
+ 
+}
+ 
+.regular-checkbox {
+    display: none;
+	
+	
+}
+ 
+.regular-checkbox + label {
+    background-color: #fafafa;
+    border: 1px solid #cacece;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+    padding: 8px;
+    border-radius: 3px;
+    display: inline-block;
+    position: relative;
+	
+	
+}
+ 
+.regular-checkbox + label:active, .regular-checkbox:checked + label:active {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+ 
+.regular-checkbox:checked + label {
+    background-color: #e9ecee;
+    border: 1px solid #adb8c0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+    color: #99a1a7;
+}
+ 
+.regular-checkbox:checked + label:after {
+    content: '\2714';
+    font-size: 14px;
+    position: absolute;
+    top: 0px;
+    left: 3px;
+    color: #99a1a7;
+}
+ 
+ 
+
+ 
+
+ 
+.tag {
+    font-family: Arial, sans-serif;
+	font-size: 150%;
+    top: 300px;
+	left:50px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: block;
+	
+
+
+
+}
+
+#links a:link {
+text-decoration:none;
+color:#000;
+}
+
+#links a:visited {
+text-decoration:none;
+color:#4f4f4f;
+}
+
+#links a:hover {
+color:#363636;
+text-decoration:none;
+}
+
+
+table { border-collapse: collapse;
+width:100%;
+ }
+
+th {
+background-color:#CDBA96;
+}
+
+td, th {
+border: 1px black solid;
+}
+
+#checkoutBtn {
+float: right;
+margin-top: 60px;
+width: 15%;
+padding: 15px;
+    border-radius: 4;
+    -moz-border-radius: 4;
+    -webkit-border-radius: 4;
+color:#fff;
+background-color:#008B8B;
+}
