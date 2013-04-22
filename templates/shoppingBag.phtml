@@ -4,57 +4,75 @@
 <link rel = "stylesheet"  type="text/css" href="shoppingBag.css">
 
 <div id = "header">
- <div id ="headerlogo"> <img style="margin-left:100px; margin-top:0px;" id ="logo" src= "logo1.png" alt="logo"> </div>
- <div id="login"> 
- <div id="stylized" class="myform">
-<form id="form" name="form" method="post" action="index.html">
+ <div id ="headerlogo">
+ 	<a href="index.php">
+ 		<img style="margin-left:100px; margin-top:0px;" id ="logo" src= "logo1.png" alt="logo">
+ 	</a>
+ 	
+ 	</div>
+		<div id="login">
+			<div id="stylized" class="myform">
+				{% if logged == 1 %} Welcome {{ username | capitalize }} <BR> <a
+					href='logout.php'>Log Out</a> {% else %}
+				<form id="form" name="form" method="POST" action="login.php">
 
-<label>Username
-<span class="small">Type your username</span>
-</label>
-<input type="text" name="usr" id="usr" />
+					<label>Username <span class="small">Type your username</span>
+					</label> <input type="text" name="usr" id="usr" /> <label>Password
+						<span class="small">Min. size 6 chars</span>
+					</label> <input type="password" name="password" id="password" />
 
-<label>Password
-<span class="small">Min. size 6 chars</span>
-</label>
-<input type="password" name="password" id="password" />
+					<button type="submit">Login</button>
+					</br> </br>
+					<center>
+						<a id="signup"
+							style="font-size: 14px;" href="addUserPage.php">Don't have an
+							account? Sign up here!</a>
+					</center>
+					<div class="spacer"></div>
 
-<button type="submit">Login</button> </br></br>
-<center><a id="signup" style="font-size:14px;" href="#">Don't have an account? Sign up here!</a></center>
-<div class="spacer"></div>
-
-</form>
-</div>
- </div>
+				</form>
+				{% endif %}
+			</div>
+		</div>
  </div>
 
 <div id="content">
  
 <div id="nav">
 	 <ul>		
-            <li id="women">
+             <li id="newin">
+            <a href="#">NEW IN</a>
+			<ul>  
+				<li><a href="search_Menu.php?department=All%20Cloths&depart=all&type=any">View All</a></li>
+				<hr>
+				<li><a href="search_Menu.php?department=All%20Woman%27s%20Cloths&depart=womenswear&type=any">Women</a></li>
+				<hr>
+				<li><a href="search_Menu.php?department=All%20Mans%27s%20Cloths&depart=menswear&type=any">Men</a></li>
+				
+				</ul> 
+            </li>
+			
+			 <li >
             <a href="#">WOMEN</a>
                 <ul> 
-				<li><a href="#">Coats & Jackets</a></li>
+				<li><a href="search_Menu.php?department=Coats%20%26%20Jackets&depart=womenswear&type=coats"">Coats & Jackets</a></li>
 				<hr>
-				<li><a href="#">Jeans</a></li>
+				<li><a href="search_Menu.php?department=Jeans&depart=womenswear&type=jeans">Jeans</a></li>
 				<hr>
-				<li><a href="#">Knitwear</a></li>
-				
+				<li><a href="search_Menu.php?department=Knitwear&depart=womenswear&type=knitwear">Knitwear</a></li>
 				</ul>
             </li>
 
 
             <li>
             <a href="#">MEN</a>
-                <ul>  
-				<li><a href="#">Coats & Jackets</a></li>
+                <ul> 
+				<li><a href="search_Menu.php?department=Coats%20%26%20Jackets&depart=menswear&type=coats"">Coats & Jackets</a></li>
 				<hr>
-				<li><a href="#">Jeans</a></li>
+				<li><a href="search_Menu.php?department=Jeans&depart=menswear&type=jeans">Jeans</a></li>
 				<hr>
-				<li><a href="#">Knitwear</a></li>
-				
-				</ul> 
+				<li><a href="search_Menu.php?department=Knitwear&depart=menswear&type=knitwear">Knitwear</a></li>
+				</ul>
             </li>
             
             <li>
@@ -68,7 +86,7 @@
 				
 				</ul> 
             </li>
-                        <li>
+            <li>
             <a href="#">BOYS</a>
                 <ul>  
 				<li><a href="#">Coats & Jackets</a></li>
@@ -86,13 +104,19 @@
             
             <li>
             <a href="#">SALES</a>
+				<ul>  
+				<li><a href="#">Women</a></li>
+				<hr>
+				<li><a href="#">Men</a></li>
+				
+				</ul> 
             </li>
             <li>
             <a href="#">STORE LOCATOR</a>
             </li>
-            <li>
-            <a href="#">WHAT'S NEW</a>
-            </li>
+			
+            
+			
             <li>
             <a href="#">ABOUT US</a>
             </li>
@@ -109,6 +133,13 @@
 		<th style="width:12%;">Quantity</th>
 		<th style="width:15%;">Availability</th>
 		<th style="width:21%;">Total</th>
+	</tr>
+	<tr>
+	<td>item 1</td>
+	<td>size 1</td>
+	<td>quanty</td>
+	<td>aval</td>
+	<td>total</td>
 	</tr>
 
 	</table>

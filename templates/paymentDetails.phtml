@@ -1,44 +1,45 @@
-
-
 <html>
 <body>
   
-<link rel = "stylesheet"  type="text/css" href="reviewOrder.css">
+<link rel = "stylesheet"  type="text/css" href="payment.css">
 
 <div id = "header">
- <div id ="headerlogo"> <img style="margin-left:100px; margin-top:0px;" id ="logo" src= "logo1.png" alt="logo"> </div>
- <div id="login"> 
- <div id="stylized" class="myform">
- {% if logged == 1 %}
- Welcome {{ username | capitalize }} <BR>
- <a href='logout.php'>Log Out</a>
- {% else %}
-<form id="form" name="form" method="POST" action="login.php">
+ <div id ="headerlogo">
+ 	<a href="index.php">
+ 		<img style="margin-left:100px; margin-top:0px;" id ="logo" src= "logo1.png" alt="logo">
+ 	</a>
+ 	
+ 	</div>
+		<div id="login">
+			<div id="stylized" class="myform">
+				{% if logged == 1 %} Welcome {{ username | capitalize }} <BR> <a
+					href='logout.php'>Log Out</a> {% else %}
+				<form id="form" name="form" method="POST" action="login.php">
 
-<label>Username
-<span class="small">Type your username</span>
-</label>
-<input type="text" name="usr" id="usr" />
+					<label>Username <span class="small">Type your username</span>
+					</label> <input type="text" name="usr" id="usr" /> <label>Password
+						<span class="small">Min. size 6 chars</span>
+					</label> <input type="password" name="password" id="password" />
 
-<label>Password
-<span class="small">Min. size 6 chars</span>
-</label>
-<input type="password" name="password" id="password" />
+					<button type="submit">Login</button>
+					</br> </br>
+					<center>
+						<a id="signup"
+							style="font-size: 14px;" href="addUserPage.php">Don't have an
+							account? Sign up here!</a>
+					</center>
+					<div class="spacer"></div>
 
-<button type="submit">Login</button> </br></br>
-<center>
-<a id="signup" style="font-size:14px;" href="addUser.html">Don't have an account? Sign up here!</a></center>
-<div class="spacer"></div>
-
-</form>
-{% endif %}
-</div>
- </div>
+				</form>
+				{% endif %}
+			</div>
+		</div>
  </div>
 
 <div id="content">
- <div id="nav">
-   <ul>  	
+ 
+<div id="nav">
+	 <ul>		
              <li id="newin">
             <a href="#">NEW IN</a>
 			<ul>  
@@ -126,21 +127,51 @@
 	
 		<fieldset>
 
-		<p style="font-size: 23px; float: left; font-weight: bold; margin-left: 20%;">Review your order</p><button id="cancelBtn" type="button">CANCEL ORDER</button><!-- JAVASCRIPT WITH CONFIRMATION BEFORE CANCELLING THE ORDER-->
-		<br><br><br>
-		<p style="margin-left:15%;">After confirmation, your order will be placed.</p>
+		<p style="font-size: 23px; float: left; font-weight: bold; margin-left: 20%;">Payment Details</p><button id="editBtn" type="button">EDIT YOUR SHOPPING BAG</button>
 		<br><br><br><br>
-			<table>
-				<tr>
-					<th style="width:30%;">Items</th><!-- each one of the items should have an edit and a remove button-->
-					<th style="width:30%;">Delivery Address</th><!-- there should be a button with the option to change the address-->
-					<th style="width:30%;">Payment Details</th><!-- there should be a button with the option to change the payment details-->
-					<th style="width:10%;">Total</th>
-				</tr>
-
-			</table>
-			<br><br>
-			<button id="confirmBtn" type="button">CONFIRM ORDER</button>
+					<div id="paymentForm">
+		<p> Total Amount </p><br><br>
+		<p>Select your card </p>
+		<select>
+			<option value="mastercard">MasterCard</option>
+			<option value="maestro">Maestro</option>
+			<option value="visa">Visa</option>
+			<option value="visaelectron">Visa Electron</option>
+			<option value="americanexpress">American Express</option>
+		</select>
+		<br><br>
+		<p>Name </p> <input type="text" name="name" size="25"><br>
+		<p>Card number </p><input type="text" name="cardnumber" size="25"><br>
+		<p>Security Code </p><input type="text" name="securitycode" size="25"><br>
+		<p>Expiry Date</p>
+		<select>
+		<option value="1">01</option>
+		<option value="2">02</option>
+		<option value="3">03</option>
+		<option value="4">04</option>
+		<option value="5">05</option>
+		<option value="6">06</option>
+		<option value="7">07</option>
+		<option value="8">08</option>
+		<option value="9">09</option>
+		<option value="10">10</option>
+		<option value="11">11</option>
+		<option value="12">12</option>	
+		</select>/
+		<select>
+		<option value="2013">2013</option>
+		<option value="2014">2014</option>
+		<option value="2015">2015</option>
+		<option value="2016">2016</option>
+		<option value="2017">2017</option>
+		<option value="2018">2018</option>
+		<option value="2019">2019</option>
+		<option value="2020">2020</option>
+		</select>
+		<br>
+		<!--  <input type="checkbox" name="rememberDetails" style="display:inline;"><p> I would like to remember the payment details above</p><br><br> -->
+		<input style="width:150px; background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EEEE));" type="submit" value="Confirm"/>
+			</div>
 				</fieldset>
 
 	

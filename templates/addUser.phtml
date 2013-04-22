@@ -1,51 +1,49 @@
 <html>
 <head>
-
 	<script type='text/javascript' language='Javascript'>
 
 <!--
 var requestObject = false;
 
-		function funcReceiveData()
-		{
-			if (requestObject.readyState == 4)
-			{
-				if (requestObject.status == 200)
-				{
+		function funcReceiveData() {
+			if (requestObject.readyState == 4) {
+				if (requestObject.status == 200) {
 					var status = requestObject.responseText;
-					alert(status);
+					if (status == "ok") {
+						document.getElementById('userValid').innerHTML = 'Valid e-mail';
+					} else if (status == "emailError") {
+						document.getElementById('userValid').innerHTML = 'Invalid e-mail, please choose another one';
+					} else {
+						document.getElementById('userValid').innerHTML = ' Email already registred, please choose another one.';
+					}
 				}
 			}
 		}
 
-		if (window.XMLHttpRequest)
-		{
+		if (window.XMLHttpRequest) {
 			requestObject = new XMLHttpRequest();
-		}
-		else if (window.ActiveXObject)
-		{
+		} else if (window.ActiveXObject) {
 			requestObject = new ActiveXObject("Microsoft.XMLHTTP");
 		}
 
-		function addToBag()
-		{
-			if (requestObject) 
-			{
-				requestObject.open("POST", "addToBag.php", true);
+		function checkUser() {
+			if (requestObject) {
+				requestObject.open("POST", "checkusername.php", true);
 				requestObject.setRequestHeader("Content-type",
 						"application/x-www-form-urlencoded");
-				var size = document.getElementById('size').value;
-				var colour = document.getElementById('colour').value;
-				var tobesent = "size=" + size + "&" + "colour=" + colour;
+				var user = document.getElementById('email').value;
+				var tobesent = "email=" + user;
 				requestObject.send(tobesent);
 				requestObject.onreadystatechange = funcReceiveData;
 			}
 		}
+	//-->
 	</script>
-
 </head>
 <body>
-<link rel = "stylesheet"  type="text/css" href="index.css">
+
+
+<link rel = "stylesheet"  type="text/css" href="addUser.css">
 
 <div id = "header">
  <div id ="headerlogo">
@@ -80,7 +78,7 @@ var requestObject = false;
 		</div>
  </div>
 
-<div id="content">
+	<div id="content">
  
 <div id="nav">
 	 <ul>		
@@ -99,7 +97,7 @@ var requestObject = false;
 			 <li >
             <a href="#">WOMEN</a>
                 <ul> 
-				<li><a href="search_Menu.php?department=Coats%20%26%20Jackets&depart=womenswear&type=coats">Coats & Jackets</a></li>
+				<li><a href="search_Menu.php?department=Coats%20%26%20Jackets&depart=womenswear&type=coats"">Coats & Jackets</a></li>
 				<hr>
 				<li><a href="search_Menu.php?department=Jeans&depart=womenswear&type=jeans">Jeans</a></li>
 				<hr>
@@ -111,7 +109,7 @@ var requestObject = false;
             <li>
             <a href="#">MEN</a>
                 <ul> 
-				<li><a href="search_Menu.php?department=Coats%20%26%20Jackets&depart=menswear&type=coats">Coats & Jackets</a></li>
+				<li><a href="search_Menu.php?department=Coats%20%26%20Jackets&depart=menswear&type=coats"">Coats & Jackets</a></li>
 				<hr>
 				<li><a href="search_Menu.php?department=Jeans&depart=menswear&type=jeans">Jeans</a></li>
 				<hr>
@@ -168,48 +166,57 @@ var requestObject = false;
 
 </div>
 
-<div id="middle">
+	<div id="signUpForm">
+		<fieldset>
 
-	<table style="margin-left: auto; margin-right: auto;">
-	<tr>
-	<td><img alt="" src="slideshowpictures/mcoat2.jpg" width="400" /></td>
-	<td style="text-align: left; vertical-align: text-top;">
-	<div style="margin-left:100px;">
-	<h1 style="font-weight: bold; text-align:center; margin-top:100px;" >
-	Description of Cloth
-</h1>
- <BR>Some description :) <BR><BR>
-<FORM >
-		<b>Size:</b><BR>
-		<select name="size" id="size" >
-		<option value="null">Choose Size</option>
-		<option value="size6">6</option>
-		<option value="size8">8</option>
-		<option value="size10">10</option>
-		<option value="size12">12</option>
-		<option value="size14">14</option>
-		<option value="size16">16</option>
-		</select><BR><BR>
-		<b>Colour:</b><BR>
-		<select name="colour" id="colour" >
-		<option value="null">Choose Colour</option>
-		<option value="Red">Red</option>
-		<option value="Green">Green</option>
-		<option value="Blue">Blue</option>
-		<option value="Yellow">Yellow</option>
-		<option value="Gray">Gray</option>
-		<option value="size16">16</option>
-		</select><BR><BR>
-		
-		<input type="button" id="addCartButton" value="Add to bag" onclick="addToBag();">
-		
-		</FORM>
-		</div>
-		</td>
-		</tr>
-</table>
-</div>
-</div>
+		<h1 style="text-align:center; ">Sign-up Form</h1>
+		<br><br>
+	<form method="POST" action="addUser.php">
+		<table style="white-space: nowrap;">
+			<tr valign="top">
+				<td><strong>Email</strong><br>
+				<input type="text" name="email" id="email" onblur="checkUser();" size="25"><br><i id='userValid'></i></td>
+								<td><strong>Address line 2</strong><br>
+				<input type="text" name="address2" size="35"></td>
+			</tr>
+			
+			<tr valign="top">
+				<td><strong>Password</strong><br>
+				<input type="password" name="password" size="25"></td>
+								<td><strong>City</strong><br>
+				<input type="text" name="city" size="25"></td>
+			</tr>
+
+			<tr valign="top">
+				<td><strong>First name</strong><br>
+				<input type="text" name="Fname" size="25"></td>
+								<td><strong>Postcode</strong><br>
+				<input type="text" name="postcode" size="25"></td>
+			</tr>
+
+			<tr valign="top">
+				<td><strong>Last name</strong><br>
+				<input type="text" name="Lname" size="25"></td>
+				<td><strong>Phone</strong><br>
+				<input type="text" name="phone" size="25"></td>
+			</tr>
+
+			<tr valign="top">
+				<td><strong>Address line 1</strong><br>
+				<input type="text" name="address1" size="35"></td>
+								<td><strong>Mobile</strong><br>
+				<input type="text" name="mobile" size="25"></td>
+			</tr>
+			
+			<tr>
+				<td><input type="submit" value="Submit" style="margin-top:20px; background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EEEE));" /></td>
+				<td><input type="reset" value="Clear" style="margin-top:20px; background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EEEE));"/></td>
+			</tr>
+		</table>
+	</form>
+	</fieldset>
+	</div>
+
 <div id="footer">
 	<br>
 <p style="text-align:center;"> &copy; 2013 Hamptons Store Ltd. All Rights Reserved.</p>

@@ -1,74 +1,34 @@
+
+
 <html>
-<head>
-	<script type='text/javascript' language='Javascript'>
-
-<!--
-var requestObject = false;
-
-		function funcReceiveData() {
-			if (requestObject.readyState == 4) {
-				if (requestObject.status == 200) {
-					var status = requestObject.responseText;
-					if (status == "ok") {
-						document.getElementById('userValid').innerHTML = 'Valid e-mail';
-					} else if (status == "emailError") {
-						document.getElementById('userValid').innerHTML = 'Invalid e-mail, please choose another one';
-					} else {
-						document.getElementById('userValid').innerHTML = ' Email already registred, please choose another one.';
-					}
-				}
-			}
-		}
-
-		if (window.XMLHttpRequest) {
-			requestObject = new XMLHttpRequest();
-		} else if (window.ActiveXObject) {
-			requestObject = new ActiveXObject("Microsoft.XMLHTTP");
-		}
-
-		function checkUser() {
-			if (requestObject) {
-				requestObject.open("POST", "checkusername.php", true);
-				requestObject.setRequestHeader("Content-type",
-						"application/x-www-form-urlencoded");
-				var user = document.getElementById('email').value;
-				var tobesent = "email=" + user;
-				requestObject.send(tobesent);
-				requestObject.onreadystatechange = funcReceiveData;
-			}
-		}
-	//-->
-	</script>
-</head>
 <body>
+  
+<link rel = "stylesheet"  type="text/css" href="reviewOrder.css">
 
-
-<link rel = "stylesheet"  type="text/css" href="addUser.css">
-	<div id="header">
-		<div id="headerlogo">
-			<img style="margin-left: 100px; margin-top: 0px;" id="logo"
-				src="logo1.png" alt="logo">
-		</div>
+<div id = "header">
+ <div id ="headerlogo">
+ 	<a href="index.php">
+ 		<img style="margin-left:100px; margin-top:0px;" id ="logo" src= "logo1.png" alt="logo">
+ 	</a>
+ 	
+ 	</div>
 		<div id="login">
 			<div id="stylized" class="myform">
-				{% if logged == 1 %}
-					Welcome
-					{{ username | capitalize }} <BR> <a
+				{% if logged == 1 %} Welcome {{ username | capitalize }} <BR> <a
 					href='logout.php'>Log Out</a> {% else %}
 				<form id="form" name="form" method="POST" action="login.php">
 
-					<label>Username <span class="small">Type your
-							username</span>
+					<label>Username <span class="small">Type your username</span>
 					</label> <input type="text" name="usr" id="usr" /> <label>Password
 						<span class="small">Min. size 6 chars</span>
 					</label> <input type="password" name="password" id="password" />
 
 					<button type="submit">Login</button>
-					</br>
-					</br>
+					</br> </br>
 					<center>
-						<a id="signup" style="font-size: 14px;" href="addUser.html">Don't
-							have an account? Sign up here!</a>
+						<a id="signup"
+							style="font-size: 14px;" href="addUserPage.php">Don't have an
+							account? Sign up here!</a>
 					</center>
 					<div class="spacer"></div>
 
@@ -76,12 +36,11 @@ var requestObject = false;
 				{% endif %}
 			</div>
 		</div>
-	</div>
+ </div>
 
-	<div id="content">
- 
-<div id="nav">
-	 <ul>		
+<div id="content">
+ <div id="nav">
+   <ul>  	
              <li id="newin">
             <a href="#">NEW IN</a>
 			<ul>  
@@ -165,60 +124,33 @@ var requestObject = false;
 	</ul>
 
 </div>
-
-	<div id="signUpForm">
+<div id="middle">	
+	
 		<fieldset>
 
-		<h1 style="text-align:center; ">Sign-up Form</h1>
-		<br><br>
-	<form method="POST" action="addUser.php">
-		<table style="white-space: nowrap;">
-			<tr valign="top">
-				<td><strong>Email</strong><br>
-				<input type="text" name="email" id="email" onblur="checkUser();" size="25"><br><i id='userValid'></i></td>
-								<td><strong>Address line 2</strong><br>
-				<input type="text" name="address2" size="35"></td>
-			</tr>
-			
-			<tr valign="top">
-				<td><strong>Password</strong><br>
-				<input type="password" name="password" size="25"></td>
-								<td><strong>City</strong><br>
-				<input type="text" name="city" size="25"></td>
-			</tr>
+		<p style="font-size: 23px; float: left; font-weight: bold; margin-left: 20%;">Review your order</p><button id="cancelBtn" type="button">CANCEL ORDER</button><!-- JAVASCRIPT WITH CONFIRMATION BEFORE CANCELLING THE ORDER-->
+		<br><br><br>
+		<p style="margin-left:15%;">After confirmation, your order will be placed.</p>
+		<br><br><br><br>
+			<table>
+				<tr>
+					<th style="width:30%;">Items</th><!-- each one of the items should have an edit and a remove button-->
+					<th style="width:30%;">Delivery Address</th><!-- there should be a button with the option to change the address-->
+					<th style="width:30%;">Payment Details</th><!-- there should be a button with the option to change the payment details-->
+					<th style="width:10%;">Total</th>
+				</tr>
 
-			<tr valign="top">
-				<td><strong>First name</strong><br>
-				<input type="text" name="Fname" size="25"></td>
-								<td><strong>Postcode</strong><br>
-				<input type="text" name="postcode" size="25"></td>
-			</tr>
+			</table>
+			<br><br>
+			<button id="confirmBtn" type="button">CONFIRM ORDER</button>
+				</fieldset>
 
-			<tr valign="top">
-				<td><strong>Last name</strong><br>
-				<input type="text" name="Lname" size="25"></td>
-				<td><strong>Phone</strong><br>
-				<input type="text" name="phone" size="25"></td>
-			</tr>
+	
+</div>
 
-			<tr valign="top">
-				<td><strong>Address line 1</strong><br>
-				<input type="text" name="address1" size="35"></td>
-								<td><strong>Mobile</strong><br>
-				<input type="text" name="mobile" size="25"></td>
-			</tr>
-			
-			<tr>
-				<td><input type="submit" value="Submit" style="margin-top:20px; background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EEEE));" /></td>
-				<td><input type="reset" value="Clear" style="margin-top:20px; background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EEEE));"/></td>
-			</tr>
-		</table>
-	</form>
-	</fieldset>
-	</div>
-
+</div>
 <div id="footer">
-	<br>
+	</br>
 <p style="text-align:center;"> &copy; 2013 Hamptons Store Ltd. All Rights Reserved.</p>
 
 <ul id="footerList">
