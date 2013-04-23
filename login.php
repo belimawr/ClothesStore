@@ -74,6 +74,7 @@ else
 			session_regenerate_id(true);
 			$_SESSION['uid'] = session_id();
 			$_SESSION['username'] = $row['username'];
+			$_SESSION['security_level'] = $row['permission_level'];
 			header( 'Location: admin.php' );
 		}
 		else 
@@ -83,6 +84,7 @@ else
 			$_SESSION['uid'] = session_id();
 			$_SESSION['username'] = $row['name_f'] . " " . $row['name_l'];
 			$_SESSION['customer_ID'] = $row['customer_ID'];
+			$_SESSION['security_level'] = 'user';
 			header( 'Location: index.php' );
 		}
 	}
