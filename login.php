@@ -82,6 +82,7 @@ else
 			session_regenerate_id(true);
 			$_SESSION['uid'] = session_id();
 			$_SESSION['username'] = $row['name_f'] . " " . $row['name_l'];
+			$_SESSION['customer_ID'] = $row['customer_ID'];
 			header( 'Location: index.php' );
 		}
 	}

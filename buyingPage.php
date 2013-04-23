@@ -49,7 +49,7 @@ $cloths = array();
 while ($row = $result->fetch_assoc())
 {
 	$tmp = array();
-	$tmp['StyleID'] = $row['style_ID'];
+	$tmp['styleID'] = $row['style_ID'];
 	$tmp['itemID'] = $row['item_ID'];
 	$tmp['colour'] = $row['colour'];
 	$tmp['item_size'] = $row['item_size'];
@@ -62,7 +62,8 @@ while ($row = $result->fetch_assoc())
 	$tmp['thumbnail_link'] = $row['thumbnail_link'];
 	$cloths[] = $tmp;
 }
-$parameters['cloths'] = $cloths;
+$parameters['item'] = $cloths[0];
+$parameters['style_ID'] = $tmp['styleID'];
 
 $db->close();
 
