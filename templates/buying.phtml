@@ -34,14 +34,107 @@ var requestObject = false;
 				requestObject.open("POST", "addToBag.php", true);
 				requestObject.setRequestHeader("Content-type",
 						"application/x-www-form-urlencoded");
-				var size = document.getElementById('size').value;
-				var colour = document.getElementById('colour').value;
+				var size = document.getElementById('selectSize').value;
+				var colour = document.getElementById('selectColour').value;
 				var tobesent = "size=" + size + "&" + "colour=" + colour;
 				requestObject.send(tobesent);
 				requestObject.onreadystatechange = funcReceiveData;
 			}
 		}
 	</script>
+	
+	<meta charset="UTF-8">
+
+<script type='text/javascript' language='Javascript'>
+<!--
+
+var i = 0;
+var j = 0;
+var validColours = new Array();
+var coloursArray = new Array();
+	{% for key, vec in size_colour %}
+		var {{ key }} = [
+		         {% for colour in vec %}
+               		{% if loop.last %}
+               			"{{ colour }}"];
+						validColours[i++] = "{{ key }}";
+					{% else %}
+						"{{ colour }}",
+					{% endif %}
+					{% if loop.last %}
+						coloursArray[j++] = {{ key }};
+					{% endif %}
+				{% endfor %}
+		{% endfor %}
+		//alert(validColours.join('\n'));
+		//alert(coloursArray.join('\n'));
+
+		//--------------------------------------------------------------------------------------------
+		i = 0;
+		j = 0;
+		var validSizes = new Array();
+		var SizesArray = new Array();
+			{% for key, vec in colour_size %}
+				var {{ key }} = [
+				         {% for size in vec %}
+		               		{% if loop.last %}
+		               			"{{ size }}"];
+								validSizes[i++] = "{{ key }}";
+							{% else %}
+								"{{ size }}",
+							{% endif %}
+							{% if loop.last %}
+								SizesArray[j++] = {{ key }};
+							{% endif %}
+						{% endfor %}
+				{% endfor %}
+
+				//alert(validSizes.join('\n'));
+				//alert(SizesArray.join('\n'));
+//-->
+
+function colourChanged()
+{
+	var i = 0;
+	var select_tag = document.getElementById('selectSize');
+	select_tag.options.length=0;
+	for(i = 0; i < SizesArray[0].length; i++)
+	{
+		select_tag.options[i]=new Option(SizesArray[0][i], SizesArray[0][i], false, false);
+	}
+}
+
+function sizeChanged()
+{
+	var i = 0;
+	var select_tag = document.getElementById('selectColour');
+	select_tag.options.length=0;
+	for(i = 0; i < coloursArray[0].length; i++)
+	{
+		select_tag.options[i]=new Option(coloursArray[0][i], coloursArray[0][i], false, false);
+	}
+}
+
+function startAll()
+{
+	var i = 0;
+	var select_tag = document.getElementById('selectColour');
+	select_tag.options.length=0;
+	for(i = 0; i < coloursArray[0].length; i++)
+	{
+		select_tag.options[i]=new Option(coloursArray[0][i], coloursArray[0][i], false, false);
+	}
+
+	var i = 0;
+	var select_tag = document.getElementById('selectSize');
+	select_tag.options.length=0;
+	for(i = 0; i < SizesArray[0].length; i++)
+	{
+		select_tag.options[i]=new Option(SizesArray[0][i], SizesArray[0][i], false, false);
+	}
+}
+window.onload = startAll;
+</script>
 
 </head>
 <body>
@@ -186,11 +279,11 @@ var requestObject = false;
  <BR><BR>
 <FORM >
 		<b>Size:</b><BR>
-		<select name="size" id="size" >
+		<select name="selectSize" id="selectSize">
 		<option value="{{ item.item_size }}">{{ item.item_size | capitalize }}</option>
 		</select><BR><BR>
 		<b>Colour:</b><BR>
-		<select name="colour" id="colour" >
+		<select name="selectColour" id="selectColour" onchange="colourChanged();">
 		<option value="{{ item.colour }}">{{ item.colour | capitalize }}</option>
 		</select><BR><BR>
 		 {% endif %}

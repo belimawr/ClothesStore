@@ -43,6 +43,7 @@ $db = new mysqli($host, $user, $pass, $database);
 $query = "SELECT * FROM item JOIN style on item.style_ID = style.style_ID WHERE style.style_ID = $styleID";
 
 $result = $db->query($query);
+
 /* item_ID | style_ID | colour | item_size | price | stock | image_link | style_ID | description  | name  | department | type  | material | thumbnail_link */
 $cloths = array();
 while ($row = $result->fetch_assoc())
@@ -57,10 +58,52 @@ while ($row = $result->fetch_assoc())
 	$tmp['image_link'] = $row['image_link'];
 	$tmp['desc'] = $row['description'];
 	$tmp['name'] = $row['name'];
+	$tmp['size'] = $row['item_size'];
 	$tmp['thumbnail_link'] = $row['thumbnail_link'];
 	$cloths[] = $tmp;
 }
 $parameters['cloths'] = $cloths;
+
+$db->close();
+
+
+$colour_size = array();
+$size_colour = array();
+
+foreach($cloths as $item)
+{
+// 	print_r($item);
+// 	echo("<BR><BR>");
+	if(isset($colour_size[$item['colour']]))
+	{
+		if(!in_array($item['size'], $colour_size[$item['colour']]))
+		{
+			$colour_size[$item['colour']][] = $item['size'];
+		}
+	}
+	else
+	{
+		$colour_size[$item['colour']] = array();
+		$colour_size[$item['colour']][] = $item['size'];
+	}
+
+	if(isset($size_colour[$item['size']]))
+	{
+		if(!in_array($item['colour'], $size_colour[$item['size']]))
+		{
+			$size_colour[$item['size']][] = $item['colour'];
+		}
+	}
+	else
+	{
+		$size_colour[$item['size']] = array();
+		$size_colour[$item['size']][] = $item['colour'];
+	}
+}
+// exit();
+
+$parameters['colour_size'] = $colour_size;
+$parameters['size_colour'] = $size_colour;
 
 $template->display($parameters);
 ?>

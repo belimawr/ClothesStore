@@ -1,6 +1,6 @@
 <html>
 <head>
-<meta charset="UTF-8">
+
 
 </head>
 <body>
@@ -241,10 +241,12 @@
 					{% endif %}
 					<td>
  					<div class = "allIamges">
-						<a href="buyingPage.php?styleID={{ image.id }}"  ><img alt="{{ image.alt | raw }}" id="img{{ image.id }}" src="{{ image.src }}" width="144" high="216" /></a>
+						<a href="buyingPage.php?styleID={{ image.style_ID }}"  ><img alt="{{ image.alt | raw }}" id="img{{ image.id }}" src="{{ image.src }}" width="144" high="216" /></a>
 						<div id="links">
-							<a href="buyingPage.php?styleID={{ image.id }}"  >{{ image.desc | raw }}</a>
-							<a href="buyingPage.php?styleID={{ image.id }}" ><!-- <strong >£{{ image.price }}</strong> --></a>
+							<a href="buyingPage.php?styleID={{ image.style_ID }}"  >{{ image.name | raw }}<BR>
+							Colour: <strong>{{ image.colour | capitalize }}</strong><BR>
+							<strong>£{{ image.price | raw }}</strong>
+							</a>
 						</div>
 					</div>
 					</td>
