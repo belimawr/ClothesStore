@@ -99,7 +99,7 @@ if(isset($query))
 		$tmp['name'] = $row['name'];
 		$tmp['size'] = $row['item_size'];
 		$tmp['material'] = $row['material'];
-		$tmp['thumbnail'] = $row['thumbnail_link'];
+		$tmp['thumbnail'] = $row['image_link'];
 		$tmp['colour'] = $row['colour'];
 		$wcloths[] = $tmp;
 	}

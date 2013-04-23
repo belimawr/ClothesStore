@@ -169,37 +169,32 @@ var requestObject = false;
 </div>
 
 <div id="middle">
-
+{% for item in cloths %}
+ {% if loop.first %}
 	<table style="margin-left: auto; margin-right: auto;">
 	<tr>
-	<td><img alt="" src="slideshowpictures/mcoat2.jpg" width="400" /></td>
+	<td><img alt="" src="{{ item.image_link }}" width="400" /></td>
 	<td style="text-align: left; vertical-align: text-top;">
 	<div style="margin-left:100px;">
 	<h1 style="font-weight: bold; text-align:center; margin-top:100px;" >
 	Description of Cloth
 </h1>
- <BR>Some description :) <BR><BR>
+ <BR>
+
+ {{ item.desc }}
+
+ <BR><BR>
 <FORM >
 		<b>Size:</b><BR>
 		<select name="size" id="size" >
-		<option value="null">Choose Size</option>
-		<option value="size6">6</option>
-		<option value="size8">8</option>
-		<option value="size10">10</option>
-		<option value="size12">12</option>
-		<option value="size14">14</option>
-		<option value="size16">16</option>
+		<option value="{{ item.item_size }}">{{ item.item_size | capitalize }}</option>
 		</select><BR><BR>
 		<b>Colour:</b><BR>
 		<select name="colour" id="colour" >
-		<option value="null">Choose Colour</option>
-		<option value="Red">Red</option>
-		<option value="Green">Green</option>
-		<option value="Blue">Blue</option>
-		<option value="Yellow">Yellow</option>
-		<option value="Gray">Gray</option>
-		<option value="size16">16</option>
+		<option value="{{ item.colour }}">{{ item.colour | capitalize }}</option>
 		</select><BR><BR>
+		 {% endif %}
+{% endfor %}
 		
 		<input type="button" id="addCartButton" value="Add to bag" onclick="addToBag();">
 		

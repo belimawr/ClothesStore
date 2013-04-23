@@ -45,7 +45,6 @@ while ($row = $result->fetch_assoc())
 	$tmp['id'] = $row['style_ID'];
 	$tmp['desc'] = $row['name'];
 	$tmp['src'] = $row['thumbnail_link'];
-	$tmp['price'] = 100;
 	$wcloths[] = $tmp;
 }
 $parameters['womensCloths'] = $wcloths;
