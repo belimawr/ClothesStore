@@ -141,9 +141,45 @@
 		<option value="2019">2019</option>
 		<option value="2020">2020</option>
 		</select>
-		<br>
+		<br><br>
 		<!--  <input type="checkbox" name="rememberDetails" style="display:inline;"><p> I would like to remember the payment details above</p><br><br> -->
 		<input style="width:150px; background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EEEE));" type="submit" value="Confirm"/>
+			</div>
+			<br><br>
+				<p style="font-size: 23px; font-weight: bold; margin-left: 20%;">Delivery Address</p><br>
+			<p id="txt"style="margin-left:20%;">Would you like to send it to your address? </p><br><br>
+			<script language="javascript"> 
+				function toggle() {
+					var ele1 = document.getElementById("newAddr");
+					var ele2 = document.getElementById("addr");
+					var ele3 = document.getElementById("txt");
+					var btn = document.getElementById("changeAddr");
+					
+					if(ele1.style.display == "block") {
+						ele1.style.display = "none";
+						ele2.style.display = "block";		
+					} else {
+						ele1.style.display = "block";
+						ele2.style.display = "none";
+						ele3.style.display = "none";
+						btn.style.display = "none";
+					}
+				} 
+			</script>
+			<div id="addr" style="margin-left:20%;">
+			<p>12 George Street, <br>
+				Glasgow, UK<br>
+				G11TL</p><br>
+			</div>
+			<br>
+			<button id="changeAddr" onClick="javascript:toggle();">CHANGE ADDRESS</button><br>
+			<div id="newAddr" style="display: none;">
+				<p>Address Line 1</p> <input type="text" name="address1" size="25"><br>
+				<p>Address Line 2 </p><input type="text" name="address2" size="25"><br>
+				<p>City</p><input type="text" name="city" size="25"><br>
+				<p>Postcode </p><input type="text" name="postcode" size="25"><br>
+						<input style="width:150px; background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EEEE));" type="submit" value="Update Address"/>
+
 			</div>
 				</fieldset>
 
