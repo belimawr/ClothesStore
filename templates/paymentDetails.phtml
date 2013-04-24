@@ -1,4 +1,5 @@
 <html>
+<meta charset="UTF-8">
 <body>
   
 <link rel = "stylesheet"  type="text/css" href="payment.css">
@@ -60,10 +61,16 @@
 				<li><a href="search_Menu.php?department=Jeans&depart=womenswear&type=jeans">Jeans</a></li>
 				<hr>
 				<li><a href="search_Menu.php?department=Knitwear&depart=womenswear&type=knitwear">Knitwear</a></li>
+				<hr>
+				<li><a href="search_Menu.php?department=Dress&depart=womenswear&type=dress">Dress</a></li>
+				<hr>
+				<li><a href="search_Menu.php?department=Skirt&depart=womenswear&type=skirt">Skirt</a></li>
+				<hr>
+				<li><a href="search_Menu.php?department=Shorts&depart=womenswear&type=shorts">Shorts</a></li>
+				<hr>
+				<li><a href="search_Menu.php?department=T-Shirts&depart=womenswear&type=tShirts">T-Shirts</a></li>
 				</ul>
             </li>
-
-
             <li>
             <a href="#">MEN</a>
                 <ul> 
@@ -72,57 +79,23 @@
 				<li><a href="search_Menu.php?department=Jeans&depart=menswear&type=jeans">Jeans</a></li>
 				<hr>
 				<li><a href="search_Menu.php?department=Knitwear&depart=menswear&type=knitwear">Knitwear</a></li>
+				<hr>
+				<li><a href="search_Menu.php?department=Shorts&depart=menswear&type=shorts">Shorts</a></li>
+				<hr>
+				<li><a href="search_Menu.php?department=Kilt&depart=menswear&type=kilt">Kilt</a></li>
+				<hr>
+				<li><a href="search_Menu.php?department=T-Shirts&depart=menswear&type=tShirts">T-Shirts</a></li>
 				</ul>
-            </li>
-            
-            <li>
-            <a href="#">GIRLS</a>
-                <ul>  
-				<li><a href="#">Coats & Jackets</a></li>
-				<hr>
-				<li><a href="#">Jeans</a></li>
-				<hr>
-				<li><a href="#">Knitwear</a></li>
-				
-				</ul> 
-            </li>
-            <li>
-            <a href="#">BOYS</a>
-                <ul>  
-				<li><a href="#">Coats & Jackets</a></li>
-				<hr>
-				<li><a href="#">Jeans</a></li>
-				<hr>
-				<li><a href="#">Knitwear</a></li>
-				
-				</ul> 
-            </li>
-                        <li>
-            <a href="#">BABIES</a>
-  
-            </li>
-            
-            <li>
-            <a href="#">SALES</a>
-				<ul>  
-				<li><a href="#">Women</a></li>
-				<hr>
-				<li><a href="#">Men</a></li>
-				
-				</ul> 
             </li>
             <li>
             <a href="#">STORE LOCATOR</a>
             </li>
-			
-            
-			
             <li>
             <a href="#">ABOUT US</a>
             </li>
 	</ul>
-
 </div>
+
 <div id="middle">	
 	
 		<fieldset>
@@ -168,9 +141,45 @@
 		<option value="2019">2019</option>
 		<option value="2020">2020</option>
 		</select>
-		<br>
+		<br><br>
 		<!--  <input type="checkbox" name="rememberDetails" style="display:inline;"><p> I would like to remember the payment details above</p><br><br> -->
 		<input style="width:150px; background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EEEE));" type="submit" value="Confirm"/>
+			</div>
+			<br><br>
+				<p style="font-size: 23px; font-weight: bold; margin-left: 20%;">Delivery Address</p><br>
+			<p id="txt"style="margin-left:20%;">Would you like to send it to your address? </p><br><br>
+			<script language="javascript"> 
+				function toggle() {
+					var ele1 = document.getElementById("newAddr");
+					var ele2 = document.getElementById("addr");
+					var ele3 = document.getElementById("txt");
+					var btn = document.getElementById("changeAddr");
+					
+					if(ele1.style.display == "block") {
+						ele1.style.display = "none";
+						ele2.style.display = "block";		
+					} else {
+						ele1.style.display = "block";
+						ele2.style.display = "none";
+						ele3.style.display = "none";
+						btn.style.display = "none";
+					}
+				} 
+			</script>
+			<div id="addr" style="margin-left:20%;">
+			<p>12 George Street, <br>
+				Glasgow, UK<br>
+				G11TL</p><br>
+			</div>
+			<br>
+			<button id="changeAddr" onClick="javascript:toggle();">CHANGE ADDRESS</button><br>
+			<div id="newAddr" style="display: none;">
+				<p>Address Line 1</p> <input type="text" name="address1" size="25"><br>
+				<p>Address Line 2 </p><input type="text" name="address2" size="25"><br>
+				<p>City</p><input type="text" name="city" size="25"><br>
+				<p>Postcode </p><input type="text" name="postcode" size="25"><br>
+						<input style="width:150px; background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EEEE));" type="submit" value="Update Address"/>
+
 			</div>
 				</fieldset>
 
