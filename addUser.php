@@ -61,7 +61,7 @@ if(!$result = $db->query($adduser))
 
 $db->commit();
 
-echo("User $email successfuly registred! <a href='index.php'>Click here</a> to go back and log in.");
+ echo ("<script type='text/javascript'> alert('User $email successfuly registred!'); window.location.href = \"index.php\"; </script>");
 
 $db->close();
 
