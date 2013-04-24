@@ -728,7 +728,8 @@ input:focus, textarea:focus {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	}
-#paymentForm {
+	
+	#paymentForm, #newAddr {
 width:50%;
 margin:0 auto;
 }
@@ -739,3 +740,57 @@ font-size:15px;
 margin-right:5px;
 margin-left:5px;
 }
+
+#changeAddr {
+margin-left:20%;
+width: 25%;
+padding: 15px;
+    border-radius: 4;
+    -moz-border-radius: 4;
+    -webkit-border-radius: 4;
+color:#fff;
+background-color:#008B8B;
+}
+
+#newAddr input, textarea { 
+	padding: 5px;
+	border: solid 1px #E5E5E5;
+	outline: 0;
+	font: normal 13px/100% Verdana, Tahoma, sans-serif;
+	background: #FFFFFF url('bg_form.png') left top repeat-x;
+	background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
+	background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);
+	box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	display:block;
+	}
+
+#newAddr textarea { 
+	width: 400px;
+	max-width: 400px;
+	height: 150px;
+	line-height: 150%;
+	}
+
+#newAddr input:hover, textarea:hover,
+input:focus, textarea:focus { 
+	border-color: #C9C9C9; 
+	-webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
+	}
+	
+#newAddr .form label { 
+	margin-left: 10px; 
+	color: #999999; 
+	}
+
+#newAddr .submit input {
+	width: auto;
+	padding: 9px 15px;
+	background: #617798;
+	border: 0;
+	font-size: 14px;
+	color: #FFFFFF;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	}
