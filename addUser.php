@@ -32,17 +32,34 @@ if($password == "" || $Fname == "" || $Lanme == "" || $address1 == "" || $addres
 	exit();
 }
 
-$myquery = <<<SQL
+$db->autocommit(false);
+
+$addAdd = <<<SQL
+		 INSERT INTO address
+		 VALUES(null, '$address1', '$address2', '$city', '$postcode');
+SQL;
+
+$adduser = <<<SQL
 		 INSERT INTO
-		 $table (customer_ID, password, name_f, name_l, address_1, address_2, city, postcode, phone, mobile, email)
+		 $table
 		 VALUES
-		 (null, '$password', '$Fname' , '$Lanme', '$address1', '$address2', '$city', '$postcode', '$phone', '$mobile', '$email')
+		 (null, '$password', '$Fname' , '$Lanme', '$phone', '$mobile', '$email', LAST_INSERT_ID())
 SQL;
 $result = null;
-if(!$result = $db->query($myquery))
+if(!$result = $db->query($addAdd))
 {
+	echo($addAdd."<BR><BR>");
 	die('There was an error running the query [' . $db->error . ']');
 }
+
+$result = null;
+if(!$result = $db->query($adduser))
+{
+	echo($adduser."<BR><BR>");
+	die('There was an error running the query [' . $db->error . ']');
+}
+
+$db->commit();
 
 echo("User $email successfuly registred! <a href='index.php'>Click here</a> to go back and log in.");
 
