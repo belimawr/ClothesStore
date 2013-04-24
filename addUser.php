@@ -28,7 +28,18 @@ if($db->connect_errno > 0)
 
 if($password == "" || $Fname == "" || $Lanme == "" || $address1 == "" || $address2 == "" || $city == "" || $postcode == "" || $phone == "" || $mobile == "" || $email == "")
 {
-	echo("All field are required!<BR><a href='index.php'>Click here</a> to go back.");
+	echo ("<script type='text/javascript'> alert('All fields are required!');</script>");
+	exit();
+}
+
+$emailCheckSQL = "SELECT * FROM $table where email = '$email'";
+
+$emailCheck = $db->query($emailCheckSQL);
+
+if ($row = $emailCheck->fetch_assoc())
+{
+	echo ("<script type='text/javascript'> alert('This email is already registered');");
+	echo ("window.location.href='addUserPage.php' </script>");
 	exit();
 }
 
@@ -61,7 +72,8 @@ if(!$result = $db->query($adduser))
 
 $db->commit();
 
- echo ("<script type='text/javascript'> alert('User $email successfuly registred!'); window.location.href = \"index.php\"; </script>");
+ echo ("<script type='text/javascript'> alert('User $email successfuly registred!');");
+ echo ("window.location.href='index.php' </script>");
 
 $db->close();
 
