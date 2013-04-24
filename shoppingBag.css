@@ -256,7 +256,6 @@ body {
 background-color:fff;}
 
 #content {
-height:900px;
 margin-left: -8px;
 margin-right: -8px;
 margin-bottom: -8px;
@@ -264,11 +263,11 @@ z-index:0;
 }
 
 #middle {
-height: 868px;
 width: 70%;
 margin: auto;
 position: relative;
 z-index: 0;
+padding-bottom: 10px;
 }
 
 #nav {

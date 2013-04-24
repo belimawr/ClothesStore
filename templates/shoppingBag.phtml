@@ -103,17 +103,24 @@
 	<tr>
 		<th style="width:35%;">Items</th>
 		<th style="width:12%;">Size</th>
+		<th style="width:12%;">Colour</th>
 		<th style="width:12%;">Quantity</th>
-		<th style="width:15%;">Availability</th>
+		<th style="width:15%;">Delivery day</th>
 		<th style="width:21%;">Total</th>
 	</tr>
-	<tr>
-	<td>item 1</td>
-	<td>size 1</td>
-	<td>quanty</td>
-	<td>aval</td>
-	<td>total</td>
+	{% for item in items %}
+	<tr style="text-align:center;">
+	<td>
+	<img alt="{{ item.desc }}" src="{{ item.image_link }}" width="144" high="216" /><BR>
+	<b>{{ item.name | capitalize }}</b>
+	</td>
+	<td>{{ item.size | capitalize }}</td>
+	<td>{{ item.colour | capitalize }}</td>
+	<td>{{ item.quantity }}</td>
+	<td>{% if item.aval == 1 %} Tomorrow {% else %} Next week {% endif %} </td>
+	<td><b>£{{ item.price }}</b></td>
 	</tr>
+	{% endfor %}
 
 	</table>
 	
