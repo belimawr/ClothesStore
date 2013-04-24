@@ -50,7 +50,6 @@ while ($row = $result->fetch_assoc())
 		$tmp['price'] = $row['price'];
 		$tmp['name'] = $row['name'];
 		$tmp['size'] = $row['item_size'];
-		$tmp['material'] = $row['material'];
 		$tmp['thumbnail'] = $row['image_link'];
 		$tmp['colour'] = $row['colour'];
 		$wcloths[] = $tmp;

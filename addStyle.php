@@ -44,12 +44,12 @@ $name = $db->escape_string($_POST['name']);
 $description = $db->escape_string($_POST['description']);
 $department = $db->escape_string($_POST['department']);
 $type = $db->escape_string($_POST['type']);
-$material = $db->escape_string($_POST['material']);
+// $material = $db->escape_string($_POST['material']);
 $thumbnail_link = $db->escape_string($_POST['thumbnail']);
 
 $query = <<<SQL
-		INSERT INTO $table (style_ID, description, name, department, type, material, thumbnail_link)
-		VALUES (null, '$description', '$name', '$department', '$type', '$material', '$thumbnail_link')
+		INSERT INTO $table (style_ID, description, name, department, type, thumbnail_link)
+		VALUES (null, '$description', '$name', '$department', '$type', '$thumbnail_link')
 SQL;
 
 $result = $db->query($query);
