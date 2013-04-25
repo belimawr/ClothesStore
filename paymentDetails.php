@@ -56,8 +56,13 @@ else
 	$sql = <<<SQL
 		INSERT INTO card VALUES (null, '$cardType', '$cardNumber', '$cardSecCode', '$cardYear-$cardMonth-01', '$cardHolder', $customerID)
 SQL;
-	echo($sql);
-	$cardID = $db->insert_id;
+	$result = $db->query($sql);
+	if($result)
+		$cardID = $db->insert_id;
+	else
+	{
+		echo("mySQL error: " . $db->error);
+	}
 }
 
 if($userAddress == "1" ) /* Use User's address */
@@ -96,6 +101,7 @@ SQL;
  *  1 Calculate the total price;
  *  2 Create the order;
  *  3 Add them to the order_item;
+ *  4 Delete all items from basket.
  */
 
 /* Get all items */
@@ -141,6 +147,15 @@ foreach($items as $item)
 		echo("mySQL error: " . $db->error);
 		exit();
 	}
+}
+
+/* Delete all items from basket */
+$sql = "DELETE FROM basket WHERE customer_ID = $customerID";
+$result = $db->query($sql);
+if(!$result)
+{
+	echo("mySQL error: " . $db->error);
+	exit();
 }
 
 $db->close();

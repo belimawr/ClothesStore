@@ -149,8 +149,14 @@ window.onload = startAll;
  	</div>
 		<div id="login">
 			<div id="stylized" class="myform">
-				{% if logged == 1 %} Welcome {{ username | capitalize }} <BR> <a
-					href='logout.php'>Log Out</a> {% else %}
+				{% if logged == 1 %}
+				<p style="font-size: 200%; border-bottom:none;">
+				 Welcome {{ username | capitalize }} <BR>
+				 You have <i id="basketQuantity">0</i> items in your basket<BR>
+				<a href='shoppingBagPage.php'>View Basket</a> or 
+				<a href='paymentDetailsPage.php'>Checkout</a><BR>
+				<a href='logout.php'>Log Out</a></p>
+					{% else %}
 				<form id="form" name="form" method="POST" action="login.php">
 
 					<label>Username <span class="small">Type your username</span>
@@ -201,10 +207,6 @@ window.onload = startAll;
 				<li><a href="search_Menu.php?department=Dress&depart=womenswear&type=dress">Dress</a></li>
 				<hr>
 				<li><a href="search_Menu.php?department=Skirt&depart=womenswear&type=skirt">Skirt</a></li>
-				<hr>
-				<li><a href="search_Menu.php?department=Shorts&depart=womenswear&type=shorts">Shorts</a></li>
-				<hr>
-				<li><a href="search_Menu.php?department=T-Shirts&depart=womenswear&type=tShirts">T-Shirts</a></li>
 				</ul>
             </li>
             <li>
