@@ -145,8 +145,8 @@
 		<option value="2020">2020</option>
 		</select>
 		<br><br>
-		<!--  <input type="checkbox" name="rememberDetails" style="display:inline;"><p> I would like to remember the payment details above</p><br><br> -->
-		<input style="width:150px; background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EEEE));" type="submit" value="Confirm"/>
+		<!--  <input type="checkbox" name="rememberDetails" style="display:inline;"><p> I would like to remember the payment details above</p><br><br>
+		<input style="width:150px; background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EEEE));" type="submit" value="Confirm"/>-->
 			</div>
 			<br><br>
 				<p style="font-size: 23px; font-weight: bold; margin-left: 20%;">Delivery Address</p><br>
@@ -171,13 +171,15 @@
 					}
 				} 
 			</script>
-			<div id="addr" style="margin-left:20%;">
-			<p>{{ address1 }}, <br>
-				{{ address2 }},<BR>
+			<div id="addr" style="margin-left:26%; font-size:14px;">
+		
+				{{ address1 }} <br>
+				{{ address2 }}<BR>
 				{{ city }}<br>
-				{{ postcode }}</p><br>
+				{{ postcode }}<br>
+			
 			</div>
-			<br>
+			<br><br>
 			<input type="button" id="changeAddr" onClick="javascript:toggle();" value="CHANGE ADDRESS"><br>
 			<div id="newAddr" style="display: none;">
 				<p>Address Line 1</p> <input type="text" name="address1" size="25" value="{{ address1 }}"><br>
@@ -187,6 +189,10 @@
 				<input type="hidden" name="userAddress" value="1" id="userAddress">
 
 			</div>
+				<br><br>
+
+			               <input style="width: 30%; height: 30px; margin-left: 25%; background-color: blueviolet;background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EE EE)); border-radius: 4; -moz-border-radius: 4; -webkit-border-radius: 4; background-color: #CDCDB4;" type="submit" value="Confirm Payment and Address"/>
+			
 			</form>
 				</fieldset>
 
