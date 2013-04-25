@@ -9,13 +9,28 @@ $twig = new Twig_Environment($loader);
 $template = $twig->loadTemplate('paymentDetails.phtml');
 $parameters = array();
 
+$host = "s.tiago.eti.br";
+$database = "StrathWEB_Store";
+$user = "StrathWEB";
+$pass = "2013StrathWEB";
+
+$db = new mysqli($host, $user, $pass, $database);
+
 /* Checks if exists a session */
 session_start();
 if(isset($_SESSION['uid']))
 {
 	$parameters['logged'] = 1;
 	$parameters['username'] = $_SESSION['username'];
-	$customerID = $_SESSION['customer_ID'];
+	$customer_ID = $_SESSION['customer_ID'];
+	$sql = "SELECT SUM(quantity) as num_items FROM basket WHERE customer_ID = $customer_ID";
+	$result = $db->query($sql);
+	$row = $result->fetch_assoc();
+	$num_items = $row['num_items'];
+	if($num_items == NULL)
+		$parameters['num_items'] = 0;
+	else
+		$parameters['num_items'] = $num_items;
 }
 else
 {
@@ -27,17 +42,9 @@ else
 	$_SESSION = array();
 }
 
-$host = "s.tiago.eti.br";
-$database = "StrathWEB_Store";
-$user = "StrathWEB";
-$pass = "2013StrathWEB";
-$table = "customer";
-
-$db = new mysqli($host, $user, $pass, $database);
-
 $sql = <<<SQL
 	SELECT * FROM customer JOIN address on address.address_ID = customer.address_ID
-	WHERE customer.customer_ID = $customerID;	
+	WHERE customer.customer_ID = $customer_ID;	
 SQL;
 
 $result = $db->query($sql);

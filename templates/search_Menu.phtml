@@ -12,14 +12,14 @@
  	<a href="index.php">
  		<img style="margin-left:100px; margin-top:0px;" id ="logo" src= "logo1.png" alt="logo">
  	</a>
- 	
+
  	</div>
 		<div id="login">
 			<div id="stylized" class="myform">
 				{% if logged == 1 %}
 				<p style="font-size: 200%; border-bottom:none;">
 				 Welcome {{ username | capitalize }} <BR>
-				 You have <i id="basketQuantity">0</i> items in your basket<BR>
+				 You have <i id="basketQuantity">{{ num_items | raw }}</i> items in your basket<BR>
 				<a href='shoppingBagPage.php'>View Basket</a> or 
 				<a href='paymentDetailsPage.php'>Checkout</a><BR>
 				<a href='logout.php'>Log Out</a></p>

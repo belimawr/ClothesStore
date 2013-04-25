@@ -9,6 +9,13 @@ $twig = new Twig_Environment($loader);
 $template = $twig->loadTemplate('shoppingBag.phtml');
 $parameters = array();
 
+$host = "s.tiago.eti.br";
+$database = "StrathWEB_Store";
+$user = "StrathWEB";
+$pass = "2013StrathWEB";
+
+$db = new mysqli($host, $user, $pass, $database);
+
 /* Checks if exists a session */
 session_start();
 if(isset($_SESSION['uid']))
@@ -16,6 +23,14 @@ if(isset($_SESSION['uid']))
 	$parameters['logged'] = 1;
 	$parameters['username'] = $_SESSION['username'];
 	$customer_ID = $_SESSION['customer_ID'];
+	$sql = "SELECT SUM(quantity) as num_items FROM basket WHERE customer_ID = $customer_ID";
+	$result = $db->query($sql);
+	$row = $result->fetch_assoc();
+	$num_items = $row['num_items'];
+	if($num_items == NULL)
+		$parameters['num_items'] = 0;
+	else
+		$parameters['num_items'] = $num_items;
 }
 else
 {
@@ -32,13 +47,6 @@ $sql = <<<SQL
 	WHERE B.customer_ID = $customer_ID
 SQL;
 
-$host = "s.tiago.eti.br";
-$database = "StrathWEB_Store";
-$user = "StrathWEB";
-$pass = "2013StrathWEB";
-$table = "customer";
-
-$db = new mysqli($host, $user, $pass, $database);
 
 $result = $db->query($sql);
 $items = array();

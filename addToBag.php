@@ -79,7 +79,7 @@ SQL;
 	}
 
 	if($result = $db->query($sql))
-		echo($_POST['name'] . "added to basket!");
+		echo($_POST['name'] . " added to basket!");
 	else
 		echo("An error occurred, please try again");
 }

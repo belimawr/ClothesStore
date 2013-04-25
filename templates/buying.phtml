@@ -13,6 +13,13 @@ var requestObject = false;
 				if (requestObject.status == 200)
 				{
 					var status = requestObject.responseText;
+					if(!((status == "An error occurred, please try again") || (status == "You're not logged in, please login.")))
+					{
+						var elItems = document.getElementById("basketQuantity");
+						var numItems = elItems.innerHTML;
+						numItems++;
+						elItems.innerHTML = numItems;
+					}
 					alert(status);
 				}
 			}
@@ -42,8 +49,6 @@ var requestObject = false;
 			}
 		}
 	</script>
-	
-	<meta charset="UTF-8">
 
 <script type='text/javascript' language='Javascript'>
 <!--
@@ -152,7 +157,7 @@ window.onload = startAll;
 				{% if logged == 1 %}
 				<p style="font-size: 200%; border-bottom:none;">
 				 Welcome {{ username | capitalize }} <BR>
-				 You have <i id="basketQuantity">0</i> items in your basket<BR>
+				 You have <i id="basketQuantity">{{ num_items | raw }}</i> items in your basket<BR>
 				<a href='shoppingBagPage.php'>View Basket</a> or 
 				<a href='paymentDetailsPage.php'>Checkout</a><BR>
 				<a href='logout.php'>Log Out</a></p>
