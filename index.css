@@ -275,7 +275,7 @@ z-index: 0;
     z-index: 10;
     display: block;
 	height:36px;
-		background:transparent url('OFF.gif') repeat-x top left;
+		background:/*transparent*/ url('OFF.gif') repeat-x top left;
 		font-family:Helvetica,Arial,Verdana,sans-serif;
 		margin-top:-16px;
 		margin-left: -8px;
@@ -298,11 +298,11 @@ display: table;
     text-decoration: none;
     padding: 12px;
     display: block;
-    background:transparent url('DIVIDER.gif') no-repeat top right;
+    background:/*transparent*/ url('DIVIDER.gif') no-repeat top right;
 
 }
 
-#nav li a:hover { 	background:transparent url('HOVER.gif') no-repeat top right;	
+#nav li a:hover { 	background:/*transparent*/ url('HOVER.gif') no-repeat top right;	
 }
 
 #nav li ul {
@@ -330,7 +330,7 @@ display: table;
     -webkit-border-radius: 0px 5px 5px 5px;*/
 }
 #nav li ul li a, #nav li ul li a:hover {
-    background: transparent;
+   /* background: /*transparent;*/
     color: #000;
     width: 150px;
     font-size: 0.95em;

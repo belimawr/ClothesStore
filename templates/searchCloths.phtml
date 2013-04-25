@@ -65,7 +65,7 @@
 			 <li >
             <a href="#">WOMEN</a>
                 <ul> 
-				<li><a href="search_Menu.php?department=Coats%20%26%20Jackets&depart=womenswear&type=coats"">Coats & Jackets</a></li>
+				<li><a href="search_Menu.php?department=Coats%20%26%20Jackets&depart=womenswear&type=coats">Coats & Jackets</a></li>
 				<hr>
 				<li><a href="search_Menu.php?department=Jeans&depart=womenswear&type=jeans">Jeans</a></li>
 				<hr>
@@ -79,7 +79,7 @@
             <li>
             <a href="#">MEN</a>
                 <ul> 
-				<li><a href="search_Menu.php?department=Coats%20%26%20Jackets&depart=menswear&type=coats"">Coats & Jackets</a></li>
+				<li><a href="search_Menu.php?department=Coats%20%26%20Jackets&depart=menswear&type=coats">Coats & Jackets</a></li>
 				<hr>
 				<li><a href="search_Menu.php?department=Jeans&depart=menswear&type=jeans">Jeans</a></li>
 				<hr>
@@ -169,27 +169,27 @@
 							<tr>
 								<td>
 									<p>
-										<input type="checkbox" id="ckxs" class="regular-checkbox" value="xsamll" name="size_list[]" {% if xsamll is defined %} checked {% endif %} /><label for="ckxs"></label> X-Small
+										<input type="checkbox" id="ckxs" class="regular-checkbox" value="xsamll" name="size_list[]" {% if xsamll is defined %} checked {% endif %} /><label for="ckxs"></label> XS
 									</p>
 									<p>
-										<input type="checkbox" id="cks" class="regular-checkbox" value="small" name="size_list[]" {% if small is defined %} checked {% endif %} /><label for="cks"></label> Small
+										<input type="checkbox" id="cks" class="regular-checkbox" value="small" name="size_list[]" {% if small is defined %} checked {% endif %} /><label for="cks"></label> S
 									</p>
 									<p>
-										<input type="checkbox" id="ckm" class="regular-checkbox" value="medium" name="size_list[]" {% if medium is defined %} checked {% endif %} /><label for="ckm"></label> Medium
+										<input type="checkbox" id="ckm" class="regular-checkbox" value="medium" name="size_list[]" {% if medium is defined %} checked {% endif %} /><label for="ckm"></label> M
 									</p>
 									<p>
-										<input type="checkbox" id="ckl" class="regular-checkbox" value="large" name="size_list[]" {% if large is defined %} checked {% endif %} /><label for="ckl"></label> Large
+										<input type="checkbox" id="ckl" class="regular-checkbox" value="large" name="size_list[]" {% if large is defined %} checked {% endif %} /><label for="ckl"></label> L
 									</p>
 								</td>
 								<td>
 									<p>
-										<input type="checkbox" id="ckxl" class="regular-checkbox" value="xlarge" name="size_list[]" {% if xlarge is defined %} checked {% endif %} /><label for="ckxl"></label> X-Large
+										<input type="checkbox" id="ckxl" class="regular-checkbox" value="xlarge" name="size_list[]" {% if xlarge is defined %} checked {% endif %} /><label for="ckxl"></label> XL
 									</p>
 									<p>
-										<input type="checkbox" id="ckxxl" class="regular-checkbox" value="xxlarge" name="size_list[]" {% if xxlarge is defined %} checked {% endif %} /><label for="ckxxl"></label> XX-Large
+										<input type="checkbox" id="ckxxl" class="regular-checkbox" value="xxlarge" name="size_list[]" {% if xxlarge is defined %} checked {% endif %} /><label for="ckxxl"></label> XXL
 									</p>
 									<p>
-										<input type="checkbox" id="ckxxxl" class="regular-checkbox" value="xxxlarge" name="size_list[]" {% if xxxlarge is defined %} checked {% endif %} /><label for="ckxxxl"></label> XXX-Large
+										<input type="checkbox" id="ckxxxl" class="regular-checkbox" value="xxxlarge" name="size_list[]" {% if xxxlarge is defined %} checked {% endif %} /><label for="ckxxxl"></label> XXXL
 									</p>
 								</td>
 							</tr>
@@ -214,10 +214,12 @@
 					{% endif %}
 					<td>
  					<div class = "allIamges">
-						<a href="#"  ><img alt="{{ image.alt | raw }}" id="img{{ image.id }}" src="{{ image.src }}" width="144" high="216" /></a>
+						<a href="buyingPage.php?styleID={{ image.style_ID }}"  ><img alt="{{ image.alt | raw }}" id="img{{ image.id }}" src="{{ image.src }}" width="144" high="216" /></a>
 						<div id="links">
-							<a href="#"  >{{ image.name | raw }}<BR>Colour: <b>{{ image.colour | capitalize }}</b><BR></a>
-							<a href="#" ><strong>£{{ image.price }}</strong></a>
+							<a href="buyingPage.php?styleID={{ image.style_ID }}"  >{{ image.name | raw }}<BR>
+							Colour: <strong>{{ image.colour | capitalize }}</strong><BR>
+							<strong>£{{ image.price | raw }}</strong>
+							</a>
 						</div>
 					</div>
 					</td>

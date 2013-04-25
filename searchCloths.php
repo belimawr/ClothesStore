@@ -92,13 +92,13 @@ if(isset($query))
 	while ($row = $result->fetch_assoc())
 	{
 		$tmp = array();
-		$tmp['id'] = $row['style_ID'];
+		$tmp['style_ID'] = $row['style_ID'];
 		$tmp['desc'] = $row['name'];
 		$tmp['src'] = $row['image_link'];
 		$tmp['price'] = $row['price'];
 		$tmp['name'] = $row['name'];
 		$tmp['size'] = $row['item_size'];
-		$tmp['material'] = $row['material'];
+	
 		$tmp['thumbnail'] = $row['image_link'];
 		$tmp['colour'] = $row['colour'];
 		$wcloths[] = $tmp;
