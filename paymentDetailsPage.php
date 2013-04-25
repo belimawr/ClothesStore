@@ -15,6 +15,7 @@ if(isset($_SESSION['uid']))
 {
 	$parameters['logged'] = 1;
 	$parameters['username'] = $_SESSION['username'];
+	$customerID = $_SESSION['customer_ID'];
 }
 else
 {
@@ -26,5 +27,28 @@ else
 	$_SESSION = array();
 }
 
+$host = "s.tiago.eti.br";
+$database = "StrathWEB_Store";
+$user = "StrathWEB";
+$pass = "2013StrathWEB";
+$table = "customer";
+
+$db = new mysqli($host, $user, $pass, $database);
+
+$sql = <<<SQL
+	SELECT * FROM customer JOIN address on address.address_ID = customer.address_ID
+	WHERE customer.customer_ID = $customerID;	
+SQL;
+
+$result = $db->query($sql);
+
+$row = $result->fetch_assoc();
+
+$parameters['address1'] = $row['address_1'];
+$parameters['address2'] = $row['address_2'];
+$parameters['city'] = $row['city'];
+$parameters['postcode'] = $row['postcode'];
+
+$db->close();
 $template->display($parameters);
 ?>

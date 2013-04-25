@@ -111,7 +111,28 @@
 					<th style="width:30%;">Payment Details</th><!-- there should be a button with the option to change the payment details-->
 					<th style="width:10%;">Total</th>
 				</tr>
-
+				<tr>
+					<td>
+					{% for item in items %}
+						{{ item.quantity }} x {{ item.name }} @ £{{ item.price }}<br>
+					{% endfor %}
+					</td>
+					<td>
+						{{ deliveryAddress.line1 }} <br>
+						{{ deliveryAddress.line2 }} <br>
+						{{ deliveryAddress.city }} <br>
+						{{ deliveryAddress.postcode }}
+					</td>
+					<td>
+						<b>Card type</b> {{ payment.card_type }} <br>
+						<b>Card no.</b> {{ payment.card_no }} <br>
+						<b>SVN Code</b> {{ payment.sec_code }} <br>
+						<b>Expires end</b> {{ payment.expiry }}
+					</td>
+					<td>
+						£{{ total }}
+					</td>
+				</tr>
 			</table>
 			<br><br>
 			<button id="confirmBtn" type="button">CONFIRM ORDER</button>
