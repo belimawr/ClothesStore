@@ -26,5 +26,79 @@ else
 	$_SESSION = array();
 }
 
+/*
+ * Database data
+ */
+$host = "s.tiago.eti.br";
+$database = "StrathWEB_Store";
+$user = "StrathWEB";
+$pass = "2013StrathWEB";
+
+/*
+ * Connect to database.
+ */
+$db = new mysqli($host, $user, $pass, $database);
+$orderID = $_GET['orderID'];
+$customerID = $_SESSION['customer_ID'];
+$result = $db->query("SELECT colour, item_size,price,name,quantity
+			FROM item,style,order_item,orders
+			WHERE orders.order_ID=$orderID
+			AND item.style_ID = style.style_ID
+			AND order_item.item_ID= item.item_ID
+			AND order_item.order_ID = orders.order_ID");
+
+$items = array();
+
+while ($row = $result->fetch_assoc())
+{
+	$item = array();
+	$item['colour'] = $row['colour'];
+	$item['size'] = $row['item_size'];
+	$item['price']= $row['price'];
+	$item['name']= $row['name'];
+	$item['quantity']= $row['quantity'];
+	$items[] = $item;
+}
+
+$parameters['items'] = $items;
+
+$deliveryResult = $db->query("SELECT name_f, name_l, address.address_1, address.address_2, address.city, address.postcode
+                             FROM customer,address
+			     WHERE customer.customer_ID=$customerID
+				AND customer.address_ID=address.address_ID");
+
+$deliveryAddress = array();
+$row = $deliveryResult->fetch_assoc();
+$deliveryAddress['line1'] = $row['address_1'];
+$deliveryAddress['line2'] = $row['address_2'];
+$deliveryAddress['city'] = $row['city'];
+$deliveryAddress['postcode'] = $row['postcode'];
+
+$parameters['deliveryAddress'] = $deliveryAddress;
+
+$paymentResult= $db->query("SELECT card.card_ID,card_type,sec_code,expiry,card_no 
+				FROM card, orders
+				WHERE orders.order_ID=$orderID
+				AND card.card_ID=orders.card_ID");
+
+$payment= array();
+$row = $paymentResult->fetch_assoc();
+$payment['card_ID'] = $row['card_ID'];
+$payment['card_no'] = $row['card_no'];
+$payment['sec_code']= $row['sec_code'];
+$payment['expiry']= $row['expiry'];
+$payment['card_type']= $row['card_type'];
+
+$parameters['payment'] = $payment;
+
+$total=0.00;
+foreach($items as $item){
+	$total = $total + ($item['price'] * $item['quantity']);
+}
+
+$parameters['total'] = $total;
+
 $template->display($parameters);
+
+
 ?>

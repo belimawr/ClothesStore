@@ -99,13 +99,13 @@
 <div id="middle">	
 	
 		<fieldset>
-
+	<form method="POST" action="paymentDetails.php">
 		<p style="font-size: 23px; float: left; font-weight: bold; margin-left: 20%;">Payment Details</p><button id="editBtn" type="button">EDIT YOUR SHOPPING BAG</button>
 		<br><br><br><br>
 					<div id="paymentForm">
 		<p> Total Amount </p><br><br>
 		<p>Select your card </p>
-		<select>
+		<select name="cardType">
 			<option value="mastercard">MasterCard</option>
 			<option value="maestro">Maestro</option>
 			<option value="visa">Visa</option>
@@ -117,7 +117,7 @@
 		<p>Card number </p><input type="text" name="cardnumber" size="25"><br>
 		<p>Security Code </p><input type="text" name="securitycode" size="25"><br>
 		<p>Expiry Date</p>
-		<select>
+		<select name="month">
 		<option value="1">01</option>
 		<option value="2">02</option>
 		<option value="3">03</option>
@@ -130,8 +130,8 @@
 		<option value="10">10</option>
 		<option value="11">11</option>
 		<option value="12">12</option>	
-		</select>/
-		<select>
+		</select>
+		<select name="year">
 		<option value="2013">2013</option>
 		<option value="2014">2014</option>
 		<option value="2015">2015</option>
@@ -154,6 +154,8 @@
 					var ele2 = document.getElementById("addr");
 					var ele3 = document.getElementById("txt");
 					var btn = document.getElementById("changeAddr");
+					var hfield = document.getElementById("userAddress");
+					hfield.value = "0";
 					
 					if(ele1.style.display == "block") {
 						ele1.style.display = "none";
@@ -167,20 +169,22 @@
 				} 
 			</script>
 			<div id="addr" style="margin-left:20%;">
-			<p>12 George Street, <br>
-				Glasgow, UK<br>
-				G11TL</p><br>
+			<p>{{ address1 }}, <br>
+				{{ address2 }},<BR>
+				{{ city }}<br>
+				{{ postcode }}</p><br>
 			</div>
 			<br>
-			<button id="changeAddr" onClick="javascript:toggle();">CHANGE ADDRESS</button><br>
+			<input type="button" id="changeAddr" onClick="javascript:toggle();" value="CHANGE ADDRESS"><br>
 			<div id="newAddr" style="display: none;">
-				<p>Address Line 1</p> <input type="text" name="address1" size="25"><br>
-				<p>Address Line 2 </p><input type="text" name="address2" size="25"><br>
-				<p>City</p><input type="text" name="city" size="25"><br>
-				<p>Postcode </p><input type="text" name="postcode" size="25"><br>
-						<input style="width:150px; background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EEEE));" type="submit" value="Update Address"/>
+				<p>Address Line 1</p> <input type="text" name="address1" size="25" value="{{ address1 }}"><br>
+				<p>Address Line 2 </p><input type="text" name="address2" size="25" value="{{ address2 }}"><br>
+				<p>City</p><input type="text" name="city" size="25" value="{{ city }}"><br>
+				<p>Postcode </p><input type="text" name="postcode" size="25" value="{{ postcode }}"><br>
+				<input type="hidden" name="userAddress" value="1" id="userAddress">
 
 			</div>
+			</form>
 				</fieldset>
 
 	
