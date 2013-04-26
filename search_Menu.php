@@ -46,13 +46,13 @@ $depart = $_GET['depart'];
 $type = $_GET['type'];
 
 if($depart == "all")
-	$query = "SELECT * FROM style RIGHT JOIN item ON item.style_ID = style.style_ID";
+	$query = "SELECT * FROM style RIGHT JOIN item ON item.style_ID = style.style_ID GROUP BY item.style_ID";
 else
 {
 	if($type != "any")
-		$query = "SELECT * FROM style RIGHT JOIN item ON item.style_ID = style.style_ID WHERE department like '$depart' and type like '$type'";
+		$query = "SELECT * FROM style RIGHT JOIN item ON item.style_ID = style.style_ID WHERE department like '$depart' and type like '$type' GROUP BY item.style_ID";
 	else
-		$query = "SELECT * FROM style RIGHT JOIN item ON item.style_ID = style.style_ID WHERE department like '$depart'";
+		$query = "SELECT * FROM style RIGHT JOIN item ON item.style_ID = style.style_ID WHERE department like '$depart' GROUP BY item.style_ID";
 }
 
 $result = $db->query($query);
