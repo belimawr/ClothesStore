@@ -8,7 +8,8 @@ if(isset($_SESSION['uid']))
 	$parameters['username'] = $_SESSION['username'];
 	if($_SESSION['security_level'] != "administrator")
 	{
-		header('Location: messagesPage.php?link=index.php&message=Please%20login&linkmessage=Go%20Back');
+		echo("Please login as an administrator.");
+		exit();
 	}
 }
 else
@@ -19,7 +20,8 @@ else
 	session_write_close();
 	setcookie(session_name(),'',0,'/');
 	$_SESSION = array();
-	header('Location: messagesPage.php?link=index.php&message=Please%20login&linkmessage=Go%20Back');
+	echo("Please login as an administrator.");
+	exit();
 }
 
 
