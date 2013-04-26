@@ -6,6 +6,23 @@
 <!--
 var requestObject = false;
 
+var styleID = "styleID={{ style_ID | raw }}";
+
+function eliminateDuplicates(arr) {
+	  var i,
+	      len=arr.length,
+	      out=[],
+	      obj={};
+	 
+	  for (i=0;i<len;i++) {
+	    obj[arr[i]]=0;
+	  }
+	  for (i in obj) {
+	    out.push(i);
+	  }
+	  return out;
+	}
+	
 		function funcReceiveData()
 		{
 			if (requestObject.readyState == 4)
@@ -49,102 +66,96 @@ var requestObject = false;
 				requestObject.onreadystatechange = funcReceiveData;
 			}
 		}
-	</script>
 
-<script type='text/javascript' language='Javascript'>
-<!--
 
-var i = 0;
-var j = 0;
-var validColours = new Array();
-var coloursArray = new Array();
-	{% for key, vec in size_colour %}
-		var {{ key }} = [
-		         {% for colour in vec %}
-               		{% if loop.last %}
-               			"{{ colour }}"];
-						validColours[i++] = "{{ key }}";
-					{% else %}
-						"{{ colour }}",
-					{% endif %}
-					{% if loop.last %}
-						coloursArray[j++] = {{ key }};
-					{% endif %}
-				{% endfor %}
-		{% endfor %}
-		//alert(validColours.join('\n'));
-		//alert(coloursArray.join('\n'));
 
-		//--------------------------------------------------------------------------------------------
-		i = 0;
-		j = 0;
-		var validSizes = new Array();
-		var SizesArray = new Array();
-			{% for key, vec in colour_size %}
-				var {{ key }} = [
-				         {% for size in vec %}
-		               		{% if loop.last %}
-		               			"{{ size }}"];
-								validSizes[i++] = "{{ key }}";
-							{% else %}
-								"{{ size }}",
-							{% endif %}
-							{% if loop.last %}
-								SizesArray[j++] = {{ key }};
-							{% endif %}
-						{% endfor %}
-				{% endfor %}
+	function getAllColourSizes()
+	{
+		var MyRequestObject = new XMLHttpRequest();
 
-				//alert(validSizes.join('\n'));
-				//alert(SizesArray.join('\n'));
-//-->
+		if(MyRequestObject)
+		{
+			MyRequestObject.open("POST", "getColourSize.php", false);
+			MyRequestObject.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			MyRequestObject.send(styleID);
+			var All = MyRequestObject.responseText;
+			var strVec = All.split(";");
+			var colours = strVec[0].split(",");
+			var sizes = strVec[1].split(",");
 
-function colourChanged()
-{
-	var colour_tag = document.getElementById('selectColour');
-	var index = colour_tag.selectedIndex;
+			var colourClean = eliminateDuplicates(colours);
+			var sizesClean = eliminateDuplicates(sizes);
+			
+			updateColour(colourClean);
+			updateSizes(sizesClean);
+		}
+	}
+
+	function updateColour(newColours)
+	{
+		colour_tag = document.getElementById("selectColour");
+		
+		colour_tag.options.length=0;
+
+		for(var i = 0; i < newColours.length; i++)
+			colour_tag.options[i]=new Option(newColours[i], newColours[i], false, false);
+	}
+
+	function updateSizes(newSizes)
+	{
+		size_tag = document.getElementById("selectSize");
+		
+		size_tag.options.length=0;
+
+		for(var i = 0; i < newSizes.length; i++)
+			size_tag.options[i]=new Option(newSizes[i], newSizes[i], false, false);
+	}
+
+	function sizeChanged() /* Update COLOUR!!! */
+	{
+		var MyRequestObject = new XMLHttpRequest();
+
+		var size_tag = document.getElementById('selectSize');
+		var index = size_tag.selectedIndex;
+		
+		if(MyRequestObject)
+		{
+			MyRequestObject.open("POST", "getColour.php", false);
+			MyRequestObject.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			MyRequestObject.send(styleID + "&size=" + size_tag.options[index].value);
+			var All = MyRequestObject.responseText;
+			var colours = All.split(",");
+
+			var colourClean = eliminateDuplicates(colours);
+			
+			updateColour(colourClean);
+		}
+	}
+
+	function colourChanged() /* Update SIZE!!! */
+	{
+		var MyRequestObject = new XMLHttpRequest();
+
+		var colour_tag = document.getElementById('selectColour');
+		var index = colour_tag.selectedIndex;
+
+		if(MyRequestObject)
+		{
+			MyRequestObject.open("POST", "getSize.php", false);
+			MyRequestObject.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			MyRequestObject.send(styleID + "&colour=" + colour_tag.options[index].value);
+			var All = MyRequestObject.responseText;
+			var sizes = All.split(",");
+
+			var sizesClean = eliminateDuplicates(sizes);
+			
+			updateSizes(sizesClean);
+		}
+	}
+
+
 	
-	var i = 0;
-	var select_tag = document.getElementById('selectSize');
-	select_tag.options.length=0;
-	for(i = 0; i < SizesArray[index].length; i++)
-	{
-		select_tag.options[i]=new Option(SizesArray[index][i], SizesArray[index][i], false, false);
-	}
-}
-
-function sizeChanged()
-{
-	var size_tag = document.getElementById('selectSize');
-	var index = size_tag.selectedIndex;
-	var i = 0;
-	var select_tag = document.getElementById('selectColour');
-	select_tag.options.length=0;
-	for(i = 0; i < coloursArray[index].length; i++)
-	{
-		select_tag.options[i]=new Option(coloursArray[index][i], coloursArray[index][i], false, false);
-	}
-}
-
-function startAll()
-{
-	var i = 0;
-	var select_tag = document.getElementById('selectColour');
-	select_tag.options.length=0;
-	for(i = 0; i < coloursArray.length; i++)
-	{
-		select_tag.options[i]=new Option(coloursArray[i], coloursArray[i], false, false);
-	}
-
-	var i = 0;
-	var select_tag = document.getElementById('selectSize');
-	select_tag.options.length=0;
-	for(i = 0; i < SizesArray.length; i++)
-	{
-		select_tag.options[i]=new Option(SizesArray[i], SizesArray[i], false, false);
-	}
-}
-window.onload = startAll;
+window.onload = getAllColourSizes;
 </script>
 
 </head>
