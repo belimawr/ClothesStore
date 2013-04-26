@@ -123,7 +123,7 @@ while($row = $result->fetch_assoc())
 	$tmp['item_ID'] = $row['item_ID'];
 	$tmp['quantity'] = $row['quantity'];
 	$tmp['price'] = $row['price'];
-	$total += $tmp['price'];
+	$total += $tmp['price']*$tmp['quantity'];
 	$items[] = $tmp;
 }
 
