@@ -118,6 +118,7 @@ if(isset($query))
 		$tmp['price'] = $row['price'];
 		$tmp['name'] = $row['name'];
 		$tmp['size'] = $row['item_size'];
+		$tmp['alt'] = $row['description'];
 	
 		$tmp['thumbnail'] = $row['image_link'];
 		$tmp['colour'] = $row['colour'];

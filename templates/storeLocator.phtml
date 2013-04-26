@@ -1,9 +1,5 @@
 <html>
-<head>
-<meta charset="UTF-8">
-</head>
 <body>
-<a id="tooCool" href="http://www.w3junkies.com/toocool/">Too Cool for Internet Explorer</a>
 <link rel = "stylesheet"  type="text/css" href="index.css">
 
 <div id = "header">
@@ -16,16 +12,13 @@
 		<div id="login">
 			<div id="stylized" class="myform">
 				{% if logged == 1 %}
-				<p style="font-size: 150%; border-bottom:none;">
+				<p style="font-size: 200%; border-bottom:none;">
 				 Welcome {{ username | capitalize }} <BR>
 				 You have <i id="basketQuantity">{{ num_items | raw }}</i> items in your basket<BR>
 
-				                {% if num_items > 0 %}
-                                <a id="Vbasket" href='shoppingBagPage.php'>View Basket</a><BR>
-                                <a id="checOut" href='paymentDetailsPage.php'>Checkout</a><BR>
-                                {% else %}
-                                <a id="Vbasket" href='shoppingBagPage.php' style="display: none;" >View Basket</a><BR>
-                                <a id="checOut" href='paymentDetailsPage.php' style="display: none;" >Checkout</a><BR>
+				                                {% if num_items > 0 %}
+                                <a href='shoppingBagPage.php'>View Basket</a> or
+                                <a href='paymentDetailsPage.php'>Checkout</a><BR>
                                 {% endif %}
 
 				<a href='logout.php'>Log Out</a></p>
@@ -53,17 +46,17 @@
  </div>
 
 <div id="content">
- 
+
 <div id="nav">
 	 <ul>		
              <li id="newin">
             <a href="#">NEW IN</a>
 			<ul>  
-				<li><a href="search_Menu.php?department=All%20Clothes&depart=all&type=any">View All</a></li>
+				<li><a href="search_Menu.php?department=All%20Cloths&depart=all&type=any">View All</a></li>
 				<hr>
-				<li><a href="search_Menu.php?department=All%20Women%27s%20Clothes&depart=womenswear&type=any">Women</a></li>
+				<li><a href="search_Menu.php?department=All%20Woman%27s%20Cloths&depart=womenswear&type=any">Women</a></li>
 				<hr>
-				<li><a href="search_Menu.php?department=All%20Mens%27s%20Clothes&depart=menswear&type=any">Men</a></li>
+				<li><a href="search_Menu.php?department=All%20Mans%27s%20Cloths&depart=menswear&type=any">Men</a></li>
 				
 				</ul> 
             </li>
@@ -106,14 +99,11 @@
             </li>
 	</ul>
 </div>
+<div id="middle" >	
 
-	<h1 style="font-weight: bold; margin-right:300; text-align:center" >
-	{{ message | raw }}
-	<BR>
-	<a href="{{ link }}"> {{ linkMessage }} </a>
-	</h1>
-	
-	
+<img style="margin-left:0 auto;margin-right:0 auto; width:100%; padding-top:25px;"  src= "map.png" >
+</div>
+
 <div id="footer">
 	</br>
 <p style="text-align:center;"> &copy; 2013 Hamptons Store Ltd. All Rights Reserved.</p>
@@ -134,7 +124,5 @@
 <li><img style="width:35px; margin-left:45px;" id ="tlogo" src= "twitter2.png" alt="logo"><a style="font-size:12px; margin-left:8px" href="#"> www.twitter.com/HamptonsStoreUK</a></li>
 </ul>
 </div>
-
-
 </body>
 </html>

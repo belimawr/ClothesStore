@@ -1,9 +1,5 @@
 <html>
-<head>
-<meta charset="UTF-8">
-</head>
 <body>
-<a id="tooCool" href="http://www.w3junkies.com/toocool/">Too Cool for Internet Explorer</a>
 <link rel = "stylesheet"  type="text/css" href="index.css">
 
 <div id = "header">
@@ -16,16 +12,13 @@
 		<div id="login">
 			<div id="stylized" class="myform">
 				{% if logged == 1 %}
-				<p style="font-size: 150%; border-bottom:none;">
+				<p style="font-size: 200%; border-bottom:none;">
 				 Welcome {{ username | capitalize }} <BR>
 				 You have <i id="basketQuantity">{{ num_items | raw }}</i> items in your basket<BR>
 
-				                {% if num_items > 0 %}
-                                <a id="Vbasket" href='shoppingBagPage.php'>View Basket</a><BR>
-                                <a id="checOut" href='paymentDetailsPage.php'>Checkout</a><BR>
-                                {% else %}
-                                <a id="Vbasket" href='shoppingBagPage.php' style="display: none;" >View Basket</a><BR>
-                                <a id="checOut" href='paymentDetailsPage.php' style="display: none;" >Checkout</a><BR>
+				                                {% if num_items > 0 %}
+                                <a href='shoppingBagPage.php'>View Basket</a> or
+                                <a href='paymentDetailsPage.php'>Checkout</a><BR>
                                 {% endif %}
 
 				<a href='logout.php'>Log Out</a></p>
@@ -53,7 +46,7 @@
  </div>
 
 <div id="content">
- 
+
 <div id="nav">
 	 <ul>		
              <li id="newin">
@@ -107,13 +100,14 @@
 	</ul>
 </div>
 
-	<h1 style="font-weight: bold; margin-right:300; text-align:center" >
-	{{ message | raw }}
-	<BR>
-	<a href="{{ link }}"> {{ linkMessage }} </a>
-	</h1>
-	
-	
+<div id="middle" style="margin-top:50px; font-size:132%; font-weight:bold;width:60%;line-height:175%;">	
+This website was developed as a group project for Web Application Development at University of Strathclyde.<BR>
+Team members were James Byrne, Larissa Leite, Tiago de França Queiroz, Sara Torabi, Elen Wall.<BR>
+The store is entirely fictional so please do not try to order anything from us unless you do so for just testing and
+certainly do not enter your real personal details and credit card unless you would like us to go on a spending spree
+with your credit card.<img style="margin-left:5px;  height:20px;"  src= "wink.jpg" >
+</div>
+
 <div id="footer">
 	</br>
 <p style="text-align:center;"> &copy; 2013 Hamptons Store Ltd. All Rights Reserved.</p>
@@ -134,7 +128,5 @@
 <li><img style="width:35px; margin-left:45px;" id ="tlogo" src= "twitter2.png" alt="logo"><a style="font-size:12px; margin-left:8px" href="#"> www.twitter.com/HamptonsStoreUK</a></li>
 </ul>
 </div>
-
-
 </body>
 </html>
