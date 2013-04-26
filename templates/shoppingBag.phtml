@@ -17,17 +17,49 @@ function removeFromBag(id, rid)
 			
 			var table = document.getElementById("ItemsTable");
 			var row=document.getElementById(rid);
-			var qt = row.cells[3].innerHTML;
+			var qt = row.cells[3].getElementsByTagName("select")[0].value;
+			
+			
 			table.deleteRow(row.rowIndex);
 			var elItems = document.getElementById("basketQuantity");
 			var numItems = elItems.innerHTML;
-			numItems -= qt;
+			numItems = numItems - qt;
 			elItems.innerHTML = numItems;
 
 				if (numItems == 0) {
 					window.location = 'index.php';
 				}
 			}
+		}
+
+		function changeQuantity(id, rid)
+		{
+			requestObject = new XMLHttpRequest();
+			//var table = document.getElementById("ItemsTable");
+			var row=document.getElementById(rid);
+			var qt = row.cells[3].getElementsByTagName("select")[0].value;
+			var max_items = row.cells[3].getElementsByTagName("select")[0].options.length;
+			
+			if (requestObject) 
+			{
+				requestObject.open("POST", "updateQuantityBag.php", false);
+				requestObject.setRequestHeader("Content-type",
+						"application/x-www-form-urlencoded");
+				
+				var tobesent = "itemID=" + id + "&quantity=" + qt;
+				requestObject.send(tobesent);
+				
+				var response = requestObject.responseText;
+				var elItems = document.getElementById("basketQuantity");
+				var numItems = elItems.innerHTML;
+				var removed = (max_items - qt)
+				numItems = numItems - removed;
+				elItems.innerHTML = numItems;
+				//alert("Max:" + max_items + " Atual: " + qt + " Removed: " + (max_items - qt));
+			
+
+			}
+			
 		}
 </script>
 <body>
@@ -156,7 +188,18 @@ function removeFromBag(id, rid)
 	</td>
 	<td>{{ item.size | capitalize }}</td>
 	<td>{{ item.colour | capitalize }}</td>
-	<td>{{ item.quantity }}</td>
+	<td>
+		<select name="quantity{{ item.itemID | raw }}" onchange="changeQuantity({{ item.itemID }}, 'row{{ item.itemID }}');">
+		{% for i in 1..item.quantity %}
+			
+			{% if loop.last %}
+				<option value="{{ i }}" selected >{{ i }}</option>
+			{% else %}
+				<option value="{{ i }}" >{{ i }}</option>
+			{% endif %}
+		{% endfor %}
+		</select>
+		</td>
 	<td>{% if item.aval == 1 %} Tomorrow {% else %} Next week {% endif %} </td>
 	<td><b>£{{ item.price }}</b></td>
 	</tr>
