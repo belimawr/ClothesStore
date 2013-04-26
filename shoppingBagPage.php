@@ -65,7 +65,7 @@ while($r = $result->fetch_assoc())
 	$tmp['colour'] = $r['colour'];
 	$tmp['desc'] = $r['description'];
 
-	if($r['stock'] < $r['quantity'])
+	if($r['stock'] > $r['quantity'])
 		$tmp['aval'] = 1;
 	else
 		$tmp['aval'] = 0;
