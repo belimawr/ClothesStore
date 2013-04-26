@@ -49,6 +49,7 @@ else
 	$size = $_POST['size'];
 	$colour = $_POST['colour'];
 	$styleID = $_POST['styleID'];
+	$quantity = $_POST['quantity'];
 
 	/* Get the item_ID */
 	$result = $db->query("SELECT item_ID FROM item WHERE colour='$colour' AND item_size='$size' AND style_ID='$styleID'");
@@ -65,7 +66,7 @@ else
 	if($result->num_rows == 0)
 	{
 		$sql = <<<SQL
-		INSERT INTO basket (ID, customer_ID, item_ID, quantity) VALUES(null, $customer_ID, $itemID, 1)
+		INSERT INTO basket (ID, customer_ID, item_ID, quantity) VALUES(null, $customer_ID, $itemID, $quantity)
 SQL;
 	}
 	else

@@ -7,6 +7,7 @@
 var requestObject = false;
 
 var styleID = "styleID={{ style_ID | raw }}";
+var quantity = 0;
 
 function eliminateDuplicates(arr) {
 	  var i,
@@ -33,8 +34,8 @@ function eliminateDuplicates(arr) {
 					if(!((status == "An error occurred, please try again") || (status == "You're not logged in, please login.")))
 					{
 						var elItems = document.getElementById("basketQuantity");
-						var numItems = elItems.innerHTML;
-						numItems++;
+						var numItems = parseInt(elItems.innerHTML);
+						numItems +=  parseInt(quantity);
 						elItems.innerHTML = numItems;
 						//window.location.reload();							
 					}
@@ -61,7 +62,10 @@ function eliminateDuplicates(arr) {
 						"application/x-www-form-urlencoded");
 				var size = document.getElementById('selectSize').value;
 				var colour = document.getElementById('selectColour').value;
-				var tobesent = "size=" + size + "&" + "colour=" + colour + "&styleID={{ style_ID | raw }}&name={{ item.name | raw }}";
+				var q_tag = document.getElementById("quantity");
+				var qindex = q_tag.selectedIndex;
+				quantity = q_tag.options[qindex].value;
+				var tobesent = "size=" + size + "&" + "colour=" + colour + "&styleID={{ style_ID | raw }}&name={{ item.name | raw }}&quantity="+quantity;
 				requestObject.send(tobesent);
 				requestObject.onreadystatechange = funcReceiveData;
 			}
@@ -267,7 +271,7 @@ window.onload = getAllColourSizes;
 	<td style="text-align: left; vertical-align: text-top;">
 	<div style="margin-left:100px;">
 	<h1 style="font-weight: bold; text-align:center; margin-top:100px;" >
-	Item description
+	{{ item[0].name | raw }}
 </h1>
  <BR>
 
@@ -283,8 +287,13 @@ window.onload = getAllColourSizes;
 		<select name="selectColour" id="selectColour" onchange="colourChanged();">
 		<option value="{{ item[0].colour }}">{{ item[0].colour | capitalize }}</option>
 		</select><BR><BR>
+		<b>Quantity:</b><BR>
+				<select name="quantity" id="quantity">
+			{% for i in 1..10 %}
+				<option value="{{ i }}">{{ i }}</option>
+			{% endfor %}
+		</select><BR><BR>
 		<input type="button" id="addCartButton" value="Add to bag" onclick="addToBag();">
-		
 		</FORM>
 		</div>
 		</td>
