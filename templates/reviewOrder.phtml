@@ -17,12 +17,8 @@
 				<p style="font-size: 200%; border-bottom:none;">
 				 Welcome {{ username | capitalize }} <BR>
 				 You have <i id="basketQuantity">{{ num_items | raw }}</i> items in your basket<BR>
-
-				                                {% if num_items > 0 %}
-                                <a href='shoppingBagPage.php'>View Basket</a> or
-                                <a href='paymentDetailsPage.php'>Checkout</a><BR>
-                                {% endif %}
-
+				<a href='shoppingBagPage.php'>View Basket</a> or 
+				<a href='paymentDetailsPage.php'>Checkout</a><BR>
 				<a href='logout.php'>Log Out</a></p>
 					{% else %}
 				<form id="form" name="form" method="POST" action="login.php">
@@ -124,6 +120,25 @@
 						}	
 					}
 				} 
+
+				function confirmOrder() {
+					var r=confirm("Would you like to complete your order?  This will be non-reversible.");
+					
+					if (r==true) { 
+
+						var requestObject = new XMLHttpRequest();
+						if (requestObject) {
+						
+							requestObject.open("POST", "confirmOrder.php", false);
+							requestObject.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+							var x = "orderID={{ orderID }}";
+							requestObject.send(x);
+							//requestObject.onreadystatechange = funcReceiveData;
+						    window.location="index.php";
+
+						}	
+					}
+				} 
 			</script>
 
 		<p style="font-size: 23px; float: left; font-weight: bold; margin-left: 20%;">Review your order</p><input type="button" onClick="javascript:cancelOrder();" id="cancelBtn" value="CANCEL ORDER" /><!-- JAVASCRIPT WITH CONFIRMATION BEFORE CANCELLING THE ORDER-->
@@ -161,8 +176,7 @@
 				</tr>
 			</table>
 			<br><br>
-			<button id="confirmBtn" type="button">CONFIRM ORDER</button>
-				</fieldset>
+			<input type="button" onClick="javascript:confirmOrder();" id="confirmBtn" value="CONFIRM ORDER" /><!-- JAVASCRIPT WITH CONFIRMATION BEFORE CANCELLING THE ORDER-->
 
 	
 </div>
