@@ -72,15 +72,15 @@ SQL;
 	else
 	{
 		$r = $result->fetch_assoc();
-		$quantity = $r['quantity'] + 1;
+		$quant = $r['quantity'] + $quantity;
 		$sql = <<<SQL
-		UPDATE basket SET quantity=$quantity
+		UPDATE basket SET quantity=$quant
 		WHERE item_ID = $itemID AND customer_ID = $customer_ID
 SQL;
 	}
 
 	if($result = $db->query($sql))
-		echo($_POST['name'] . " added to basket!");
+		echo($_POST['name'] . " Added to basket!");
 	else
 		echo("An error occurred, please try again");
 }
