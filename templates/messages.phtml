@@ -19,15 +19,19 @@
 				<p style="font-size: 200%; border-bottom:none;">
 				 Welcome {{ username | capitalize }} <BR>
 				 You have <i id="basketQuantity">{{ num_items | raw }}</i> items in your basket<BR>
-				<a href='shoppingBagPage.php'>View Basket</a> or 
-				<a href='paymentDetailsPage.php'>Checkout</a><BR>
+
+				                                {% if num_items > 0 %}
+                                <a href='shoppingBagPage.php'>View Basket</a> or
+                                <a href='paymentDetailsPage.php'>Checkout</a><BR>
+                                {% endif %}
+
 				<a href='logout.php'>Log Out</a></p>
 					{% else %}
 				<form id="form" name="form" method="POST" action="login.php">
 
-					<label>Username <span class="small">Type your username</span>
+					<label>Username <span style="color:#FF1493" class="small">Type your username</span>
 					</label> <input type="text" name="usr" id="usr" /> <label>Password
-						<span class="small">Min. size 6 chars</span>
+					<span style="color:#FF1493" class="small">Min. size 6 chars</span>
 					</label> <input type="password" name="password" id="password" />
 
 					<button type="submit">Login</button>

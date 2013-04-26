@@ -1,5 +1,35 @@
 <html>
 <meta charset="UTF-8">
+<script>
+var requestObject = false;
+function removeFromBag(id, rid)
+		{
+		requestObject = new XMLHttpRequest();
+			if (requestObject) 
+			{
+				requestObject.open("POST", "removeBag.php", false);
+				requestObject.setRequestHeader("Content-type",
+						"application/x-www-form-urlencoded");
+				
+				var tobesent = "itemID=" + id;
+				requestObject.send(tobesent);
+				var response = requestObject.responseText;
+			
+			var table = document.getElementById("ItemsTable");
+			var row=document.getElementById(rid);
+			var qt = row.cells[3].innerHTML;
+			table.deleteRow(row.rowIndex);
+			var elItems = document.getElementById("basketQuantity");
+			var numItems = elItems.innerHTML;
+			numItems -= qt;
+			elItems.innerHTML = numItems;
+
+				if (numItems == 0) {
+					window.location = 'index.php';
+				}
+			}
+		}
+</script>
 <body>
   
 <link rel = "stylesheet"  type="text/css" href="shoppingBag.css">
@@ -14,18 +44,22 @@
 		<div id="login">
 			<div id="stylized" class="myform">
 				{% if logged == 1 %}
-				<p style="font-size: 200%; border-bottom:none;">
+				<p style="font-size: 150%; border-bottom:none;">
 				 Welcome {{ username | capitalize }} <BR>
 				 You have <i id="basketQuantity">{{ num_items | raw }}</i> items in your basket<BR>
-				<a href='shoppingBagPage.php'>View Basket</a> or 
-				<a href='paymentDetailsPage.php'>Checkout</a><BR>
+
+				                                {% if num_items > 0 %}
+                                <a href='shoppingBagPage.php'>View Basket</a> or
+                                <a href='paymentDetailsPage.php'>Checkout</a><BR>
+                                {% endif %}
+
 				<a href='logout.php'>Log Out</a></p>
 					{% else %}
 				<form id="form" name="form" method="POST" action="login.php">
 
-					<label>Username <span class="small">Type your username</span>
+					<label>Username <span style="color:#FF1493" class="small">Type your username</span>
 					</label> <input type="text" name="usr" id="usr" /> <label>Password
-						<span class="small">Min. size 6 chars</span>
+						<span style="color:#FF1493" class="small">Min. size 6 chars</span>
 					</label> <input type="password" name="password" id="password" />
 
 					<button type="submit">Login</button>
@@ -101,8 +135,8 @@
 <div id="middle">
 	<img id="shoppingbag" style="padding:10px;" src="shoppingbag.jpg"> <input type="button" id="checkoutBtn" type="button" value="CHECKOUT" onclick="window.location.href='paymentDetailsPage.php'">
 	<h2>YOUR SHOPPING BAG</h2>
-	<table>
-	<tr>
+	<table id="ItemsTable">
+	<tr id="ItemRow">
 		<th style="width:35%;">Items</th>
 		<th style="width:12%;">Size</th>
 		<th style="width:12%;">Colour</th>
@@ -111,10 +145,11 @@
 		<th style="width:21%;">Total</th>
 	</tr>
 	{% for item in items %}
-	<tr style="text-align:center;">
+	<tr id ="row{{ item.itemID }}" style="text-align:center;">
 	<td>
 	<img alt="{{ item.desc }}" src="{{ item.image_link }}" width="144" high="216" /><BR>
-	<b>{{ item.name | capitalize }}</b>
+	<b>{{ item.name | capitalize }}</b><BR>
+	<input type="button" id="remove" value="Remove from bag" onclick="removeFromBag({{ item.itemID }}, 'row{{ item.itemID }}');">
 	</td>
 	<td>{{ item.size | capitalize }}</td>
 	<td>{{ item.colour | capitalize }}</td>

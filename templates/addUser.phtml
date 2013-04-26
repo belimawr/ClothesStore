@@ -59,15 +59,20 @@ var requestObject = false;
 				<p style="font-size: 200%; border-bottom:none;">
 				 Welcome {{ username | capitalize }} <BR>
 				 You have <i id="basketQuantity">{{ num_items | raw }}</i> items in your basket<BR>
-				<a href='shoppingBagPage.php'>View Basket</a> or 
-				<a href='paymentDetailsPage.php'>Checkout</a><BR>
+
+				                                {% if num_items > 0 %}
+                                <a href='shoppingBagPage.php'>View Basket</a> or
+                                <a href='paymentDetailsPage.php'>Checkout</a><BR>
+                          
+                                {% endif %}
+
 				<a href='logout.php'>Log Out</a></p>
 					{% else %}
 				<form id="form" name="form" method="POST" action="login.php">
 
-					<label>Username <span class="small">Type your username</span>
+					<label>Username <span style="color:#FF1493" class="small">Type your username</span>
 					</label> <input type="text" name="usr" id="usr" /> <label>Password
-						<span class="small">Min. size 6 chars</span>
+					<span style="color:#FF1493" class="small">Min. size 6 chars</span>
 					</label> <input type="password" name="password" id="password" />
 
 					<button type="submit">Login</button>
@@ -143,43 +148,44 @@ var requestObject = false;
 	<div id="signUpForm">
 		<fieldset>
 
-		<h1 style="text-align:center; ">Sign-up Form</h1>
+		<h1 style="text-align:center; ">Sign-up Form</h1><br>
+		<p style="text-align:center; font-size:12px; color:red;">All fields are required! </p>	
 		<br><br>
 	<form method="POST" action="addUser.php">
 		<table style="white-space: nowrap;">
 			<tr valign="top">
 				<td><strong>Email</strong><br>
-				<input type="text" name="email" id="email" onblur="checkUser();" size="25"><br><i id='userValid'></i></td>
+				<input type="text" name="email" id="email" onblur="checkUser();" size="25" tabindex="1" ><br><i id='userValid'></i></td>
 								<td><strong>Address line 2</strong><br>
-				<input type="text" name="address2" size="35"></td>
+				<input type="text" name="address2" size="35" tabindex="6"></td>
 			</tr>
 			
 			<tr valign="top">
 				<td><strong>Password</strong><br>
-				<input type="password" name="password" size="25"></td>
+				<input type="password" name="password" size="25" tabindex="2"></td>
 								<td><strong>City</strong><br>
-				<input type="text" name="city" size="25"></td>
+				<input type="text" name="city" size="25" tabindex="7"></td>
 			</tr>
 
 			<tr valign="top">
 				<td><strong>First name</strong><br>
-				<input type="text" name="Fname" size="25"></td>
+				<input type="text" name="Fname" size="25" tabindex="3" ></td>
 								<td><strong>Postcode</strong><br>
-				<input type="text" name="postcode" size="25"></td>
+				<input type="text" name="postcode" size="25" tabindex="8"></td>
 			</tr>
 
 			<tr valign="top">
 				<td><strong>Last name</strong><br>
-				<input type="text" name="Lname" size="25"></td>
+				<input type="text" name="Lname" size="25" tabindex="4"></td>
 				<td><strong>Phone</strong><br>
-				<input type="text" name="phone" size="25"></td>
+				<input type="text" name="phone" size="25" tabindex="9"></td>
 			</tr>
 
 			<tr valign="top">
 				<td><strong>Address line 1</strong><br>
-				<input type="text" name="address1" size="35"></td>
+				<input type="text" name="address1" size="35" tabindex="5"></td>
 								<td><strong>Mobile</strong><br>
-				<input type="text" name="mobile" size="25"></td>
+				<input type="text" name="mobile" size="25" tabindex="10"></td>
 			</tr>
 			
 			<tr>

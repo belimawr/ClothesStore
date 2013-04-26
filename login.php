@@ -75,6 +75,7 @@ else
 			$_SESSION['uid'] = session_id();
 			$_SESSION['username'] = $row['username'];
 			$_SESSION['security_level'] = $row['permission_level'];
+			$_SESSION['customer_ID'] = -1;
 			header( 'Location: admin.php' );
 		}
 		else 

@@ -66,7 +66,7 @@ while ($row = $result->fetch_assoc())
 	$tmp['thumbnail_link'] = $row['thumbnail_link'];
 	$cloths[] = $tmp;
 }
-$parameters['item'] = $cloths[0];
+$parameters['item'] = $cloths;
 $parameters['style_ID'] = $tmp['styleID'];
 
 $db->close();

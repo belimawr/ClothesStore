@@ -41,7 +41,7 @@ $userAddress = $db->escape_string($_POST['userAddress']);
 
 /* Search the card, if it does not exist, add it */
 $sql = <<<SQL
-	SELECT * FROM card WHERE card_type='$cardType' AND card_no='$cardNumber' AND sec_code='$cardSecCode' AND name='$cardHolder'
+	SELECT * FROM card WHERE card_no='$cardNumber'
 SQL;
 
 $result = $db->query($sql);
@@ -150,13 +150,13 @@ foreach($items as $item)
 }
 
 /* Delete all items from basket */
-$sql = "DELETE FROM basket WHERE customer_ID = $customerID";
-$result = $db->query($sql);
-if(!$result)
-{
-	echo("mySQL error: " . $db->error);
-	exit();
-}
+// $sql = "DELETE FROM basket WHERE customer_ID = $customerID";
+// $result = $db->query($sql);
+// if(!$result)
+// {
+// 	echo("mySQL error: " . $db->error);
+// 	exit();
+// }
 
 $db->close();
 

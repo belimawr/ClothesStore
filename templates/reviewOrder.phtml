@@ -17,15 +17,19 @@
 				<p style="font-size: 200%; border-bottom:none;">
 				 Welcome {{ username | capitalize }} <BR>
 				 You have <i id="basketQuantity">{{ num_items | raw }}</i> items in your basket<BR>
-				<a href='shoppingBagPage.php'>View Basket</a> or 
-				<a href='paymentDetailsPage.php'>Checkout</a><BR>
+
+				                                {% if num_items > 0 %}
+                                <a href='shoppingBagPage.php'>View Basket</a> or
+                                <a href='paymentDetailsPage.php'>Checkout</a><BR>
+                                {% endif %}
+
 				<a href='logout.php'>Log Out</a></p>
 					{% else %}
 				<form id="form" name="form" method="POST" action="login.php">
 
-					<label>Username <span class="small">Type your username</span>
+					<label>Username <span style="color:#FF1493" class="small">Type your username</span>
 					</label> <input type="text" name="usr" id="usr" /> <label>Password
-						<span class="small">Min. size 6 chars</span>
+					<span style="color:#FF1493" class="small">Min. size 6 chars</span>
 					</label> <input type="password" name="password" id="password" />
 
 					<button type="submit">Login</button>
@@ -100,9 +104,29 @@
 
 <div id="middle">	
 	
-		<fieldset>
+			<fieldset>
+		<script language="javascript"> 
+				function cancelOrder() {
+					var r=confirm("Would you like to cancel your order and empty your basket?");
+					
+					if (r==true) { 
 
-		<p style="font-size: 23px; float: left; font-weight: bold; margin-left: 20%;">Review your order</p><button id="cancelBtn" type="button">CANCEL ORDER</button><!-- JAVASCRIPT WITH CONFIRMATION BEFORE CANCELLING THE ORDER-->
+						var requestObject = new XMLHttpRequest();
+						if (requestObject) {
+						
+							requestObject.open("POST", "cancelOrder.php", false);
+							requestObject.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+							var x = "orderID={{ orderID }}";
+							requestObject.send(x);
+							//requestObject.onreadystatechange = funcReceiveData;
+						    window.location="index.php";
+
+						}	
+					}
+				} 
+			</script>
+
+		<p style="font-size: 23px; float: left; font-weight: bold; margin-left: 20%;">Review your order</p><input type="button" onClick="javascript:cancelOrder();" id="cancelBtn" value="CANCEL ORDER" /><!-- JAVASCRIPT WITH CONFIRMATION BEFORE CANCELLING THE ORDER-->
 		<br><br><br>
 		<p style="margin-left:15%;">After confirmation, your order will be placed.</p>
 		<br><br><br><br>

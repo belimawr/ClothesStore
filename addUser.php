@@ -28,7 +28,8 @@ if($db->connect_errno > 0)
 
 if($password == "" || $Fname == "" || $Lanme == "" || $address1 == "" || $address2 == "" || $city == "" || $postcode == "" || $phone == "" || $mobile == "" || $email == "")
 {
-	echo ("<script type='text/javascript'> alert('All fields are required!');</script>");
+	echo ("<script type='text/javascript'> alert('All fields are required!');");
+	echo ("window.location.href='addUserPage.php' </script>");
 	exit();
 }
 

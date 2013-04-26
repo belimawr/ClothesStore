@@ -66,12 +66,11 @@ while ($row = $result->fetch_assoc())
 
 $parameters['items'] = $items;
 
-$deliveryResult = $db->query("SELECT name_f, name_l, address.address_1, address.address_2, address.city, address.postcode
-                             FROM customer,address
-			     WHERE customer.customer_ID=$customerID
-				AND customer.address_ID=address.address_ID");
+
+$deliveryResult = $db->query("SELECT * FROM orders JOIN address ON address.address_ID = orders.address_ID WHERE order_ID = $orderID");
 
 $deliveryAddress = array();
+echo($db->error);
 $row = $deliveryResult->fetch_assoc();
 $deliveryAddress['line1'] = $row['address_1'];
 $deliveryAddress['line2'] = $row['address_2'];
@@ -94,6 +93,7 @@ $payment['expiry']= $row['expiry'];
 $payment['card_type']= $row['card_type'];
 
 $parameters['payment'] = $payment;
+$parameters['orderID'] = $orderID;
 
 $total=0.00;
 foreach($items as $item){

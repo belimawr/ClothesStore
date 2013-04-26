@@ -84,4 +84,5 @@ SQL;
 		echo("An error occurred, please try again");
 }
 
+$db->close();
 ?>
