@@ -56,6 +56,16 @@ $parameters['address2'] = $row['address_2'];
 $parameters['city'] = $row['city'];
 $parameters['postcode'] = $row['postcode'];
 
+$sql = "select sum(price*quantity) as orderTotal from basket JOIN item ON item.item_id = basket.item_ID where customer_ID = $customer_ID";
+
+$result = $db->query($sql);
+
+$row = $result->fetch_assoc();
+
+$total = $row['orderTotal'];
+
+$parameters['total'] = $total;
+
 $db->close();
 $template->display($parameters);
 ?>

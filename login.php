@@ -57,9 +57,9 @@ $result = $db->query($query);
 
 if($result->num_rows == 0) //Erro! User not registered.
 {
-	$parameters['message'] = "Invalid email/password.";
-	$parameters['link'] = "index.php";
-	$parameters['linkMessage'] = "Go back";
+        echo ("<script type='text/javascript'> alert('Invalid email or password');");
+        echo ("window.location.href='index.php' </script>");
+
 	$template->display($parameters);
 }
 else
@@ -91,9 +91,9 @@ else
 	}
 	else
 	{
-		$parameters['message'] = "Invalid email/password.";
-		$parameters['link'] = "index.php";
-		$parameters['linkMessage'] = "Go back";
+		echo ("<script type='text/javascript'> alert('Invalid email or password!');");
+        	echo ("window.location.href='index.php' </script>");
+
 		$template->display($parameters);
 	}
 }

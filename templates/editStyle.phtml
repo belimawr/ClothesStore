@@ -115,7 +115,9 @@
  	</div>
 		<div id="login">
 			<div id="stylized" class="myform">
-				{% if logged == 1 %} Welcome {{ username | capitalize }} <BR> <a
+				{% if logged == 1 %} 
+					<p style="font-size: 150%; border-bottom:none;">
+				Welcome {{ username | capitalize }} <BR> <a
 					href='logout.php'>Log Out</a> {% else %}
 				<form id="form" name="form" method="POST" action="login.php">
 

@@ -33,4 +33,15 @@ $result = $db->query("UPDATE basket
 					  WHERE item_ID = $itemid 
 					  AND customer_ID= $customer_ID");
 echo($db->error);
+
+$query = "SELECT price FROM item WHERE item_ID = $itemid";
+
+$result = $db->query($query);
+
+$row = $result->fetch_assoc();
+
+echo($row['price']);
+
+
+$db->close();
 ?>
