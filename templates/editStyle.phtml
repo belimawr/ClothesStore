@@ -1,0 +1,248 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<script type='text/javascript' language='Javascript'>
+<!--
+
+	function itemSelected()
+	{
+		var select_tag = document.getElementById("style_ID");
+		var style_ID = select_tag.options[select_tag.selectedIndex].value;
+
+
+		requestObject = new XMLHttpRequest();
+		if (requestObject)
+		{
+			requestObject.open("GET", "getStyleXML.php?style_ID=" + style_ID, false);
+			requestObject.send();
+			myXML = requestObject.responseText;
+			/* | style_ID | description | name  | department | type     | thumbnail_link */
+			//var style_ID_tag = document.getElementById("style_ID");
+			var description_tag = document.getElementById("description");
+			var name_tag = document.getElementById("name");
+			var department_tag = document.getElementById("department");
+			var type_tag = document.getElementById("type");
+			var thumbnail_link_tag = document.getElementById("thumbnail_link");
+			var img_tag = document.getElementById("imgStyle");
+			
+			/* get the item in the XML */
+			parser=new DOMParser();
+		  	xmlDoc=parser.parseFromString(myXML,"text/xml");
+		  	var x = xmlDoc.getElementsByTagName("item");
+			
+		  	description_tag.value=x[0].getElementsByTagName("description")[0].childNodes[0].nodeValue;
+		  	//name_tag.value=x[0].getElementsByTagName("name")[0].childNodes[0].nodeValue;
+		  	department_tag.value=x[0].getElementsByTagName("department")[0].childNodes[0].nodeValue;
+		  	type_tag.value=x[0].getElementsByTagName("type")[0].childNodes[0].nodeValue;
+		  	thumbnail_link_tag.value=x[0].getElementsByTagName("thumbnail_link")[0].childNodes[0].nodeValue;
+		  	name_tag.value=x[0].getElementsByTagName("name")[0].childNodes[0].nodeValue;
+		  	img_tag.src = x[0].getElementsByTagName("thumbnail_link")[0].childNodes[0].nodeValue;
+		  	
+		}
+	}
+	
+	function update_database()
+	{
+		var select_tag = document.getElementById("style_ID");
+		var style_ID = select_tag.options[select_tag.selectedIndex].value;
+	
+		var description_tag = document.getElementById("description");
+		var name_tag = document.getElementById("name");
+		var department_tag = document.getElementById("department");
+		var type_tag = document.getElementById("type");
+		var thumbnail_link_tag = document.getElementById("thumbnail_link");
+		var img_tag = document.getElementById("imgStyle");
+		
+		requestObject = new XMLHttpRequest();
+		if (requestObject)
+		{
+			requestObject.open("POST", "editStyle.php", false);
+			requestObject.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			var postData = "styleID="+style_ID+"&desc="+description_tag.value+"&type="+type_tag.value+"&thumbnailLink="
+			+thumbnail_link_tag.value+"&department="+department_tag.value+"&name="+name_tag.value;
+			
+			requestObject.send(postData);
+			alert(requestObject.responseText);
+			img_tag.src = thumbnail_link_tag.value;
+			var i = select_tag.selectedIndex;
+			select_tag.options[i].text=name_tag.value;
+		}
+	}
+
+	/* 
+									<option value="kilt">Kilt</option>
+									<option value="shorts">Shorts</option>
+									<option value="tShirts">T-Shirts</option> */
+	function changeDepartment()
+	{
+		var i = 0;
+		var department = document.getElementById('department');
+		var type = document.getElementById("type");
+		type.options.length=0;
+		if(department.selectedIndex == 0)
+		{
+			type.options[i++]=new Option("Coats & Jackets", "coats", false, false);
+			type.options[i++]=new Option("Jeans", "jeans", false, false);
+			type.options[i++]=new Option("Knitwear", "knitwear", false, false);
+			type.options[i++]=new Option("Dress", "dress", false, false);
+			type.options[i++]=new Option("Skirt", "skirt", false, false);
+		}
+		else
+		{
+			type.options[i++]=new Option("Coats & Jackets", "coats", false, false);
+			type.options[i++]=new Option("Jeans", "jeans", false, false);
+			type.options[i++]=new Option("Knitwear", "knitwear", false, false);
+			type.options[i++]=new Option("Shorts", "shorts", false, false);
+			type.options[i++]=new Option("Kilt", "kilt", false, false);
+			type.options[i++]=new Option("T-Shirts", "tShirts", false, false);
+		}
+	}
+//-->
+</script>
+</head>
+<body>
+<a id="tooCool" href="http://www.w3junkies.com/toocool/">Too Cool for Internet Explorer</a>
+<link rel = "stylesheet"  type="text/css" href="addUser.css">
+
+<div id = "header">
+ <div id ="headerlogo">
+ 	<a href="index.php">
+ 		<img style="margin-left:100px; margin-top:0px;" id ="logo" src= "logo1.png" alt="logo">
+ 	</a>
+ 	
+ 	</div>
+		<div id="login">
+			<div id="stylized" class="myform">
+				{% if logged == 1 %} Welcome {{ username | capitalize }} <BR> <a
+					href='logout.php'>Log Out</a> {% else %}
+				<form id="form" name="form" method="POST" action="login.php">
+
+					<label>Username <span class="small">Type your username</span>
+					</label> <input type="text" name="usr" id="usr" /> <label>Password
+						<span class="small">Min. size 6 chars</span>
+					</label> <input type="password" name="password" id="password" />
+
+					<button type="submit">Login</button>
+					</br> </br>
+					<center>
+						<a id="signup"
+							style="font-size: 14px;" href="addUserPage.php">Don't have an
+							account? Sign up here!</a>
+					</center>
+					<div class="spacer"></div>
+
+				</form>
+				{% endif %}
+			</div>
+		</div>
+ </div>
+
+<div id="content">
+ 
+		<div id="nav">
+			<ul>
+				<li><a href="admin.php">ADMIN MENU</a></li>
+				<li><a href="addStylePage.php">ADD STYLE</a></li>
+				<li><a href="addItemPage.php">ADD ITEM</a></li>
+				<li><a href="editStylePage.php">EDIT STYLE</a></li>
+				<li><a href="editItemPage.php">EDIT ITEM</a></li>
+			</ul>
+
+		</div>
+		<center>
+			<h1>Administration Panel</h1>
+			<BR>
+		</center>
+		
+				<div id="signUpForm">
+			<fieldset style="min-width: 800px;">
+
+				<h1 style="text-align: center;">Edit Style Form</h1>
+				<br> <br>
+				<form method="POST" action="editItem.php">
+					<table style="white-space: nowrap;">
+						<tr valign="top">
+							<td><strong>Style</strong></td>
+									<img id="imgStyle" src="" width="144" high="216" style="float: right;" /><td>
+									<select name="style_ID" id="style_ID" onchange="itemSelected();">
+								    <option value="-1">Select one style</option>
+								    {% for item in items %}
+								    <option value="{{ item.id }}">{{ item.name }}</option>
+								    {% endfor %}
+									</select></td>
+						</tr>
+						
+						<tr valign="top">
+							<td><strong>Name:</strong></td>
+							<td><input type="text" name="name" id="name"></td>
+						</tr>
+
+						<tr valign="top">
+							<td><strong>Department:</strong></td>
+							<td><select name="department" id="department" onchange="changeDepartment();">
+									<option value="womenswear">Womenswear</option>
+									<option value="menswear">Menswear</option>
+							</select></td>
+						</tr>
+
+						<tr valign="top">
+							<td><strong>Type:</strong></td>
+							<td><select name="type" id="type">
+									<option value="coats">Coats & Jackets</option>
+									<option value="Jeans">Jeans</option>
+									<option value="knitwear">Knitwear</option>
+									<option value="dress">Dress</option>
+									<option value="skirt">Skirt</option>
+							</select></td>
+						</tr>
+
+						<tr valign="top">
+							<td><strong>Thumbnail Link:</strong></td>
+							<td><input type="text" name="thumbnail" id="thumbnail_link"></td>
+						</tr>
+
+						<tr valign="top">
+							<td><strong>Description:</strong></td>
+							<td><textarea rows="10" cols="20" name="description" id="description"></textarea>
+							</td>
+						</tr>
+
+						<tr valign="top">
+							<td><input type="button" value="Submit" onclick="update_database();"
+								style="margin-top: 20px; background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EEEE) );" />
+							</td>
+
+							<td><input type="reset" value="Clear"
+								style="margin-top: 20px; background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EEEE) );" />
+							</td>
+						</tr>
+
+					</table>
+				</form>
+			</fieldset>
+		</div>
+
+		<div id="footer">
+	</br>
+<p style="text-align:center;"> &copy; 2013 Hamptons Store Ltd. All Rights Reserved.</p>
+
+<ul id="footerList">
+	<h3>Help</h3>
+<li> <a href="#">Frequently Asked Questions</a></li>
+<li> <a href="#">Size Guides</a> </li>
+<li><a href="#">Delivery Information</a></li>
+<li> <a href="#">Customer Services</a></li>
+<li> <a href="#">Site Map</a></li>
+</ul>
+
+<ul>
+	<br><br>
+<li><img style="width:25px; margin-left:50px;" id ="flogo" src= "f_logo.png" alt="logo"><a style="font-size:12px; margin-left:8px" href="#"> www.facebook.com/HamptonsStoreUK</a></li>
+<br>
+<li><img style="width:35px; margin-left:45px;" id ="tlogo" src= "twitter2.png" alt="logo"><a style="font-size:12px; margin-left:8px" href="#"> www.twitter.com/HamptonsStoreUK</a></li>
+</ul>
+</div>
+
+
+</body>
+</html>

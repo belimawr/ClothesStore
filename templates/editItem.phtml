@@ -1,0 +1,278 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<script type='text/javascript' language='Javascript'>
+<!--
+/*
+	function myParser(myXML) {
+		
+		if (window.DOMParser)
+		  {
+		  parser=new DOMParser();
+		  xmlDoc=parser.parseFromString(myXML,"text/xml");
+		  }
+		else // Internet Explorer
+		  {
+		  xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+		  xmlDoc.async=false;
+		  xmlDoc.loadXML(myXML); 
+		  }
+		
+		var x = xmlDoc.getElementsByTagName("item");
+		for (i = 0; i < x.length; i++) {*/
+			/*
+			document.write(i);
+			document.write("<BR>");
+			document.write("item_ID: ");
+			document.write(x[i].getElementsByTagName("item_ID")[0].childNodes[0].nodeValue);
+			document.write("<BR>");
+
+			document.write("item_size: ");
+			document.write(x[i].getElementsByTagName("item_size")[0].childNodes[0].nodeValue);
+			document.write("<BR>");
+
+			document.write("price: ");
+			document.write(x[i].getElementsByTagName("price")[0].childNodes[0].nodeValue);
+			document.write("<BR>");
+
+			document.write("stock: ");
+			document.write(x[i].getElementsByTagName("stock")[0].childNodes[0].nodeValue);
+			document.write("<BR>");
+
+			document.write("image_link: ");
+			document.write(x[i].getElementsByTagName("image_link")[0].childNodes[0].nodeValue);
+			document.write("<BR>");
+
+			document.write("colour: ");
+			document.write(x[i].getElementsByTagName("colour")[0].childNodes[0].nodeValue);
+			document.write("<BR>");
+			*/
+		//}
+		
+		//document.write("<BR>");
+	//}
+	
+	//getDATA();
+	
+
+	function itemSelected()
+	{
+		var select_tag = document.getElementById("style_ID");
+		var itemID = select_tag.options[select_tag.selectedIndex].value;
+
+
+		requestObject = new XMLHttpRequest();
+		if (requestObject)
+		{
+			requestObject.open("GET", "getItemsXML.php?item_ID=" + itemID, false);
+			requestObject.send();
+			//requestObject.onreadystatechange = funcReceiveData;
+			myXML = requestObject.responseText;
+			var price_tag = document.getElementById("price");
+			var stock_tag = document.getElementById("stock");
+			var image_link_tag = document.getElementById("image_link");
+			var item_size_tag = document.getElementById("item_size");
+			var colour_tag = document.getElementById("colour");
+			var img_tag = document.getElementById("imgStyle");
+			
+			/* get the item in the XML */
+			parser=new DOMParser();
+		  	xmlDoc=parser.parseFromString(myXML,"text/xml");
+		  	var x = xmlDoc.getElementsByTagName("item");
+			
+		  	price_tag.value=x[0].getElementsByTagName("price")[0].childNodes[0].nodeValue;
+			stock_tag.value=x[0].getElementsByTagName("stock")[0].childNodes[0].nodeValue;
+			image_link_tag.value=x[0].getElementsByTagName("image_link")[0].childNodes[0].nodeValue;
+			item_size_tag.value=x[0].getElementsByTagName("item_size")[0].childNodes[0].nodeValue;
+			colour_tag.value=x[0].getElementsByTagName("colour")[0].childNodes[0].nodeValue;
+			img_tag.src = x[0].getElementsByTagName("image_link")[0].childNodes[0].nodeValue;
+			
+			var i = select_tag.selectedIndex;
+			select_tag.options[i].text=x[0].getElementsByTagName("name")[0].childNodes[0].nodeValue + " - " + colour_tag.value + " - " + item_size_tag.value;	
+		}
+	}
+	
+	function update_database()
+	{
+		var select_tag = document.getElementById("style_ID");
+		var itemID = select_tag.options[select_tag.selectedIndex].value;
+		
+		var price_tag = document.getElementById("price");
+		var stock_tag = document.getElementById("stock");
+		var image_link_tag = document.getElementById("image_link");
+		var item_size_tag = document.getElementById("item_size");
+		var colour_tag = document.getElementById("colour");
+		//var img_tag = document.getElementById("imgStyle");
+		
+		requestObject = new XMLHttpRequest();
+		if (requestObject)
+		{
+			requestObject.open("POST", "editItem.php", false);
+			requestObject.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			var postData = "itemID="+itemID+"&price="+price_tag.value+"&stock="+stock_tag.value+"&image_link="
+			+image_link_tag.value+"&colour="+colour_tag.value+"&item_size="+item_size_tag.value;
+			
+			requestObject.send(postData);
+			alert(requestObject.responseText);
+			var i = select_tag.selectedIndex;
+			text = select_tag.options[i].text;
+			var textArray = text.split(" - ");
+			select_tag.options[i].text=textArray[0] + " - " + colour_tag.value + " - " + item_size_tag.value;
+		}
+	}
+//-->
+</script>
+</head>
+<body>
+<a id="tooCool" href="http://www.w3junkies.com/toocool/">Too Cool for Internet Explorer</a>
+<link rel = "stylesheet"  type="text/css" href="addUser.css">
+
+<div id = "header">
+ <div id ="headerlogo">
+ 	<a href="index.php">
+ 		<img style="margin-left:100px; margin-top:0px;" id ="logo" src= "logo1.png" alt="logo">
+ 	</a>
+ 	
+ 	</div>
+		<div id="login">
+			<div id="stylized" class="myform">
+				{% if logged == 1 %} Welcome {{ username | capitalize }} <BR> <a
+					href='logout.php'>Log Out</a> {% else %}
+				<form id="form" name="form" method="POST" action="login.php">
+
+					<label>Username <span class="small">Type your username</span>
+					</label> <input type="text" name="usr" id="usr" /> <label>Password
+						<span class="small">Min. size 6 chars</span>
+					</label> <input type="password" name="password" id="password" />
+
+					<button type="submit">Login</button>
+					</br> </br>
+					<center>
+						<a id="signup"
+							style="font-size: 14px;" href="addUserPage.php">Don't have an
+							account? Sign up here!</a>
+					</center>
+					<div class="spacer"></div>
+
+				</form>
+				{% endif %}
+			</div>
+		</div>
+ </div>
+
+<div id="content">
+ 
+		<div id="nav">
+			<ul>
+				<li><a href="admin.php">ADMIN MENU</a></li>
+				<li><a href="addStylePage.php">ADD STYLE</a></li>
+				<li><a href="addItemPage.php">ADD ITEM</a></li>
+				<li><a href="editStylePage.php">EDIT STYLE</a></li>
+				<li><a href="editItemPage.php">EDIT ITEM</a></li>
+			</ul>
+
+		</div>
+		<center>
+			<h1>Administration Panel</h1>
+			<BR>
+		</center>
+		
+				<div id="signUpForm">
+			<fieldset style="min-width: 800px;">
+
+				<h1 style="text-align: center;">Edit Item Form</h1>
+				<br> <br>
+				<form method="POST" action="editItem.php">
+					<table style="white-space: nowrap;">
+						<tr valign="top">
+							<td><strong>Item</strong></td>
+									<img id="imgStyle" src="" width="144" high="216" style="float: right;" /><td>
+									<select name="style_ID" id="style_ID" onchange="itemSelected();">
+								    <option value="-1">Select one item</option>
+								    {% for item in items %}
+								    <option value="{{ item.id }}">{{ item.name }} - {{ item.colour | capitalize }} - {{ item.size | capitalize }}</option>
+								    {% endfor %}
+									</select></td>
+						</tr>
+
+						<tr valign="top">
+							<td><strong>Colour</strong></td>
+							<td><select name="colour" id="colour">
+									<option value="blue">Blue</option>
+									<option value="black">Black</option>
+									<option value="red">Red</option>
+									<option value="white">White</option>
+									<option value="yellow">Yellow</option>
+									<option value="pink">Pink</option>
+									<option value="gray">Gray</option>
+									<option value="green">Green</option>
+							</select></td>
+						</tr>
+
+						<tr valign="top">
+							<td><strong>Size</strong></td>
+							<td><select name="item_size" id="item_size">
+									<option value="xsamall">XS</option>
+									<option value="small">S</option>
+									<option value="medium">M</option>
+									<option value="large">L</option>
+									<option value="xlarge">XL</option>
+									<option value="xxlarge">XXL</option>
+									<option value="xxxlarge">XXXL</option>
+							</select></td>
+						</tr>
+
+						<tr valign="top">
+							<td><strong>Price</strong></td>
+							<td><input type="text" name="price" id="price" size="25"></td>
+						</tr>
+
+						<tr valign="top">
+							<td><strong>Stock</strong></td>
+							<td><input type="text" name="stock" id="stock" size="25"></td>
+						</tr>
+
+						<tr valign="top">
+							<td><strong>Image Link</strong></td>
+							<td><input type="text" name="image_link" id="image_link" size="25"></td>
+						</tr>
+
+						<tr valign="top">
+							<td><input type="button" value="Submit" onclick="update_database();"
+								style="margin-top: 20px; background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EEEE) );" />
+							</td>
+
+							<td><input type="reset" value="Clear"
+								style="margin-top: 20px; background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#E0EEEE) );" />
+							</td>
+						</tr>
+
+					</table>
+				</form>
+			</fieldset>
+		</div>
+
+		<div id="footer">
+	</br>
+<p style="text-align:center;"> &copy; 2013 Hamptons Store Ltd. All Rights Reserved.</p>
+
+<ul id="footerList">
+	<h3>Help</h3>
+<li> <a href="#">Frequently Asked Questions</a></li>
+<li> <a href="#">Size Guides</a> </li>
+<li><a href="#">Delivery Information</a></li>
+<li> <a href="#">Customer Services</a></li>
+<li> <a href="#">Site Map</a></li>
+</ul>
+
+<ul>
+	<br><br>
+<li><img style="width:25px; margin-left:50px;" id ="flogo" src= "f_logo.png" alt="logo"><a style="font-size:12px; margin-left:8px" href="#"> www.facebook.com/HamptonsStoreUK</a></li>
+<br>
+<li><img style="width:35px; margin-left:45px;" id ="tlogo" src= "twitter2.png" alt="logo"><a style="font-size:12px; margin-left:8px" href="#"> www.twitter.com/HamptonsStoreUK</a></li>
+</ul>
+</div>
+
+
+</body>
+</html>
