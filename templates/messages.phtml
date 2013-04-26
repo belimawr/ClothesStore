@@ -20,18 +20,21 @@
 				 Welcome {{ username | capitalize }} <BR>
 				 You have <i id="basketQuantity">{{ num_items | raw }}</i> items in your basket<BR>
 
-				                                {% if num_items > 0 %}
-                                <a href='shoppingBagPage.php'>View Basket</a> or
-                                <a href='paymentDetailsPage.php'>Checkout</a><BR>
+				                {% if num_items > 0 %}
+                                <a id="Vbasket" href='shoppingBagPage.php'>View Basket</a><BR>
+                                <a id="checOut" href='paymentDetailsPage.php'>Checkout</a><BR>
+                                {% else %}
+                                <a id="Vbasket" href='shoppingBagPage.php' style="display: none;" >View Basket</a><BR>
+                                <a id="checOut" href='paymentDetailsPage.php' style="display: none;" >Checkout</a><BR>
                                 {% endif %}
 
 				<a href='logout.php'>Log Out</a></p>
 					{% else %}
 				<form id="form" name="form" method="POST" action="login.php">
 
-					<label>Username <span style="color:#FF1493" class="small">Type your username</span>
+					<label>Username <span style="color:#20B2AA" class="small">Type your username</span>
 					</label> <input type="text" name="usr" id="usr" /> <label>Password
-					<span style="color:#FF1493" class="small">Min. size 6 chars</span>
+					<span style="color:#20B2AA" class="small">Min. size 6 chars</span>
 					</label> <input type="password" name="password" id="password" />
 
 					<button type="submit">Login</button>
