@@ -46,13 +46,13 @@ $depart = $_GET['depart'];
 $type = $_GET['type'];
 
 if($depart == "all")
-	$query = "SELECT * FROM item JOIN style on item.style_ID = style.style_ID";
+	$query = "SELECT * FROM style style_ID";
 else
 {
 	if($type != "any")
-		$query = "SELECT * FROM item JOIN style on item.style_ID = style.style_ID WHERE department like '$depart' and type like '$type'";
+		$query = "SELECT * FROM style WHERE department like '$depart' and type like '$type'";
 	else
-		$query = "SELECT * FROM item JOIN style on item.style_ID = style.style_ID WHERE department like '$depart'";
+		$query = "SELECT * FROM style WHERE department like '$depart'";
 }
 
 $result = $db->query($query);
@@ -63,14 +63,14 @@ while ($row = $result->fetch_assoc())
 {
 		$tmp = array();
 		$tmp['style_ID'] = $row['style_ID'];
-		$tmo['item_ID'] = $row['item_ID']; 
+// 		$tmo['item_ID'] = $row['item_ID']; 
 		$tmp['desc'] = $row['description'];
-		$tmp['src'] = $row['image_link'];
-		$tmp['price'] = $row['price'];
+// 		$tmp['src'] = $row['image_link'];
+// 		$tmp['price'] = $row['price'];
 		$tmp['name'] = $row['name'];
-		$tmp['size'] = $row['item_size'];
-		$tmp['thumbnail'] = $row['image_link'];
-		$tmp['colour'] = $row['colour'];
+// 		$tmp['size'] = $row['item_size'];
+		$tmp['src'] = $row['thumbnail_link'];
+// 		$tmp['colour'] = $row['colour'];
 		$wcloths[] = $tmp;
 }
 $parameters['womensCloths'] = $wcloths;

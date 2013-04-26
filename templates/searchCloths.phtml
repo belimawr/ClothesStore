@@ -109,16 +109,6 @@
 	{{ department | raw }}
 	</h1>
 
-<!--
-<div class = "sortDropdown">
-<select>
-  <option value="Favourites">Favourites</option>
-  <option value="Most Popular">Most Popular</option>
-  <option value="Price Low-High">Price Low-High</option>
-  <option value="Price High-Low">Price High-Low</option>
-</select>
-</div>
--->
    <table style="margin: auto;">
 		<tr valign="top">
 			<td>
@@ -222,6 +212,7 @@
 						<div id="links">
 							<a href="buyingPage.php?styleID={{ image.style_ID }}"  >{{ image.name | raw }}<BR>
 							Colour: <strong>{{ image.colour | capitalize }}</strong><BR>
+							Size: <strong>{{ size | capitalize }}</strong>
 							<strong>£{{ image.price | raw }}</strong>
 							</a>
 						</div>
