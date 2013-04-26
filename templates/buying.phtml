@@ -174,14 +174,20 @@ function eliminateDuplicates(arr) {
 		var size_tag = document.getElementById('selectSize');
 		var indexs = size_tag.selectedIndex;
 
+		var img_tag = document.getElementById("imgItem");
+
 		var price_tag = document.getElementById("price");
 		if(MyRequestObject)
 		{
 			MyRequestObject.open("POST", "getPrice.php", false);
 			MyRequestObject.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			MyRequestObject.send(styleID + "&colour=" + colour_tag.options[indexc].value + "&size=" + size_tag.options[indexs].value);
-			var price = MyRequestObject.responseText;
+			var allData = MyRequestObject.responseText;
+			var Myvec = allData.split(";");
+			var price = Myvec[0];
+			var imgLink = Myvec[1];
 			price_tag.innerHTML = "£" + price;
+			img_tag.src = imgLink;
 		}
 			
 	}
@@ -298,7 +304,7 @@ window.onload = getAllColourSizes;
 <div id="middle">
 	<table style="margin-left: auto; margin-right: auto;">
 	<tr>
-	<td><img alt="" src="{{ item[0].image_link }}" width="400" style="margin-top: 40px;" /></td>
+	<td><img alt="" src="{{ item[0].image_link }}" width="400" style="margin-top: 40px;" id="imgItem" /></td>
 	<td style="text-align: left; vertical-align: text-top;">
 	<div style="margin-left:100px;">
 	<h1 style="font-weight: bold; text-align:center; margin-top:100px;" >
